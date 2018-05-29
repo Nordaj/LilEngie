@@ -1,3 +1,5 @@
+#include <iostream>
+#include <string>
 #include "GameObject.h"
 #include "Component.h"
 
@@ -10,8 +12,14 @@ const GameObject* Component::GetObj()
 	return obj;
 }
 
-void Component::Start()
-{ }
+std::string Component::GetType()
+{
+	std::cout << "GetType virtual method din work..." << std::endl;
+	return "";
+}
 
-void Component::Update()
-{ }
+void* Component::Get() 
+{ 
+	std::cout << "GetComponent virtual method din work.." << std::endl;
+	return nullptr; 
+}

@@ -1,30 +1,31 @@
+#include <iostream>
 #include <vector>
 #include <string>
 #include "Component.h"
 #include "GameObject.h"
 
-void GameObject::AddComponent(Component comp)
+void GameObject::AddComponent(Component &comp)
 {
-	components.push_back(comp);
+	components.push_back(&comp);
 }
 
-template <typename T>
-T* GameObject::GetComponent()
+void* GameObject::GetComponent(std::string comp)
 {
 	for (int i = 0; i < components.size(); i++)
 	{
-		//TODO
-		//Check if any match using GetType, return
-		if (components[i].GetType() == T::GetType())
-			return components[i].GetComponent();
+		if (components[i]->GetType() == comp)
+			return components[i]->Get();
 	}
+
+	std::cout << "Could not find component" << std::endl;
+	return nullptr;
 }
 
 void GameObject::Start()
 {
 	for (int i = 0; i < components.size(); i++)
 	{
-		components[i].Start();
+		components[i]->Start();
 	}
 }
 
@@ -32,6 +33,6 @@ void GameObject::Update()
 {
 	for (int i = 0; i < components.size(); i++)
 	{
-		components[i].Update();
+		components[i]->Update();
 	}
 }

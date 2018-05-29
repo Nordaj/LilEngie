@@ -4,20 +4,18 @@
 
 class GameObject;
 
-//Just a base class for specific components
 class Component
 {
-private:
+protected:
 	const GameObject *obj;
 
 public:
 	Component(GameObject *obj);
 	const GameObject* GetObj();
 
-	virtual std::string GetType() { return ""; }
+	virtual std::string GetType();
+	virtual void* Get();
 
-	virtual void* GetComponent() { return nullptr; }
-
-	virtual void Start();
-	virtual void Update();
+	virtual void Start() {}
+	virtual void Update() {}
 };

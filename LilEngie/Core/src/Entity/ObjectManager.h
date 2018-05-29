@@ -7,10 +7,10 @@ namespace ObjectManager
 {
 	namespace
 	{
-		std::vector<GameObject> objects;
+		std::vector<GameObject*> objects;
 	}
 
-	void AddObject(GameObject obj);
+	void AddObject(GameObject *obj);
 	void Start();
 	void Update();
 }
