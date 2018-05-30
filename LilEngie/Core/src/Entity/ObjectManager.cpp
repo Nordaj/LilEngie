@@ -2,9 +2,9 @@
 #include "GameObject.h"
 #include "ObjectManager.h"
 
-void ObjectManager::AddObject(GameObject *obj)
+void ObjectManager::AddObject(GameObject &obj)
 {
-	objects.push_back(obj);
+	objects.push_back(&obj);
 }
 
 void ObjectManager::Start()

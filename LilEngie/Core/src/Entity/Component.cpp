@@ -3,8 +3,8 @@
 #include "GameObject.h"
 #include "Component.h"
 
-Component::Component(GameObject *obj)
-	:obj(obj)
+Component::Component(GameObject &obj)
+	:obj(&obj)
 { }
 
 const GameObject* Component::GetObj()

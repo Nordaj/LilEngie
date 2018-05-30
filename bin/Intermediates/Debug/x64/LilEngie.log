@@ -1,4 +1,8 @@
 ﻿  Mesh.cpp
+  Game.cpp
+  MeshRenderer.cpp
+d:\documents\github\lilengie\lilengie\core\src\graphics\meshrenderer.cpp(45): warning C4267: 'argument': conversion from 'size_t' to 'GLsizei', possible loss of data
+  Renderer.cpp
   Main.cpp
   Generating Code...
   LilEngie.vcxproj -> D:\Documents\GitHub\LilEngie\bin\Debug\x64\LilEngie.exe

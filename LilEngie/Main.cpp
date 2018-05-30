@@ -1,25 +1,38 @@
 #include <iostream>
+#include <vector>
 
 #include "Core/LilEngie.h"
 
 int main()
 {
+	//Create vertex array for a basic triangle
+	std::vector<float> verts = {
+		 0.0f,  0.5f,  0.0f, //0
+		 0.5f, -0.5f,  0.0f, //1
+		-0.5f, -0.5f,  0.0f, //3
+	};
+
+	std::vector<unsigned int> ind = {
+		0, 1, 2
+	};
+
 	Game::Init();
 
-	Renderer::SetClearColor(1, 0, 0, 1);
-	
-	//Create object
+	//-----OBJECT ONE-----//
+	///Create object 
 	GameObject obj = GameObject();
-	Mesh mesh = Mesh(&obj);
+	ObjectManager::AddObject(obj);
+
+	///Add transform
+	Transform tran = Transform(obj);
+	obj.AddComponent(tran);
+
+	///Add mesh
+	Mesh mesh = Mesh(obj);
 	obj.AddComponent(mesh);
-	ObjectManager::AddObject(&obj);
 
-	//Access components stuff
-	Mesh *m = (Mesh*)obj.GetComponent("Mesh");
-	m->x = 5;
-
-	//Debug testing
-	std::cout << m->x << std::endl;
+	///Setup mesh
+	mesh.Setup(verts, ind, 0);
 
 	Game::Run();
 	Game::Close();
