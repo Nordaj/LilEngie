@@ -16,7 +16,7 @@ private:
 public:
 	Mesh(GameObject &obj);
 
-	void Setup(std::vector<float> v, std::vector<unsigned int> i, unsigned int s);
+	void Setup(std::vector<float> v, std::vector<unsigned int> i, std::string shaderPath);
 	MeshRenderer& GetRenderer();
 	glm::mat4& GetTransformation();
 

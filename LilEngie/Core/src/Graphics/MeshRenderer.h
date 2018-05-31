@@ -1,7 +1,10 @@
 #pragma once
 
+#include <string>
 #include <vector>
 #include <glm/glm.hpp>
+
+#include "Shader.h"
 
 class MeshRenderer
 {
@@ -9,7 +12,7 @@ private:
 	std::vector<float> vertices;
 	std::vector<unsigned int> indices;
 
-	unsigned int shader;
+	Shader shader;
 	unsigned int VBO;
 	unsigned int IBO;
 	unsigned int VAO;
@@ -17,6 +20,6 @@ private:
 public:
 	MeshRenderer() {}
 
-	void Setup(std::vector<float> v, std::vector<unsigned int> i, unsigned int s);
+	void Setup(std::vector<float> v, std::vector<unsigned int> i, std::string &path);
 	void Draw(glm::mat4 &MVP);
 };

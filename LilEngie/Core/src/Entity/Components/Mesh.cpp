@@ -20,10 +20,10 @@ Mesh::Mesh(GameObject &obj)
 	transform = (Transform*)obj.GetComponent(Transform::GetTypeStatic());
 }
 
-void Mesh::Setup(std::vector<float> v, std::vector<unsigned int> i, unsigned int s)
+void Mesh::Setup(std::vector<float> v, std::vector<unsigned int> i, std::string shaderPath)
 {
 	//Setup mesh renderer
-	meshRenderer.Setup(v, i, s);
+	meshRenderer.Setup(v, i, shaderPath);
 
 	//Add to render list
 	Renderer::AddMesh(*this);

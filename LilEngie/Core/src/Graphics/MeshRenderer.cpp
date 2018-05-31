@@ -1,16 +1,24 @@
 #include <GL/glew.h>
+#include <string>
 #include <iostream>
 
+#include "ShaderReader.h"
 #include "UniformHandler.h"
 #include "Renderer.h"
 #include "MeshRenderer.h"
 
-void MeshRenderer::Setup(std::vector<float> v, std::vector<unsigned int> i, unsigned int s)
+void MeshRenderer::Setup(std::vector<float> v, std::vector<unsigned int> i, std::string &path)
 {
+	std::string vert = "";
+	std::string surf = "";
+	ShaderReader::ReadShader(&vert, &surf, path);
+
+	//Setup shader
+	shader.Setup(vert, surf);
+
 	//Assign values
 	vertices = v;
 	indices = i;
-	shader = s;
 
 	//Generate and bind VAO
 	glGenVertexArrays(1, &VAO);
@@ -35,8 +43,11 @@ void MeshRenderer::Setup(std::vector<float> v, std::vector<unsigned int> i, unsi
 
 void MeshRenderer::Draw(glm::mat4 &MVP)
 {
-	//Pass in mvp (not sure how i want to handle uniform names)
-	//UniformHandler::PassMat4(shader, (char*)"uMVPMat", MVP);
+	//Set current shader
+	shader.SetCurrent();
+
+	//Pass in mvp
+	UniformHandler::PassMat4(shader.GetID(), (char*)"uMVPMat", MVP);
 
 	//Bind VAO
 	glBindVertexArray(VAO);
