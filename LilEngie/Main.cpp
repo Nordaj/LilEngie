@@ -22,6 +22,28 @@ int main()
 	///Setup mesh
 	mesh.Setup(BaseMeshes::triangleVerts, BaseMeshes::triangleInd, "Resources/Unlit.shader");
 
+	///Move transform
+	tran.transformation = glm::translate(tran.transformation, glm::vec3(0.5f, 0, 0));
+
+	//-----OBJECT TWO-----//
+	///Create object
+	GameObject left = GameObject();
+	ObjectManager::AddObject(left);
+
+	///Add transform
+	Transform leftTran = Transform(left);
+	left.AddComponent(leftTran);
+
+	///Add mesh
+	Mesh leftMesh = Mesh(left);
+	left.AddComponent(leftMesh);
+
+	///Setup mesh
+	leftMesh.Setup(BaseMeshes::triangleVerts, BaseMeshes::triangleInd, "Resources/BlueUnlit.shader");
+
+	///Move transform
+	leftTran.transformation = glm::translate(leftTran.transformation, glm::vec3(-0.5f, 0.2f, 0));
+
 	Game::Run();
 	Game::Close();
 

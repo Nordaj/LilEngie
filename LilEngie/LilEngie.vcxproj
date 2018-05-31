@@ -184,6 +184,7 @@
     <ClInclude Include="Core\src\Graphics\UniformHandler.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\BlueUnlit.shader" />
     <None Include="Resources\Unlit.shader" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

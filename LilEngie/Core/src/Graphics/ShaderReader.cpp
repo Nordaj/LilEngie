@@ -31,9 +31,9 @@ void ShaderReader::ReadShader(std::string *vertex, std::string *surface, std::st
 
 			//Append current line
 			if (currentType == 1)
-				vertex->append(line).append("\n");
+				vertex->append(line + "\n");
 			else if (currentType == 2)
-				surface->append(line).append("\n");
+				surface->append(line + "\n");
 		}
 	}
 }

@@ -107,5 +107,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Unlit.shader" />
+    <None Include="Resources\BlueUnlit.shader" />
   </ItemGroup>
 </Project>
