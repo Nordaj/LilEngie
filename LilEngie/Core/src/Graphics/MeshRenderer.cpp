@@ -2,12 +2,13 @@
 #include <string>
 #include <iostream>
 
+#include "MaterialHandler.h"
 #include "ShaderReader.h"
 #include "UniformHandler.h"
 #include "Renderer.h"
 #include "MeshRenderer.h"
 
-void MeshRenderer::Setup(std::vector<float> v, std::vector<unsigned int> i, Material *mat)
+void MeshRenderer::Setup(std::vector<float> v, std::vector<unsigned int> i, int mat)
 {
 	//Set material
 	material = mat;
@@ -40,7 +41,7 @@ void MeshRenderer::Setup(std::vector<float> v, std::vector<unsigned int> i, Mate
 void MeshRenderer::Draw(glm::mat4 &MVP)
 {
 	//Set current shader
-	material->Prepare(MVP);
+	MaterialHandler::GetMaterial(material)->Prepare(MVP);
 
 	//Bind VAO
 	glBindVertexArray(VAO);

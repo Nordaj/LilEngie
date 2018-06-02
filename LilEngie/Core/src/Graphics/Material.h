@@ -8,7 +8,7 @@
 class Material
 {
 private:
-	Shader *shader;
+	int shader;
 
 	//First is the texture unit(eg GL_TEXTURE0). the second is the texture ID
 	std::map<unsigned int, unsigned int> textures;
@@ -19,7 +19,7 @@ private:
 	std::map<std::string, int> integers;
 
 public:
-	Material(Shader *s);
+	Material(int shader);
 
 	//Function to bind current shader and pass all uniforms
 	void Prepare(glm::mat4 &mvp);

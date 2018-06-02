@@ -17,7 +17,7 @@ private:
 public:
 	Mesh(GameObject &obj);
 
-	void Setup(std::vector<float> v, std::vector<unsigned int> i, Material *material);
+	void Setup(std::vector<float> v, std::vector<unsigned int> i, int material);
 	MeshRenderer* GetRenderer();
 	glm::mat4* GetTransformation();
 

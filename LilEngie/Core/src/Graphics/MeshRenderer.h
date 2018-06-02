@@ -12,7 +12,7 @@ private:
 	std::vector<float> vertices;
 	std::vector<unsigned int> indices;
 
-	Material *material;
+	int material;
 	unsigned int VBO;
 	unsigned int IBO;
 	unsigned int VAO;
@@ -20,6 +20,6 @@ private:
 public:
 	MeshRenderer() {}
 
-	void Setup(std::vector<float> v, std::vector<unsigned int> i, Material *mat);
+	void Setup(std::vector<float> v, std::vector<unsigned int> i, int mat);
 	void Draw(glm::mat4 &MVP);
 };

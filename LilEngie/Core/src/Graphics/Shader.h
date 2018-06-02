@@ -11,5 +11,4 @@ public:
 	Shader(unsigned int id);
 
 	unsigned int GetID();
-	void SetCurrent();
 };

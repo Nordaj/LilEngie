@@ -11,8 +11,8 @@ namespace ShaderHandler
 		std::vector<Shader> shaders;
 	}
 
-	//Want to create easier to use functions that add automatically given path
-	Shader* AddShader(const char *path);
+	int AddShader(const char *path);
+	Shader* GetShader(int index);
 
-	void SetShader(Shader *shader);
+	void SetShader(int index);
 }

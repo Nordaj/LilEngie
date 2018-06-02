@@ -20,7 +20,7 @@ Mesh::Mesh(GameObject &obj)
 	transform = (Transform*)obj.GetComponent(Transform::GetTypeStatic());
 }
 
-void Mesh::Setup(std::vector<float> v, std::vector<unsigned int> i, Material *material)
+void Mesh::Setup(std::vector<float> v, std::vector<unsigned int> i, int material)
 {
 	//Setup mesh renderer
 	meshRenderer.Setup(v, i, material);

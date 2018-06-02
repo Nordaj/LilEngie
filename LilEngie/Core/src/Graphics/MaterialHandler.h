@@ -10,5 +10,6 @@ namespace MaterialHandler
 		std::vector<Material> materials;
 	}
 
-	Material* CreateMaterial(Shader *shader);
+	int CreateMaterial(int shader);
+	Material* GetMaterial(int index);
 }

@@ -11,8 +11,3 @@ unsigned int Shader::GetID()
 {
 	return shaderID;
 }
-
-void Shader::SetCurrent()
-{
-	ShaderHandler::SetShader(this);
-}

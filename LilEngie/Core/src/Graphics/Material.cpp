@@ -1,17 +1,22 @@
 #include <string>
 #include <glm/glm.hpp>
 #include "UniformHandler.h"
+#include "ShaderHandler.h"
 #include "Shader.h"
 #include "Material.h"
 
-Material::Material(Shader *s)
-	:shader(s)
+Material::Material(int shader)
+	:shader(shader)
 { }
 
 void Material::Prepare(glm::mat4 &mvp)
 {
-	shader->SetCurrent();
-	UniformHandler::PassMat4(shader->GetID(), (char*)"uMVPMat", mvp);
+	//Set shader stuff
+	ShaderHandler::SetShader(shader);
+
+	//Pass mvp
+	Shader *s = ShaderHandler::GetShader(shader);
+	UniformHandler::PassMat4(s->GetID(), (char*)"uMVPMat", mvp);
 
 	//Isn't a very DRY method, ill have to figure out other ways later
 
@@ -23,17 +28,17 @@ void Material::Prepare(glm::mat4 &mvp)
 	//Pass all colors
 	std::map<std::string, glm::vec4>::iterator colIt;
 	for (colIt = colors.begin(); colIt != colors.end(); colIt++)
-		UniformHandler::PassVec4(shader->GetID(), (char*)colIt->first.c_str(), colIt->second);
+		UniformHandler::PassVec4(s->GetID(), (char*)colIt->first.c_str(), colIt->second);
 
 	//Pass all floats
 	std::map<std::string, float>::iterator fIt;
 	for (fIt = floats.begin(); fIt != floats.end(); fIt++)
-		UniformHandler::PassFloat(shader->GetID(), (char*)fIt->first.c_str(), fIt->second);
+		UniformHandler::PassFloat(s->GetID(), (char*)fIt->first.c_str(), fIt->second);
 
 	//Pass all ints
 	std::map<std::string, int>::iterator intIt;
 	for (intIt = integers.begin(); intIt != integers.end(); intIt++)
-		UniformHandler::PassInt(shader->GetID(), (char*)intIt->first.c_str(), intIt->second);
+		UniformHandler::PassInt(s->GetID(), (char*)intIt->first.c_str(), intIt->second);
 }
 
 void Material::AddTexture(unsigned int texUnit, unsigned int texture)
