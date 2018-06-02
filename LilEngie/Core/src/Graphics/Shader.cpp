@@ -3,7 +3,8 @@
 #include "Shader.h"
 #include "ShaderHandler.h"
 
-Shader::Shader()
+Shader::Shader(unsigned int id)
+	:shaderID(id)
 { }
 
 unsigned int Shader::GetID()
@@ -11,15 +12,7 @@ unsigned int Shader::GetID()
 	return shaderID;
 }
 
-void Shader::Setup(std::string vert, std::string surf)
-{
-	vertex = vert;
-	surface = surf;
-
-	shaderID = ShaderHandler::SetupShader(vert, surf);
-}
-
 void Shader::SetCurrent()
 {
-	ShaderHandler::SetShader(shaderID);
+	ShaderHandler::SetShader(this);
 }

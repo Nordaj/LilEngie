@@ -1,10 +1,18 @@
 #include <iostream>
+#include <string>
 
 #include "Core/LilEngie.h"
 
 int main()
 {
 	Game::Init();
+
+	//Create unlit shader
+	Shader *unlit = ShaderHandler::AddShader("Resources/Unlit.shader");
+
+	//Create blue green material
+	Material *mat = MaterialHandler::CreateMaterial(unlit);
+	mat->AddColor("uColor", 0, 1, 1, 1);
 
 	//-----OBJECT ONE-----//
 	///Create object 
@@ -20,7 +28,7 @@ int main()
 	obj.AddComponent(mesh);
 
 	///Setup mesh
-	mesh.Setup(BaseMeshes::triangleVerts, BaseMeshes::triangleInd, "Resources/Unlit.shader");
+	mesh.Setup(BaseMeshes::triangleVerts, BaseMeshes::triangleInd, mat);
 
 	///Move transform
 	tran.transformation = glm::translate(tran.transformation, glm::vec3(0.5f, 0, 0));
@@ -39,7 +47,7 @@ int main()
 	left.AddComponent(leftMesh);
 
 	///Setup mesh
-	leftMesh.Setup(BaseMeshes::triangleVerts, BaseMeshes::triangleInd, "Resources/BlueUnlit.shader");
+	leftMesh.Setup(BaseMeshes::triangleVerts, BaseMeshes::triangleInd, mat);
 
 	///Move transform
 	leftTran.transformation = glm::translate(leftTran.transformation, glm::vec3(-0.5f, 0.2f, 0));

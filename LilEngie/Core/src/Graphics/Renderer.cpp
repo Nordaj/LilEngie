@@ -36,8 +36,8 @@ void Renderer::Render()
 	//Render each mesh
 	for (int i = 0; i < meshes.size(); i++)
 	{
-		MeshRenderer r = meshes[i]->GetRenderer();
-		glm::mat4 t = meshes[i]->GetTransformation();
-		r.Draw(t);
+		MeshRenderer *r = meshes[i]->GetRenderer();
+		glm::mat4 *t = meshes[i]->GetTransformation();
+		r->Draw(*t);
 	}
 }

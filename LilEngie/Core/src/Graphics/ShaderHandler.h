@@ -1,7 +1,18 @@
-#include <string>
+#pragma once
+
+#include <vector>
+
+#include "Shader.h"
 
 namespace ShaderHandler
 {
-	unsigned int SetupShader(std::string &vertex, std::string &surface);
-	void SetShader(unsigned int id);
+	namespace
+	{
+		std::vector<Shader> shaders;
+	}
+
+	//Want to create easier to use functions that add automatically given path
+	Shader* AddShader(const char *path);
+
+	void SetShader(Shader *shader);
 }

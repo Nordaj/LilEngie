@@ -20,21 +20,21 @@ Mesh::Mesh(GameObject &obj)
 	transform = (Transform*)obj.GetComponent(Transform::GetTypeStatic());
 }
 
-void Mesh::Setup(std::vector<float> v, std::vector<unsigned int> i, std::string shaderPath)
+void Mesh::Setup(std::vector<float> v, std::vector<unsigned int> i, Material *material)
 {
 	//Setup mesh renderer
-	meshRenderer.Setup(v, i, shaderPath);
+	meshRenderer.Setup(v, i, material);
 
 	//Add to render list
 	Renderer::AddMesh(*this);
 }
 
-MeshRenderer& Mesh::GetRenderer()
+MeshRenderer* Mesh::GetRenderer()
 {
-	return meshRenderer;
+	return &meshRenderer;
 }
 
-glm::mat4& Mesh::GetTransformation()
+glm::mat4* Mesh::GetTransformation()
 {
-	return transform->transformation;
+	return &transform->transformation;
 }

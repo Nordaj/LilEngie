@@ -1,3 +1,5 @@
+#pragma once
+
 #include <string>
 
 class Shader
@@ -6,12 +8,8 @@ private:
 	unsigned int shaderID;
 
 public:
-	std::string vertex;
-	std::string surface;
-
-	Shader();
+	Shader(unsigned int id);
 
 	unsigned int GetID();
-	void Setup(std::string vert, std::string surf);
 	void SetCurrent();
 };

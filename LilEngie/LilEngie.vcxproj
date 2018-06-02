@@ -158,6 +158,8 @@
     <ClCompile Include="Core\src\Entity\GameObject.cpp" />
     <ClCompile Include="Core\src\Entity\ObjectManager.cpp" />
     <ClCompile Include="Core\src\Game.cpp" />
+    <ClCompile Include="Core\src\Graphics\Material.cpp" />
+    <ClCompile Include="Core\src\Graphics\MaterialHandler.cpp" />
     <ClCompile Include="Core\src\Graphics\MeshRenderer.cpp" />
     <ClCompile Include="Core\src\Graphics\Renderer.cpp" />
     <ClCompile Include="Core\src\Graphics\Shader.cpp" />
@@ -176,6 +178,8 @@
     <ClInclude Include="Core\src\Game.h" />
     <ClInclude Include="Core\LilEngie.h" />
     <ClInclude Include="Core\src\Graphics\BaseMeshes.h" />
+    <ClInclude Include="Core\src\Graphics\Material.h" />
+    <ClInclude Include="Core\src\Graphics\MaterialHandler.h" />
     <ClInclude Include="Core\src\Graphics\MeshRenderer.h" />
     <ClInclude Include="Core\src\Graphics\Renderer.h" />
     <ClInclude Include="Core\src\Graphics\Shader.h" />
@@ -184,7 +188,6 @@
     <ClInclude Include="Core\src\Graphics\UniformHandler.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\BlueUnlit.shader" />
     <None Include="Resources\Unlit.shader" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

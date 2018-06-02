@@ -1,5 +1,8 @@
+#include <vector>
+#include <string>
 #include <GL/glew.h>
 
+#include "ShaderReader.h"
 #include "Shader.h"
 #include "ShaderHandler.h"
 
@@ -18,7 +21,7 @@ unsigned int CompileShader(std::string &src, int type)
 	return id;
 }
 
-unsigned int ShaderHandler::SetupShader(std::string &vertex, std::string &surface)
+unsigned int SetupShader(std::string &vertex, std::string &surface)
 {
 	//Create shader program
 	unsigned int program = glCreateProgram();
@@ -40,7 +43,22 @@ unsigned int ShaderHandler::SetupShader(std::string &vertex, std::string &surfac
 	return program;
 }
 
-void ShaderHandler::SetShader(unsigned int id)
+Shader* ShaderHandler::AddShader(const char *path)
 {
-	glUseProgram(id);
+	//Read shader
+	std::string vert, surf;
+	ShaderReader::ReadShader(&vert, &surf, path);
+
+	//Setup shader
+	unsigned int id = SetupShader(vert, surf);
+
+	//Create and add shader instance to list
+	shaders.push_back(Shader(id));
+
+	return &(shaders.back());
+}
+
+void ShaderHandler::SetShader(Shader *shader)
+{
+	glUseProgram(shader->GetID());
 }
