@@ -15,7 +15,7 @@ void Material::Prepare(glm::mat4 &mvp)
 	ShaderHandler::SetShader(shader);
 
 	//Pass mvp
-	Shader *s = ShaderHandler::GetShader(shader);
+	Shader *s = ShaderHandler::Get(shader);
 	UniformHandler::PassMat4(s->GetID(), (char*)"uMVPMat", mvp);
 
 	//Isn't a very DRY method, ill have to figure out other ways later

@@ -5,7 +5,9 @@
 
 Component::Component(GameObject &obj)
 	:obj(&obj)
-{ }
+{ 
+	obj.AddComponent(*this);
+}
 
 const GameObject* Component::GetObj()
 {

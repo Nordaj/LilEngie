@@ -5,5 +5,5 @@
 Transform::Transform(GameObject &obj)
 	:Component(obj)
 {
-	transformation = glm::mat4(1);
+	transform = glm::mat4(1);
 }

@@ -4,6 +4,9 @@
 
 #include "Shader.h"
 
+//Just to be clear what it is when storing
+typedef int shader;
+
 namespace ShaderHandler
 {
 	namespace
@@ -11,8 +14,11 @@ namespace ShaderHandler
 		std::vector<Shader> shaders;
 	}
 
-	int AddShader(const char *path);
-	Shader* GetShader(int index);
+	shader Create(const char *path);
+	Shader* Get(shader index);
 
-	void SetShader(int index);
+	void SetShader(shader index);
 }
+
+//Alternative name
+namespace Shaders = ShaderHandler;

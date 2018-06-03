@@ -36,5 +36,5 @@ MeshRenderer* Mesh::GetRenderer()
 
 glm::mat4* Mesh::GetTransformation()
 {
-	return &transform->transformation;
+	return &transform->transform;
 }

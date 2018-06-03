@@ -1,14 +1,15 @@
+#include "ShaderHandler.h"
 #include "Shader.h"
 #include "Material.h"
 #include "MaterialHandler.h"
 
-int MaterialHandler::CreateMaterial(int shader)
+mat MaterialHandler::Create(shader shader)
 {
 	materials.push_back(Material(shader));
 	return materials.size() - 1;
 }
 
-Material* MaterialHandler::GetMaterial(int index)
+Material* MaterialHandler::Get(mat index)
 {
 	return &materials[index];
 }

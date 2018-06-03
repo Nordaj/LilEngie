@@ -43,7 +43,7 @@ unsigned int SetupShader(std::string &vertex, std::string &surface)
 	return program;
 }
 
-int ShaderHandler::AddShader(const char *path)
+int ShaderHandler::Create(const char *path)
 {
 	//Read shader
 	std::string vert, surf;
@@ -58,12 +58,12 @@ int ShaderHandler::AddShader(const char *path)
 	return shaders.size() - 1;
 }
 
-Shader* ShaderHandler::GetShader(int index)
+Shader* ShaderHandler::Get(shader index)
 {
 	return &shaders[index];
 }
 
-void ShaderHandler::SetShader(int index)
+void ShaderHandler::SetShader(shader index)
 {
 	glUseProgram(shaders[index].GetID());
 }

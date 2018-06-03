@@ -7,7 +7,7 @@
 class Transform : public Component
 {
 public:
-	glm::mat4 transformation;
+	glm::mat4 transform;
 
 	Transform(GameObject &obj);
 

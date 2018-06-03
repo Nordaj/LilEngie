@@ -8,53 +8,39 @@ int main()
 	Game::Init();
 
 	//Create unlit shader
-	int unlitShader = ShaderHandler::AddShader("Resources/Unlit.shader");
+	shader unlit = Shaders::Create("Resources/Unlit.shader");
 
 	//Create blue green material
-	int blueMat = MaterialHandler::CreateMaterial(unlitShader);
-	MaterialHandler::GetMaterial(blueMat)->AddColor("uColor", 0, 1, 1, 1);
+	mat blue = Mats::Create(unlit);
+	Mats::Get(blue)->AddColor("uColor", 0, 1, 1, 1);
 
 	//Create red material
-	int redMat = MaterialHandler::CreateMaterial(unlitShader);
-	MaterialHandler::GetMaterial(redMat)->AddColor("uColor", 1, 0, 0, 1);
+	mat red = Mats::Create(unlit);
+	Mats::Get(red)->AddColor("uColor", 1, 0, 0, 1);
 
 	//-----OBJECT ONE-----//
-	///Create object 
+	///Create object with transform and mesh
 	GameObject obj = GameObject();
-	ObjectManager::AddObject(obj);
-
-	///Add transform
 	Transform tran = Transform(obj);
-	obj.AddComponent(tran);
-
-	///Add mesh
 	Mesh mesh = Mesh(obj);
-	obj.AddComponent(mesh);
 
 	///Setup mesh
-	mesh.Setup(BaseMeshes::triangleVerts, BaseMeshes::triangleInd, blueMat);
+	mesh.Setup(BaseMeshes::triangleVerts, BaseMeshes::triangleInd, blue);
 
 	///Move transform
-	tran.transformation = glm::translate(tran.transformation, glm::vec3(0.5f, 0, 0));
+	tran.transform = glm::translate(tran.transform, glm::vec3(0.5f, 0, 0));
 
 	//-----OBJECT TWO-----//
-	///Create object
+	///Create object with transform and mesh
 	GameObject left = GameObject();
-	ObjectManager::AddObject(left);
-
-	///Add transform
 	Transform leftTran = Transform(left);
-	left.AddComponent(leftTran);
-
-	///Add mesh
 	Mesh leftMesh = Mesh(left);
-	left.AddComponent(leftMesh);
 
 	///Setup mesh
-	leftMesh.Setup(BaseMeshes::triangleVerts, BaseMeshes::triangleInd, redMat);
+	leftMesh.Setup(BaseMeshes::triangleVerts, BaseMeshes::triangleInd, red);
 
 	///Move transform
-	leftTran.transformation = glm::translate(leftTran.transformation, glm::vec3(-0.5f, 0.2f, 0));
+	leftTran.transform = glm::translate(leftTran.transform, glm::vec3(-0.5f, 0.2f, 0));
 
 	Game::Run();
 	Game::Close();

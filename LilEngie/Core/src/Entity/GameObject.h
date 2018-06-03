@@ -10,6 +10,8 @@ private:
 	std::vector<Component*> components;
 
 public:
+	GameObject();
+
 	void AddComponent(Component &comp);
 	void* GetComponent(std::string comp);
 

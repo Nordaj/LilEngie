@@ -41,7 +41,7 @@ void MeshRenderer::Setup(std::vector<float> v, std::vector<unsigned int> i, int 
 void MeshRenderer::Draw(glm::mat4 &MVP)
 {
 	//Set current shader
-	MaterialHandler::GetMaterial(material)->Prepare(MVP);
+	MaterialHandler::Get(material)->Prepare(MVP);
 
 	//Bind VAO
 	glBindVertexArray(VAO);

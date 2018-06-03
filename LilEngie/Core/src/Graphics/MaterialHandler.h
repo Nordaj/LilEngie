@@ -2,6 +2,10 @@
 
 #include <vector>
 #include "Material.h"
+#include "ShaderHandler.h"
+
+//Just to be clear what it is when storing
+typedef int mat;
 
 namespace MaterialHandler
 {
@@ -10,6 +14,9 @@ namespace MaterialHandler
 		std::vector<Material> materials;
 	}
 
-	int CreateMaterial(int shader);
-	Material* GetMaterial(int index);
+	mat Create(shader shader);
+	Material* Get(mat index);
 }
+
+//Alternative name
+namespace Mats = MaterialHandler;

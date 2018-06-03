@@ -1,8 +1,14 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include "ObjectManager.h"
 #include "Component.h"
 #include "GameObject.h"
+
+GameObject::GameObject()
+{
+	ObjectManager::AddObject(*this);
+}
 
 void GameObject::AddComponent(Component &comp)
 {
