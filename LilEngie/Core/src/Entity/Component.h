@@ -16,6 +16,6 @@ public:
 	virtual std::string GetType();
 	virtual void* Get();
 
-	virtual void Start() {}
-	virtual void Update() {}
+	virtual void Start();
+	virtual void Update();
 };

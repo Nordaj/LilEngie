@@ -4,6 +4,7 @@
 
 #include "Application/Window.h"
 #include "Graphics/Renderer.h"
+#include "Entity/ObjectManager.h"
 #include "Game.h"
 
 void Game::Init()
@@ -14,8 +15,11 @@ void Game::Init()
 
 void Game::Run()
 {
+	ObjectManager::Start();
+
 	while (Window::Open())
 	{
+		ObjectManager::Update();
 		Renderer::Render();
 		Window::SwapBuffers();
 		Window::PollEvents();

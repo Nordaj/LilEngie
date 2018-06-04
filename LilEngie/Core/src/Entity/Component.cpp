@@ -25,3 +25,9 @@ void* Component::Get()
 	std::cout << "GetComponent virtual method din work.." << std::endl;
 	return nullptr; 
 }
+
+void Component::Start()
+{ }
+
+void Component::Update()
+{ }

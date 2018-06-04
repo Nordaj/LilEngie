@@ -23,10 +23,8 @@ int main()
 	GameObject obj = GameObject();
 	Transform tran = Transform(obj);
 	Mesh mesh = Mesh(obj);
-
 	///Setup mesh
 	mesh.Setup(BaseMeshes::triangleVerts, BaseMeshes::triangleInd, blue);
-
 	///Move transform
 	tran.transform = glm::translate(tran.transform, glm::vec3(0.5f, 0, 0));
 
@@ -35,12 +33,17 @@ int main()
 	GameObject left = GameObject();
 	Transform leftTran = Transform(left);
 	Mesh leftMesh = Mesh(left);
-
 	///Setup mesh
 	leftMesh.Setup(BaseMeshes::triangleVerts, BaseMeshes::triangleInd, red);
-
 	///Move transform
 	leftTran.transform = glm::translate(leftTran.transform, glm::vec3(-0.5f, 0.2f, 0));
+
+	//-----CAMERA OBJECT-----//
+	///Create object with camera component
+	GameObject camera = GameObject();
+	Camera camCam = Camera(camera);
+	///Move camera a tad
+	camCam.position += glm::vec3(0, 0, 2);
 
 	Game::Run();
 	Game::Close();
