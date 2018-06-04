@@ -1,0 +1,21 @@
+<h1>Lil Engie</h1>
+My attempt to make a small game engine.
+<br /> <br />
+Special thanks to <b>Matthew Fisher</b> for gun model
+<br />
+https://steamcommunity.com/profiles/76561198254676201/images/
+
+<h2>Dependencies</h2>
+<ul>
+  <li>GLEW</li>
+  <li>GLFW</li>
+  <li>GLM</li>
+</ul>
+
+<h2>Plans</h2>
+<ul>
+  <li>Resource Manager</li>
+  <li>Lighting</li>
+  <li>Textures</li>
+  <li>Scenes</li>
+</ul>

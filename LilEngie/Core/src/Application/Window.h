@@ -10,8 +10,8 @@ namespace Window
 		GLFWwindow *window;
 	}
 
-	static int width = 512;
-	static int height = 512;
+	static int width = 1280;
+	static int height = 720;
 	static char title[] = "My Game";
 
 	void Init();

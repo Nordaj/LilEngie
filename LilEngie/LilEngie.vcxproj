@@ -167,6 +167,7 @@
     <ClCompile Include="Core\src\Graphics\ShaderHandler.cpp" />
     <ClCompile Include="Core\src\Graphics\ShaderReader.cpp" />
     <ClCompile Include="Core\src\Graphics\UniformHandler.cpp" />
+    <ClCompile Include="Core\src\Utilities\ModelLoader.cpp" />
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -188,6 +189,7 @@
     <ClInclude Include="Core\src\Graphics\ShaderHandler.h" />
     <ClInclude Include="Core\src\Graphics\ShaderReader.h" />
     <ClInclude Include="Core\src\Graphics\UniformHandler.h" />
+    <ClInclude Include="Core\src\Utilities\ModelLoader.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Unlit.shader" />
