@@ -154,11 +154,14 @@
     <ClCompile Include="Core\src\Application\Window.cpp" />
     <ClCompile Include="Core\src\Entity\Component.cpp" />
     <ClCompile Include="Core\src\Entity\Components\Camera.cpp" />
+    <ClCompile Include="Core\src\Entity\Components\DirectionalLight.cpp" />
     <ClCompile Include="Core\src\Entity\Components\Mesh.cpp" />
+    <ClCompile Include="Core\src\Entity\Components\PointLight.cpp" />
     <ClCompile Include="Core\src\Entity\Components\Transform.cpp" />
     <ClCompile Include="Core\src\Entity\GameObject.cpp" />
     <ClCompile Include="Core\src\Entity\ObjectManager.cpp" />
     <ClCompile Include="Core\src\Game.cpp" />
+    <ClCompile Include="Core\src\Graphics\LightHandler.cpp" />
     <ClCompile Include="Core\src\Graphics\Material.cpp" />
     <ClCompile Include="Core\src\Graphics\MaterialHandler.cpp" />
     <ClCompile Include="Core\src\Graphics\MeshRenderer.cpp" />
@@ -174,13 +177,16 @@
     <ClInclude Include="Core\src\Application\Window.h" />
     <ClInclude Include="Core\src\Entity\Component.h" />
     <ClInclude Include="Core\src\Entity\Components\Camera.h" />
+    <ClInclude Include="Core\src\Entity\Components\DirectionalLight.h" />
     <ClInclude Include="Core\src\Entity\Components\Mesh.h" />
+    <ClInclude Include="Core\src\Entity\Components\PointLight.h" />
     <ClInclude Include="Core\src\Entity\Components\Transform.h" />
     <ClInclude Include="Core\src\Entity\GameObject.h" />
     <ClInclude Include="Core\src\Entity\ObjectManager.h" />
     <ClInclude Include="Core\src\Game.h" />
     <ClInclude Include="Core\LilEngie.h" />
     <ClInclude Include="Core\src\Graphics\BaseMeshes.h" />
+    <ClInclude Include="Core\src\Graphics\LightHandler.h" />
     <ClInclude Include="Core\src\Graphics\Material.h" />
     <ClInclude Include="Core\src\Graphics\MaterialHandler.h" />
     <ClInclude Include="Core\src\Graphics\MeshRenderer.h" />
@@ -192,6 +198,7 @@
     <ClInclude Include="Core\src\Utilities\ModelLoader.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\Diffuse.shader" />
     <None Include="Resources\Unlit.shader" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

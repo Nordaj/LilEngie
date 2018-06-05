@@ -4,8 +4,11 @@
 
 #include "ModelLoader.h"
 
-int ModelLoader::LoadOBJ(const char* path, std::vector<float> *verts, std::vector<unsigned int> *inds)
+//DO NOT USE, UNDER WORK
+int ModelLoader::LoadOBJ(const char* path, std::vector<float> *verts,  std::vector<unsigned int> *inds)
 {
+	//=====CURRENTLY BROKEN=====//
+
 	//Create file stream
 	std::ifstream file = std::ifstream(path);
 
@@ -41,6 +44,10 @@ int ModelLoader::LoadOBJ(const char* path, std::vector<float> *verts, std::vecto
 					//Remove evaluated number from numbers
 					numbers = numbers.substr(spaceIndex + 1, numbers.size() - spaceIndex - 1);
 				}
+			}
+			else if (line.substr(0, 2) == "vn")
+			{
+				
 			}
 			else if (line[0] == 'f')
 			{

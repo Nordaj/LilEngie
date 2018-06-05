@@ -20,6 +20,7 @@ public:
 	void Setup(std::vector<float> v, std::vector<unsigned int> i, int material);
 	MeshRenderer* GetRenderer();
 	glm::mat4* GetTransformation();
+	void Draw(glm::mat4 &v, glm::mat4 &p);
 
 	//Standard component methods
 	static std::string GetTypeStatic() { return "Mesh"; }

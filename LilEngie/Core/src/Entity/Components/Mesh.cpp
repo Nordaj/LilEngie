@@ -5,6 +5,7 @@
 #include <Entity/GameObject.h>
 #include <Graphics/MeshRenderer.h>
 #include <Graphics/Renderer.h>
+#include <Graphics/UniformHandler.h>
 #include "Transform.h"
 #include "Mesh.h"
 
@@ -37,4 +38,10 @@ MeshRenderer* Mesh::GetRenderer()
 glm::mat4* Mesh::GetTransformation()
 {
 	return &transform->transform;
+}
+
+void Mesh::Draw(glm::mat4 &v, glm::mat4 &p)
+{
+	glm::mat4 MVP = p * v * transform->transform;
+	meshRenderer.Draw(MVP, transform->transform);
 }

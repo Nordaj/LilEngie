@@ -4,6 +4,8 @@
 #include <GL/glew.h>
 #include <Entity/Components/Mesh.h>
 #include <Entity/Components/Camera.h>
+#include "UniformHandler.h"
+#include "MaterialHandler.h"
 #include "MeshRenderer.h"
 #include "Game.h"
 #include "Renderer.h"
@@ -39,6 +41,9 @@ void Renderer::Init()
 	}
 
 	currentCamera = nullptr;
+
+	//glPolygonMode(GL_FRONT, GL_LINE);
+	glEnable(GL_DEPTH_TEST);
 }
 
 void Renderer::Render()
@@ -49,23 +54,17 @@ void Renderer::Render()
 	//Render each mesh
 	for (int i = 0; i < meshes.size(); i++)
 	{
-		glm::mat4 MVP;
-
-		//Calculate MVP
 		if (currentCamera != nullptr)
 		{
-			glm::mat4 &M = *meshes[i]->GetTransformation();
 			glm::mat4 &V = currentCamera->GetView();
 			glm::mat4 &P = currentCamera->GetProjection();
-			MVP = P * V * M;
+			meshes[i]->Draw(V, P);
 		}
 		else
 		{
-			MVP = *meshes[i]->GetTransformation();
+			glm::mat4 v = glm::mat4(1);
+			glm::mat4 p = glm::mat4(1);
+			meshes[i]->Draw(v, p);
 		}
-
-		//Render
-		MeshRenderer *r = meshes[i]->GetRenderer();
-		r->Draw(MVP);
 	}
 }

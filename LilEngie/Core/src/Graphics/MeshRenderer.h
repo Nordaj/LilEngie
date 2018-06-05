@@ -21,5 +21,5 @@ public:
 	MeshRenderer() {}
 
 	void Setup(std::vector<float> v, std::vector<unsigned int> i, int mat);
-	void Draw(glm::mat4 &MVP);
+	void Draw(glm::mat4 &MVP, glm::mat4 &model);
 };

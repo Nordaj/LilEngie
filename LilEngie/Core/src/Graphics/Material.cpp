@@ -9,14 +9,17 @@ Material::Material(int shader)
 	:shader(shader)
 { }
 
-void Material::Prepare(glm::mat4 &mvp)
+void Material::Prepare(glm::mat4 &mvp, glm::mat4 &model)
 {
 	//Set shader stuff
 	ShaderHandler::SetShader(shader);
 
-	//Pass mvp
+	//Get shader
 	Shader *s = ShaderHandler::Get(shader);
+
+	//Pass uniforms
 	UniformHandler::PassMat4(s->GetID(), (char*)"uMVPMat", mvp);
+	UniformHandler::PassMat4(s->GetID(), (char*)"uModelMat", model);
 
 	//Isn't a very DRY method, ill have to figure out other ways later
 
@@ -39,6 +42,11 @@ void Material::Prepare(glm::mat4 &mvp)
 	std::map<std::string, int>::iterator intIt;
 	for (intIt = integers.begin(); intIt != integers.end(); intIt++)
 		UniformHandler::PassInt(s->GetID(), (char*)intIt->first.c_str(), intIt->second);
+}
+
+Shader* Material::GetShader()
+{
+	return ShaderHandler::Get(shader);
 }
 
 void Material::AddTexture(unsigned int texUnit, unsigned int texture)
