@@ -40,4 +40,7 @@ void LightHandler::Prepare(Shader *shader)
 		UniformHandler::PassVec3(shader->GetID(), (char*)colStr.c_str(), dirLights[i]->color);
 		UniformHandler::PassFloat(shader->GetID(), (char*)iStr.c_str(), dirLights[i]->intensity);
 	}
+
+	//Pass ambient
+	UniformHandler::PassVec3(shader->GetID(), (char*)"uAmbient", ambient);
 }

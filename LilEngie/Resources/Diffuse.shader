@@ -38,6 +38,7 @@ struct DirLight
 uniform vec4 uColor;
 uniform PointLight uPointLights[8];
 uniform DirLight uDirLights[4];
+uniform vec3 uAmbient;
 
 in vec3 iNormal;
 in vec3 iFragPos;
@@ -93,7 +94,7 @@ void main()
 	}
 
 	//Combine all lights
-	vec3 combinedLights = combinedDirLights + combinedPointLights;
+	vec3 combinedLights = combinedDirLights + combinedPointLights + uAmbient;
 
 	//Multiply color
 	vec3 c = uColor.rgb * combinedLights;
