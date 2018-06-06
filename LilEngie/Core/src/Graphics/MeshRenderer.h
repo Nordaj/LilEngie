@@ -4,13 +4,13 @@
 #include <vector>
 #include <glm/glm.hpp>
 
+#include "Model.h"
 #include "Material.h"
 
 class MeshRenderer
 {
 private:
-	std::vector<float> vertices;
-	std::vector<unsigned int> indices;
+	Model model;
 
 	int material;
 	unsigned int VBO;

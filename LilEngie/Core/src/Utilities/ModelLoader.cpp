@@ -1,11 +1,14 @@
+#include <iostream>
 #include <string>
 #include <fstream>
 #include <vector>
-
+#include <assimp/Importer.hpp>
+#include <assimp/scene.h>
+#include <assimp/postprocess.h>
 #include "ModelLoader.h"
 
 //DO NOT USE, UNDER WORK
-int ModelLoader::LoadOBJ(const char* path, std::vector<float> *verts,  std::vector<unsigned int> *inds)
+int ModelLoader::LoadOBJManual(const char* path, std::vector<float> *verts,  std::vector<unsigned int> *inds)
 {
 	//=====CURRENTLY BROKEN=====//
 
@@ -81,4 +84,46 @@ int ModelLoader::LoadOBJ(const char* path, std::vector<float> *verts,  std::vect
 	{
 		return 1;
 	}
+}
+
+Model ModelLoader::Load(const char* path)
+{
+	//Load into importer
+	Assimp::Importer importer;
+	const aiScene *scene = importer.ReadFile(path, aiProcess_Triangulate | aiProcess_GenNormals);
+
+	//Check for problems
+	if (!scene || scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode) 
+		std::cout << "Could not load mesh" << std::endl;
+
+	//Get aimesh, just get the first mesh of loaded file. I don't care about loading multiple obj's rn
+	aiMesh *mesh = scene->mMeshes[0];
+
+	//Model to return
+	Model model;
+
+	//Get verts
+	for (int i = 0; i < mesh->mNumVertices; i++)
+	{
+		model.vertices.push_back(mesh->mVertices[i].x);
+		model.vertices.push_back(mesh->mVertices[i].y);
+		model.vertices.push_back(mesh->mVertices[i].z);
+		model.vertices.push_back(mesh->mNormals[i].x);
+		model.vertices.push_back(mesh->mNormals[i].y);
+		model.vertices.push_back(mesh->mNormals[i].z);
+	}
+
+	//Get inds
+	for (int i = 0; i < mesh->mNumFaces; i++)
+	{
+		//Now i need to sort through indices per face
+		aiFace face = mesh->mFaces[i];
+		for (unsigned int j = 0; j < face.mNumIndices; j++)
+		{
+			model.indices.push_back(face.mIndices[j]);
+		}
+	}
+
+	//Return
+	return model;
 }

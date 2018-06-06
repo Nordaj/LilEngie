@@ -10,12 +10,14 @@ https://steamcommunity.com/profiles/76561198254676201/images/
   <li>GLEW</li>
   <li>GLFW</li>
   <li>GLM</li>
+  <li>Assimp</li>
 </ul>
 
 <h2>Plans</h2>
 <ul>
   <li>Resource Manager</li>
-  <li>Lighting</li>
+  <li>Physically AccurateLighting</li>
+  <li>More types of light</li>
   <li>Textures</li>
   <li>Scenes</li>
 </ul>

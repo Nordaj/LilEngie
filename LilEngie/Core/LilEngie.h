@@ -12,6 +12,9 @@
 #include "src/Graphics/MaterialHandler.h"
 #include "src/Graphics/ShaderHandler.h"
 #include "src/Graphics/LightHandler.h"
+#include "src/Graphics/Model.h"
+
+#include "src/Utilities/ModelLoader.h"
 
 #include "src/Entity/GameObject.h"
 #include "src/Entity/Component.h"
