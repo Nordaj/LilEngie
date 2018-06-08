@@ -32,8 +32,9 @@ void UniformHandler::PassVec4(int shader, char* name, glm::vec4 &val)
 	glUniform4f(loc, val.x, val.y, val.z, val.w);
 }
 
-void UniformHandler::PassTexture(unsigned int texUnit, unsigned int texture)
+void UniformHandler::PassTexture(int shader, char *name, unsigned int texUnit, unsigned int texture)
 {
-	glActiveTexture(texUnit);
+	glActiveTexture(GL_TEXTURE0 + texUnit);
 	glBindTexture(GL_TEXTURE_2D, texture);
+	PassInt(shader, name, texUnit);
 }

@@ -1,8 +1,10 @@
+#include <map>
 #include <string>
 #include <glm/glm.hpp>
 #include "UniformHandler.h"
 #include "ShaderHandler.h"
 #include "Shader.h"
+#include "Texture.h"
 #include "Material.h"
 
 Material::Material(int shader)
@@ -23,10 +25,14 @@ void Material::Prepare(glm::mat4 &mvp, glm::mat4 &model)
 
 	//Isn't a very DRY method, ill have to figure out other ways later
 
-	//Pass all textures
-	std::map<unsigned int, unsigned int>::iterator texIt;
+	//Pass all textures (a bit more complex than the rest)
+	std::map<std::string, Texture>::iterator texIt;
+	int i = 0;
 	for (texIt = textures.begin(); texIt != textures.end(); texIt++)
-		UniformHandler::PassTexture(texIt->first, texIt->second);
+	{
+		UniformHandler::PassTexture(s->GetID(), (char*)texIt->first.c_str(), i, texIt->second.GetID());
+		i++;
+	}
 
 	//Pass all colors
 	std::map<std::string, glm::vec4>::iterator colIt;
@@ -49,9 +55,9 @@ Shader* Material::GetShader()
 	return ShaderHandler::Get(shader);
 }
 
-void Material::AddTexture(unsigned int texUnit, unsigned int texture)
+void Material::AddTexture(const char *uniform, Texture texture)
 {
-	textures.insert(std::make_pair(texUnit, texture));
+	textures.insert(std::make_pair(uniform, texture));
 }
 
 void Material::AddColor(const char* uniform, float r, float g, float b, float a)

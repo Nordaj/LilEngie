@@ -11,10 +11,8 @@
 
 void MeshRenderer::Setup(std::vector<float> v, std::vector<unsigned int> i, int mat)
 {
-	//Set material
-	material = mat;
-
 	//Assign values
+	material = mat;
 	model.vertices = v;
 	model.indices = i;
 
@@ -34,12 +32,15 @@ void MeshRenderer::Setup(std::vector<float> v, std::vector<unsigned int> i, int 
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, IBO);
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(unsigned int) * model.indices.size(), &model.indices[0], GL_STATIC_DRAW);
 
-	//Vertex attributes (Position(v3), Normal(v3)
+	//Vertex attributes (Position(v3), Normal(v3), UV(v2))
 	glEnableVertexAttribArray(0);
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(float) * 6, 0);
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(float) * 8, 0);
 
 	glEnableVertexAttribArray(1);
-	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(float) * 6, (void*)(sizeof(float) * 3));
+	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(float) * 8, (void*)(sizeof(float) * 3));
+
+	glEnableVertexAttribArray(2);
+	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 8, (void*)(sizeof(float) * 6));
 }
 
 void MeshRenderer::Draw(glm::mat4 &MVP, glm::mat4 &modelMat)

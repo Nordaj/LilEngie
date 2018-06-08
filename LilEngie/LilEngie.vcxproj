@@ -91,7 +91,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\GLEW\include\;$(SolutionDir)Dependencies\GLFW\WIN32\include\;$(SolutionDir)Dependencies\GLM\;$(ProjectDir)Core\src\;$(SolutionDir)Dependencies\ASSIMP\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\GLEW\include\;$(SolutionDir)Dependencies\GLFW\WIN32\include\;$(SolutionDir)Dependencies\GLM\;$(ProjectDir)Core\src\;$(SolutionDir)Dependencies\ASSIMP\include\;$(SolutionDir)Dependencies\STB_IMAGE;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>GLEW_STATIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
@@ -106,7 +106,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\GLEW\include\;$(SolutionDir)Dependencies\GLFW\WIN32\include\;$(SolutionDir)Dependencies\GLM\;$(ProjectDir)Core\src\;$(SolutionDir)Dependencies\ASSIMP\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\GLEW\include\;$(SolutionDir)Dependencies\GLFW\WIN32\include\;$(SolutionDir)Dependencies\GLM\;$(ProjectDir)Core\src\;$(SolutionDir)Dependencies\ASSIMP\include\;$(SolutionDir)Dependencies\STB_IMAGE;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>GLEW_STATIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
@@ -122,7 +122,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\GLEW\include\;$(SolutionDir)Dependencies\GLFW\WIN32\include\;$(SolutionDir)Dependencies\GLM\;$(ProjectDir)Core\src\;$(SolutionDir)Dependencies\ASSIMP\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\GLEW\include\;$(SolutionDir)Dependencies\GLFW\WIN32\include\;$(SolutionDir)Dependencies\GLM\;$(ProjectDir)Core\src\;$(SolutionDir)Dependencies\ASSIMP\include\;$(SolutionDir)Dependencies\STB_IMAGE;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>GLEW_STATIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
@@ -140,7 +140,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\GLEW\include\;$(SolutionDir)Dependencies\GLFW\WIN32\include\;$(SolutionDir)Dependencies\GLM\;$(ProjectDir)Core\src\;$(SolutionDir)Dependencies\ASSIMP\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\GLEW\include\;$(SolutionDir)Dependencies\GLFW\WIN32\include\;$(SolutionDir)Dependencies\GLM\;$(ProjectDir)Core\src\;$(SolutionDir)Dependencies\ASSIMP\include\;$(SolutionDir)Dependencies\STB_IMAGE;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>GLEW_STATIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
@@ -170,6 +170,7 @@
     <ClCompile Include="Core\src\Graphics\Shader.cpp" />
     <ClCompile Include="Core\src\Graphics\ShaderHandler.cpp" />
     <ClCompile Include="Core\src\Graphics\ShaderReader.cpp" />
+    <ClCompile Include="Core\src\Graphics\Texture.cpp" />
     <ClCompile Include="Core\src\Graphics\UniformHandler.cpp" />
     <ClCompile Include="Core\src\Utilities\ModelLoader.cpp" />
     <ClCompile Include="Main.cpp" />
@@ -196,6 +197,7 @@
     <ClInclude Include="Core\src\Graphics\Shader.h" />
     <ClInclude Include="Core\src\Graphics\ShaderHandler.h" />
     <ClInclude Include="Core\src\Graphics\ShaderReader.h" />
+    <ClInclude Include="Core\src\Graphics\Texture.h" />
     <ClInclude Include="Core\src\Graphics\UniformHandler.h" />
     <ClInclude Include="Core\src\Utilities\ModelLoader.h" />
   </ItemGroup>

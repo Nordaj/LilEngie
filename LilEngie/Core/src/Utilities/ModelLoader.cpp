@@ -111,6 +111,18 @@ Model ModelLoader::Load(const char* path)
 		model.vertices.push_back(mesh->mNormals[i].x);
 		model.vertices.push_back(mesh->mNormals[i].y);
 		model.vertices.push_back(mesh->mNormals[i].z);
+
+		//If model has tex coords, use them, else, use 0
+		if (mesh->mTextureCoords[0]) 
+		{
+			model.vertices.push_back(mesh->mTextureCoords[0][i].x);
+			model.vertices.push_back(mesh->mTextureCoords[0][i].y);
+		}
+		else
+		{
+			model.vertices.push_back(0);
+			model.vertices.push_back(0);
+		}
 	}
 
 	//Get inds
