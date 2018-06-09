@@ -15,6 +15,11 @@ void LightHandler::AddDirLight(DirectionalLight *light)
 	dirLights.push_back(light);
 }
 
+void LightHandler::AddSpotLight(SpotLight *light)
+{
+	spotLights.push_back(light);
+}
+
 void LightHandler::Prepare(Shader *shader)
 {
 	//Pass each point light
@@ -39,6 +44,22 @@ void LightHandler::Prepare(Shader *shader)
 		UniformHandler::PassVec3(shader->GetID(), (char*)dirStr.c_str(), dirLights[i]->dir);
 		UniformHandler::PassVec3(shader->GetID(), (char*)colStr.c_str(), dirLights[i]->color);
 		UniformHandler::PassFloat(shader->GetID(), (char*)iStr.c_str(), dirLights[i]->intensity);
+	}
+
+	//Pass each spot light
+	for (int i = 0; i < spotLights.size(); i++)
+	{
+		std::string posStr = "uSpotLights[" + std::to_string(i) + "].position";
+		std::string dirStr = "uSpotLights[" + std::to_string(i) + "].direction";
+		std::string colStr = "uSpotLights[" + std::to_string(i) + "].color";
+		std::string iStr = "uSpotLights[" + std::to_string(i) + "].intensity";
+		std::string angStr = "uSpotLights[" + std::to_string(i) + "].angle";
+
+		UniformHandler::PassVec3(shader->GetID(), (char*)posStr.c_str(), spotLights[i]->pos);
+		UniformHandler::PassVec3(shader->GetID(), (char*)dirStr.c_str(), spotLights[i]->dir);
+		UniformHandler::PassVec3(shader->GetID(), (char*)colStr.c_str(), spotLights[i]->color);
+		UniformHandler::PassFloat(shader->GetID(), (char*)iStr.c_str(), spotLights[i]->intensity);
+		UniformHandler::PassFloat(shader->GetID(), (char*)angStr.c_str(), spotLights[i]->angle);
 	}
 
 	//Pass ambient

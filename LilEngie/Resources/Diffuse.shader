@@ -30,6 +30,15 @@ struct PointLight
 	float intensity;
 };
 
+struct SpotLight
+{
+	vec3 position;
+	vec3 direction;
+	vec3 color;
+	float intensity;
+	float angle;
+};
+
 struct DirLight
 {
 	vec3 direction;
@@ -39,6 +48,7 @@ struct DirLight
 
 uniform vec4 uColor;
 uniform PointLight uPointLights[8];
+uniform SpotLight uSpotLights[8];
 uniform DirLight uDirLights[4];
 uniform vec3 uAmbient;
 uniform sampler2D uMainTex;
@@ -73,6 +83,44 @@ void main()
 
 		//Calculate color
 		vec3 c = val * uPointLights[i].color;
+
+		//Add to combined lights
+		combinedPointLights += c;
+	}
+
+	//Caclulate spot lights 
+	vec3 combinedSpotLights = vec3(0, 0, 0);
+	for (int i = 0; i < 8; i++)
+	{
+		//Dont use if i am empty
+		if (uSpotLights[i].intensity == 0)
+			continue;
+
+		//Calculate light dir
+		vec3 lightDir = normalize(uSpotLights[i].position - iFragPos);
+
+		//Calculate angle
+		float angle = dot(lightDir, normalize(-uSpotLights[i].direction));
+
+		float val = 0;
+		if (angle > uSpotLights[i].angle)
+		{
+			//In the zone
+			//Get distance
+			float dist = distance(uSpotLights[i].position, iFragPos);
+
+			//Get the brightness
+			val = (dot(norm, lightDir) * uSpotLights[i].intensity) / dist;
+			if (val < 0) val = 0;
+		}
+		else
+		{
+			//Out of the zone
+			val = 0;
+		}
+
+		//Calculate color
+		vec3 c = val * uSpotLights[i].color;
 
 		//Add to combined lights
 		combinedPointLights += c;

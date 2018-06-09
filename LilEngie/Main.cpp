@@ -66,11 +66,21 @@ int main()
 	ptLight.intensity = 0.5f;
 	#pragma endregion
 
+	#pragma region SpotLight
+	GameObject spotLightObj = GameObject();
+	SpotLight sLight = SpotLight(spotLightObj);
+	sLight.pos = glm::vec3(0, 0, 3);
+	sLight.color = glm::vec3(1, 1, 1);
+	sLight.angle = glm::cos(glm::radians(20.0f));
+	#pragma endregion
+
 	#pragma region DirLight
+	/*
 	GameObject dirLight = GameObject();
 	DirectionalLight dLight = DirectionalLight(dirLight);
 	dLight.dir = glm::vec3(-0.2f, -1.0f, -0.3f);
 	dLight.color = glm::vec3(1, 0.95f, 0.95f);
+	*/
 	#pragma endregion
 
 	#pragma region Camera

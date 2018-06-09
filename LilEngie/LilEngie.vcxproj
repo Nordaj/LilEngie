@@ -157,10 +157,11 @@
     <ClCompile Include="Core\src\Entity\Components\DirectionalLight.cpp" />
     <ClCompile Include="Core\src\Entity\Components\Mesh.cpp" />
     <ClCompile Include="Core\src\Entity\Components\PointLight.cpp" />
+    <ClCompile Include="Core\src\Entity\Components\SpotLight.cpp" />
     <ClCompile Include="Core\src\Entity\Components\Transform.cpp" />
     <ClCompile Include="Core\src\Entity\GameObject.cpp" />
     <ClCompile Include="Core\src\Entity\ObjectManager.cpp" />
-    <ClCompile Include="Core\src\Game.cpp" />
+    <ClCompile Include="Core\src\Game\Game.cpp" />
     <ClCompile Include="Core\src\Graphics\LightHandler.cpp" />
     <ClCompile Include="Core\src\Graphics\Material.cpp" />
     <ClCompile Include="Core\src\Graphics\MaterialHandler.cpp" />
@@ -172,6 +173,7 @@
     <ClCompile Include="Core\src\Graphics\ShaderReader.cpp" />
     <ClCompile Include="Core\src\Graphics\Texture.cpp" />
     <ClCompile Include="Core\src\Graphics\UniformHandler.cpp" />
+    <ClCompile Include="Core\src\Game\SceneLoader.cpp" />
     <ClCompile Include="Core\src\Utilities\ModelLoader.cpp" />
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
@@ -182,10 +184,11 @@
     <ClInclude Include="Core\src\Entity\Components\DirectionalLight.h" />
     <ClInclude Include="Core\src\Entity\Components\Mesh.h" />
     <ClInclude Include="Core\src\Entity\Components\PointLight.h" />
+    <ClInclude Include="Core\src\Entity\Components\SpotLight.h" />
     <ClInclude Include="Core\src\Entity\Components\Transform.h" />
     <ClInclude Include="Core\src\Entity\GameObject.h" />
     <ClInclude Include="Core\src\Entity\ObjectManager.h" />
-    <ClInclude Include="Core\src\Game.h" />
+    <ClInclude Include="Core\src\Game\Game.h" />
     <ClInclude Include="Core\LilEngie.h" />
     <ClInclude Include="Core\src\Graphics\BaseMeshes.h" />
     <ClInclude Include="Core\src\Graphics\LightHandler.h" />
@@ -199,6 +202,7 @@
     <ClInclude Include="Core\src\Graphics\ShaderReader.h" />
     <ClInclude Include="Core\src\Graphics\Texture.h" />
     <ClInclude Include="Core\src\Graphics\UniformHandler.h" />
+    <ClInclude Include="Core\src\Game\SceneLoader.h" />
     <ClInclude Include="Core\src\Utilities\ModelLoader.h" />
   </ItemGroup>
   <ItemGroup>

@@ -4,10 +4,10 @@
 #include <GL/glew.h>
 #include <Entity/Components/Mesh.h>
 #include <Entity/Components/Camera.h>
+#include <Game/Game.h>
 #include "UniformHandler.h"
 #include "MaterialHandler.h"
 #include "MeshRenderer.h"
-#include "Game.h"
 #include "Renderer.h"
 
 Camera* Renderer::GetCurrentCamera()

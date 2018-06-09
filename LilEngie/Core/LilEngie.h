@@ -3,7 +3,7 @@
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 
-#include "src/Game.h"
+#include "src/Game/Game.h"
 
 #include "src/Application/Window.h"
 
@@ -22,5 +22,6 @@
 #include "src/Entity/Components/Camera.h"
 #include "src/Entity/Components/PointLight.h"
 #include "src/Entity/Components/DirectionalLight.h"
+#include "src/Entity/Components/SpotLight.h"
 
 #include "src/Utilities/ModelLoader.h"

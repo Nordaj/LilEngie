@@ -2,7 +2,7 @@
 
 #include <GLFW/glfw3.h>
 
-#include "Game.h"
+#include <Game/Game.h>
 #include "Window.h"
 
 void Window::Init()
