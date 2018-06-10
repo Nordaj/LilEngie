@@ -3,6 +3,9 @@
 
 #include "Core/LilEngie.h"
 
+//MAJOR BUG
+///tranformations make no sense right now. Not a single clue why. maybe MVP multiplication order???
+
 int main()
 {
 	Game::Init();
@@ -25,8 +28,11 @@ int main()
 	#pragma endregion
 
 	#pragma region Shaders/Mats
-	//Create unlit shader
+	//Create diffuse shader
 	shader diffuse = Shaders::Create("Resources/Diffuse.shader");
+
+	//Create unlit shader
+	shader unlit = Shaders::Create("Resources/Unlit.shader");
 
 	//Create blue green material
 	mat tan = Mats::Create(diffuse);
@@ -36,6 +42,10 @@ int main()
 	mat rustMat = Mats::Create(diffuse);
 	Mats::Get(rustMat)->AddColor("uColor", 1, 1, 1, 1);
 	Mats::Get(rustMat)->AddTexture("uMainTex", rust);
+
+	//Create unlit material
+	mat unlitWhite = Mats::Create(unlit);
+	Mats::Get(unlitWhite)->AddColor("uColor", 1, 1, 1, 1);
 	#pragma endregion
 
 	#pragma region Gears
@@ -67,11 +77,13 @@ int main()
 	#pragma endregion
 
 	#pragma region SpotLight
+	/*
 	GameObject spotLightObj = GameObject();
 	SpotLight sLight = SpotLight(spotLightObj);
 	sLight.pos = glm::vec3(0, 0, 3);
 	sLight.color = glm::vec3(1, 1, 1);
 	sLight.angle = glm::cos(glm::radians(20.0f));
+	*/
 	#pragma endregion
 
 	#pragma region DirLight
