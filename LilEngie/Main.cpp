@@ -12,10 +12,7 @@ int main()
 	Game::Init();
 
 	Renderer::SetClearColor(0.2f, 0.2f, 0.2f, 1);
-
-	#pragma region AdditionLightStuff
-	LightHandler::ambient = glm::vec3(0.1f, 0.1f, 0.1f);
-	#pragma endregion
+	LightHandler::SetAmbient(glm::vec3(0.2f, 0.2f, 0.2f));
 
 	#pragma region Loading
 	//Load gun model
@@ -83,11 +80,13 @@ int main()
 	#pragma endregion
 
 	#pragma region PointLight
+	/*
 	GameObject light = GameObject();
 	PointLight ptLight = PointLight(light);
 	ptLight.pos = glm::vec3(0, 0, 2);
 	ptLight.color = glm::vec3(1, 0.95f, 0.95f);
 	ptLight.intensity = 0.5f;
+	*/
 	#pragma endregion
 
 	#pragma region SpotLight

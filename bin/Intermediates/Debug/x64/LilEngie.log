@@ -1,2 +1,4 @@
-﻿  UniformHandler.cpp
+﻿  Renderer.cpp
+d:\documents\github\lilengie\lilengie\core\src\graphics\renderer.cpp(46): warning C4838: conversion from 'int' to 'char' requires a narrowing conversion
+d:\documents\github\lilengie\lilengie\core\src\graphics\renderer.cpp(46): warning C4309: 'initializing': truncation of constant value
   LilEngie.vcxproj -> D:\Documents\GitHub\LilEngie\bin\Debug\x64\LilEngie.exe

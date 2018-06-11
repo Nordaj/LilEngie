@@ -20,6 +20,11 @@ void LightHandler::AddSpotLight(SpotLight *light)
 	spotLights.push_back(light);
 }
 
+void LightHandler::SetAmbient(glm::vec3 a)
+{
+	ambient = a;
+}
+
 void LightHandler::Prepare(Shader *shader)
 {
 	//Pass each point light

@@ -10,6 +10,7 @@ namespace Renderer
 	{
 		std::vector<Mesh*> meshes;
 		Camera *currentCamera;
+		unsigned int defaultTex;
 	}
 
 	Camera* GetCurrentCamera();
