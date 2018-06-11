@@ -3,8 +3,9 @@
 
 #include "Core/LilEngie.h"
 
-//MAJOR BUG
+//BUGS
 ///tranformations make no sense right now. Not a single clue why. maybe MVP multiplication order???
+///I need to delete textures after using them
 
 int main()
 {
@@ -58,14 +59,27 @@ int main()
 	mesh.Setup(gearsModel.vertices, gearsModel.indices, rustMat);
 	
 	//Move transform
-	tran.transform = glm::translate(tran.transform, glm::vec3(0, 0, 0));
+	tran.position = glm::vec3(-1, 0, 0);
 
 	//Scale transform
-	tran.transform = glm::scale(tran.transform, glm::vec3(0.5f, 0.5f, 0.5f));
+	tran.scale = glm::vec3(0.3f, 0.3f, 0.3f);
 
 	//Rotate transform
-	tran.transform = glm::rotate(tran.transform, glm::radians(45.0f), glm::vec3(0, 1, 0));
-	tran.transform = glm::rotate(tran.transform, glm::radians(45.0f), glm::vec3(0, 0, 1));
+	tran.rotation = glm::quat(glm::vec3(25, 15, 0));
+	#pragma endregion
+
+	#pragma region TestCube
+	GameObject cubeObj = GameObject();
+	Transform cubeTran = Transform(cubeObj);
+	Mesh cubeMesh = Mesh(cubeObj);
+
+	cubeMesh.Setup(BaseMeshes::cubeVertices, BaseMeshes::cubeIndices, tan);
+
+	cubeTran.position += glm::vec3(1, 0, 0);
+
+	//Rotate transform
+	cubeTran.rotation = glm::rotate(cubeTran.rotation, glm::radians(45.0f), glm::vec3(0, 1, 0));
+	cubeTran.rotation = glm::rotate(cubeTran.rotation, glm::radians(45.0f), glm::vec3(0, 0, 1));
 	#pragma endregion
 
 	#pragma region PointLight
@@ -101,7 +115,7 @@ int main()
 	Camera camCam = Camera(camera);
 
 	//Move camera a tad
-	camCam.position += glm::vec3(0, 0, 3);
+	camCam.position += glm::vec3(0, 0, 5);
 	#pragma endregion
 
 	Game::Run();

@@ -37,11 +37,12 @@ MeshRenderer* Mesh::GetRenderer()
 
 glm::mat4* Mesh::GetTransformation()
 {
-	return &transform->transform;
+	return &transform->GetModel();
 }
 
 void Mesh::Draw(glm::mat4 &v, glm::mat4 &p)
 {
-	glm::mat4 MVP = p * v * transform->transform;
-	meshRenderer.Draw(MVP, transform->transform);
+	glm::mat4 MVP = p * v * transform->GetModel();
+	glm::mat4 model = transform->GetModel();
+	meshRenderer.Draw(MVP, model);
 }

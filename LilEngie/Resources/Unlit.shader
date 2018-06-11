@@ -1,13 +1,13 @@
 #vert
 #version 330 core
 
-layout(location = 0) in vec4 position;
+layout(location = 0) in vec3 position;
 
 uniform mat4 uMVPMat;
 
 void main()
 {
-	gl_Position = uMVPMat * position;
+	gl_Position = uMVPMat * vec4(position, 1);
 }
 
 #surf
