@@ -16,6 +16,8 @@
 
 #include "src/Utilities/ModelLoader.h"
 
+#include "src/Entity/Scene.h"
+#include "src/Entity/ObjectManager.h"
 #include "src/Entity/GameObject.h"
 #include "src/Entity/Component.h"
 #include "src/Entity/Components/Mesh.h"

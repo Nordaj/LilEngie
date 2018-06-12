@@ -161,6 +161,7 @@
     <ClCompile Include="Core\src\Entity\Components\Transform.cpp" />
     <ClCompile Include="Core\src\Entity\GameObject.cpp" />
     <ClCompile Include="Core\src\Entity\ObjectManager.cpp" />
+    <ClCompile Include="Core\src\Entity\Scene.cpp" />
     <ClCompile Include="Core\src\Game\Game.cpp" />
     <ClCompile Include="Core\src\Graphics\LightHandler.cpp" />
     <ClCompile Include="Core\src\Graphics\Material.cpp" />
@@ -188,6 +189,7 @@
     <ClInclude Include="Core\src\Entity\Components\Transform.h" />
     <ClInclude Include="Core\src\Entity\GameObject.h" />
     <ClInclude Include="Core\src\Entity\ObjectManager.h" />
+    <ClInclude Include="Core\src\Entity\Scene.h" />
     <ClInclude Include="Core\src\Game\Game.h" />
     <ClInclude Include="Core\LilEngie.h" />
     <ClInclude Include="Core\src\Graphics\BaseMeshes.h" />

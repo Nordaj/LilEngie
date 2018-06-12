@@ -1,24 +1,36 @@
 #include <vector>
 #include "GameObject.h"
+#include "Scene.h"
 #include "ObjectManager.h"
 
-void ObjectManager::AddObject(GameObject &obj)
+void ObjectManager::SetScene(Scene *s)
 {
-	objects.push_back(&obj);
+	if (scene != nullptr)
+		scene->Close();
+
+	scene = s;
+	Start();
+}
+
+void ObjectManager::AddObjectToCurrent(GameObject &obj)
+{
+	if (scene != nullptr)
+		scene->AddObject(obj);
 }
 
 void ObjectManager::Start()
 {
-	for (int i = 0; i < objects.size(); i++)
-	{
-		objects[i]->Start();
-	}
+	if (scene != nullptr)
+		scene->Start();
 }
 
 void ObjectManager::Update()
 {
-	for (int i = 0; i < objects.size(); i++)
-	{
-		objects[i]->Update();
-	}
+	if (scene != nullptr)
+		scene->Update();
+}
+
+bool ObjectManager::CheckScene()
+{
+	return scene != nullptr;
 }

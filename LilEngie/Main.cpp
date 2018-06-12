@@ -3,16 +3,15 @@
 
 #include "Core/LilEngie.h"
 
-//BUGS
-///tranformations make no sense right now. Not a single clue why. maybe MVP multiplication order???
-///I need to delete textures after using them
+//TODO
+///Lights and camera components should work from transform component
 
 int main()
 {
 	Game::Init();
 
-	Renderer::SetClearColor(0.2f, 0.2f, 0.2f, 1);
-	LightHandler::SetAmbient(glm::vec3(0.2f, 0.2f, 0.2f));
+	Renderer::SetClearColor(0.05f, 0.05f, 0.05f, 1);
+	LightHandler::SetAmbient(glm::vec3(0.05f, 0.05f, 0.05f));
 
 	#pragma region Loading
 	//Load gun model
@@ -46,6 +45,11 @@ int main()
 	Mats::Get(unlitWhite)->AddColor("uColor", 1, 1, 1, 1);
 	#pragma endregion
 
+	#pragma region Scene
+	Scene main;
+	ObjectManager::SetScene(&main);
+	#pragma endregion
+
 	#pragma region Gears
 	//Create object with transform and mesh
 	GameObject obj = GameObject();
@@ -56,37 +60,31 @@ int main()
 	mesh.Setup(gearsModel.vertices, gearsModel.indices, rustMat);
 	
 	//Move transform
-	tran.position = glm::vec3(-1, 0, 0);
+	tran.position = glm::vec3(0, 0, 0);
 
 	//Scale transform
-	tran.scale = glm::vec3(0.3f, 0.3f, 0.3f);
+	tran.scale = glm::vec3(0.5f, 0.5f, 0.5f);
 
 	//Rotate transform
-	tran.rotation = glm::quat(glm::vec3(25, 15, 0));
-	#pragma endregion
-
-	#pragma region TestCube
-	GameObject cubeObj = GameObject();
-	Transform cubeTran = Transform(cubeObj);
-	Mesh cubeMesh = Mesh(cubeObj);
-
-	cubeMesh.Setup(BaseMeshes::cubeVertices, BaseMeshes::cubeIndices, tan);
-
-	cubeTran.position += glm::vec3(1, 0, 0);
-
-	//Rotate transform
-	cubeTran.rotation = glm::rotate(cubeTran.rotation, glm::radians(45.0f), glm::vec3(0, 1, 0));
-	cubeTran.rotation = glm::rotate(cubeTran.rotation, glm::radians(45.0f), glm::vec3(0, 0, 1));
+	//(pitch, yaw, roll) X->Y->Z
+	tran.rotation = glm::quat(glm::vec3(glm::radians(30.0f), glm::radians(30.0f), glm::radians(0.0f)));
 	#pragma endregion
 
 	#pragma region PointLight
-	/*
 	GameObject light = GameObject();
+	Transform lightTran = Transform(light);
+	Mesh lightMesh = Mesh(light);
 	PointLight ptLight = PointLight(light);
+
+	lightMesh.Setup(BaseMeshes::cubeVertices, BaseMeshes::cubeIndices, unlitWhite);
+
+	lightTran.scale = glm::vec3(0.05f, 0.05f, 0.05f);
+	lightTran.rotation = glm::quat(glm::vec3(glm::radians(45.0f), glm::radians(45.0f), glm::radians(45.0f)));
+	lightTran.position = glm::vec3(0, 0, 2);
+
 	ptLight.pos = glm::vec3(0, 0, 2);
-	ptLight.color = glm::vec3(1, 0.95f, 0.95f);
+	ptLight.color = glm::vec3(1, 1, 1);
 	ptLight.intensity = 0.5f;
-	*/
 	#pragma endregion
 
 	#pragma region SpotLight
@@ -114,7 +112,7 @@ int main()
 	Camera camCam = Camera(camera);
 
 	//Move camera a tad
-	camCam.position += glm::vec3(0, 0, 5);
+	camCam.position += glm::vec3(0, 0, 3);
 	#pragma endregion
 
 	Game::Run();

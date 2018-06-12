@@ -5,9 +5,12 @@
 #include "Component.h"
 #include "GameObject.h"
 
-GameObject::GameObject()
+GameObject::GameObject(Scene *scene)
 {
-	ObjectManager::AddObject(*this);
+	if (scene == nullptr)
+		ObjectManager::AddObjectToCurrent(*this);
+	else
+		scene->AddObject(*this);
 }
 
 void GameObject::AddComponent(Component &comp)

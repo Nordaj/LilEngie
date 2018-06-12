@@ -2,15 +2,18 @@
 
 #include <vector>
 #include "GameObject.h"
+#include "Scene.h"
 
 namespace ObjectManager
 {
 	namespace
 	{
-		std::vector<GameObject*> objects;
+		Scene *scene;
 	}
 
-	void AddObject(GameObject &obj);
+	void SetScene(Scene *s);
+	void AddObjectToCurrent(GameObject &obj);
 	void Start();
 	void Update();
+	bool CheckScene();
 }
