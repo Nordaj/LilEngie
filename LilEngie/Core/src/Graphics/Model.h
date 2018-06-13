@@ -9,5 +9,6 @@ public:
 	std::vector<unsigned int> indices;
 
 	Model();
+	Model(std::vector<float> verts, std::vector<unsigned int> inds);
 	void Setup(std::vector<float> &verts, std::vector<unsigned int> &inds);
 };

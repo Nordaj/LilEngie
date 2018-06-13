@@ -4,14 +4,13 @@
 #include "Core/LilEngie.h"
 
 //TODO
+///Scene loading
 ///Lights and camera components should work from transform component
 ///Better input system
 ///Use heap for Shaders, Mats, Models, Objects, Components, and Scenes
 
 //CHANGES
-///Scene changing	X
-///Update callback	X
-///Input			X
+///Start scene loading with setting up models
 
 void Update();
 
@@ -26,14 +25,10 @@ int main()
 	LightHandler::SetAmbient(glm::vec3(0.05f, 0.05f, 0.05f));
 
 	#pragma region Loading
-	//Load gun model
-	Model gunModel = ModelLoader::Load("Resources/MattyGun.obj");
-
-	//Load gears
-	Model gearsModel = ModelLoader::Load("Resources/RustyGearsMatty.fbx");
-
 	//Load rust texture
 	Texture rust = Texture("Resources/Rusty.png");
+
+	SceneLoader::LoadScene("Resources/TestScene.lilscn");
 	#pragma endregion
 
 	#pragma region Shaders/Mats
@@ -70,7 +65,7 @@ int main()
 	Mesh mesh = Mesh(obj);
 	
 	//Setup mesh
-	mesh.Setup(gearsModel.vertices, gearsModel.indices, rustMat);
+	mesh.Setup(Models::Get("gearsModel"), rustMat);
 	
 	//Move transform
 	tran.position = glm::vec3(0, 0, 0);
@@ -89,7 +84,7 @@ int main()
 	Mesh lightMesh = Mesh(light);
 	PointLight ptLight = PointLight(light);
 
-	lightMesh.Setup(BaseMeshes::cubeVertices, BaseMeshes::cubeIndices, unlitWhite);
+	lightMesh.Setup(&BaseMeshes::cube, unlitWhite);
 
 	lightTran.scale = glm::vec3(0.05f, 0.05f, 0.05f);
 	lightTran.rotation = glm::quat(glm::vec3(glm::radians(45.0f), glm::radians(45.0f), glm::radians(45.0f)));
@@ -135,7 +130,7 @@ int main()
 	Transform cubeTransform = Transform(cubeObj);
 	Mesh cubeMesh = Mesh(cubeObj);
 
-	cubeMesh.Setup(BaseMeshes::cubeVertices, BaseMeshes::cubeIndices, unlitWhite);
+	cubeMesh.Setup(&BaseMeshes::cube, unlitWhite);
 
 	cubeTransform.rotation = glm::quat(glm::vec3(glm::radians(45.0f), glm::radians(45.0f), glm::radians(0.0f)));
 	cubeTransform.scale = glm::vec3(0.2f, 0.2f, 0.2f);

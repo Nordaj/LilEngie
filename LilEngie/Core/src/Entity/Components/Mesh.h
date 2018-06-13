@@ -6,6 +6,7 @@
 #include <Entity/Component.h>
 #include <Graphics/MeshRenderer.h>
 #include <Graphics/Material.h>
+#include <Graphics/Model.h>
 #include "Transform.h"
 
 class Mesh : public Component
@@ -17,7 +18,7 @@ private:
 public:
 	Mesh(GameObject &obj);
 
-	void Setup(std::vector<float> v, std::vector<unsigned int> i, int material);
+	void Setup(Model *model, int material);
 	MeshRenderer* GetRenderer();
 	glm::mat4* GetTransformation();
 	void Draw(glm::mat4 &v, glm::mat4 &p);

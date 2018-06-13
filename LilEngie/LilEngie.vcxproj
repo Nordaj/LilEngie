@@ -168,6 +168,7 @@
     <ClCompile Include="Core\src\Graphics\MaterialHandler.cpp" />
     <ClCompile Include="Core\src\Graphics\MeshRenderer.cpp" />
     <ClCompile Include="Core\src\Graphics\Model.cpp" />
+    <ClCompile Include="Core\src\Graphics\ModelHandler.cpp" />
     <ClCompile Include="Core\src\Graphics\Renderer.cpp" />
     <ClCompile Include="Core\src\Graphics\Shader.cpp" />
     <ClCompile Include="Core\src\Graphics\ShaderHandler.cpp" />
@@ -199,6 +200,7 @@
     <ClInclude Include="Core\src\Graphics\MaterialHandler.h" />
     <ClInclude Include="Core\src\Graphics\MeshRenderer.h" />
     <ClInclude Include="Core\src\Graphics\Model.h" />
+    <ClInclude Include="Core\src\Graphics\ModelHandler.h" />
     <ClInclude Include="Core\src\Graphics\Renderer.h" />
     <ClInclude Include="Core\src\Graphics\Shader.h" />
     <ClInclude Include="Core\src\Graphics\ShaderHandler.h" />
