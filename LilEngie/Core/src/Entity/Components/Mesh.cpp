@@ -27,7 +27,7 @@ void Mesh::Setup(std::vector<float> v, std::vector<unsigned int> i, int material
 	meshRenderer.Setup(v, i, material);
 
 	//Add to render list
-	Renderer::AddMesh(*this);
+	obj->GetMyScene()->AddToQueue(this);
 }
 
 MeshRenderer* Mesh::GetRenderer()

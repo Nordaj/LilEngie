@@ -16,8 +16,8 @@ https://steamcommunity.com/profiles/76561198254676201/images/
 
 <h2>Plans</h2>
 <ul>
-  <li>Scenes</li>
-  <li>Resource Manager</li>
-  <li>Physically AccurateLighting</li>
-  <li>More types of light</li>
+  <li>Better input system</li>
+  <li>Scene loading</li>
+  <li>Use heap for things that need to use heap</li>
+  <li>Physically accurate lighting</li>
 </ul>

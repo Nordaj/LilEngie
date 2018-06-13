@@ -5,6 +5,7 @@
 #include <Entity/GameObject.h>
 #include <Application/Window.h>
 #include <Graphics/Renderer.h>
+#include <Entity/ObjectManager.h>
 #include "Camera.h"
 
 Camera::Camera(GameObject &obj)
@@ -25,7 +26,7 @@ Camera::Camera(GameObject &obj)
 
 void Camera::SetCurrent()
 {
-	Renderer::SetCurrentCamera(this);
+	ObjectManager::SetCurrentCamera(this);
 }
 
 void Camera::Update()

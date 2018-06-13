@@ -3,6 +3,7 @@
 #include <GLFW/glfw3.h>
 
 #include <Game/Game.h>
+#include <Input/Input.h>
 #include "Window.h"
 
 void Window::Init()
@@ -21,6 +22,9 @@ void Window::Init()
 	//Create window
 	window = glfwCreateWindow(width, height, title, NULL, NULL);
 	glfwMakeContextCurrent(window);
+
+	//Init input
+	Input::Init(window);
 }
 
 bool Window::Open()

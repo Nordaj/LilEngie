@@ -1,6 +1,7 @@
 #pragma once
 
 #include <vector>
+#include <Entity/Components/Camera.h>
 #include "GameObject.h"
 #include "Scene.h"
 
@@ -12,7 +13,9 @@ namespace ObjectManager
 	}
 
 	void SetScene(Scene *s);
+	Scene* GetCurrent();
 	void AddObjectToCurrent(GameObject &obj);
+	void SetCurrentCamera(Camera *cam);
 	void Start();
 	void Update();
 	bool CheckScene();

@@ -1,4 +1,6 @@
 #include <vector>
+#include <Graphics/Renderer.h>
+#include <Entity/Components/Camera.h>
 #include "GameObject.h"
 #include "Scene.h"
 #include "ObjectManager.h"
@@ -10,12 +12,24 @@ void ObjectManager::SetScene(Scene *s)
 
 	scene = s;
 	Start();
+	
+	Renderer::SetScene(scene);
+}
+
+Scene* ObjectManager::GetCurrent()
+{
+	return scene;
 }
 
 void ObjectManager::AddObjectToCurrent(GameObject &obj)
 {
 	if (scene != nullptr)
 		scene->AddObject(obj);
+}
+
+void ObjectManager::SetCurrentCamera(Camera *cam)
+{
+	scene->SetCurrentCamera(cam);
 }
 
 void ObjectManager::Start()

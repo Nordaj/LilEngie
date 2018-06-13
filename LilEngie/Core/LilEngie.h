@@ -27,3 +27,6 @@
 #include "src/Entity/Components/SpotLight.h"
 
 #include "src/Utilities/ModelLoader.h"
+
+#include "src/Input/Input.h"
+#include "src/Input/Keys.h"

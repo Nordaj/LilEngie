@@ -4,6 +4,7 @@
 #include <GL/glew.h>
 #include <Entity/Components/Mesh.h>
 #include <Entity/Components/Camera.h>
+#include <Entity/Scene.h>
 #include <Game/Game.h>
 #include "UniformHandler.h"
 #include "MaterialHandler.h"
@@ -12,22 +13,17 @@
 
 Camera* Renderer::GetCurrentCamera()
 {
-	return currentCamera;
+	return scene->GetCam();
+}
+
+void Renderer::SetScene(Scene *s)
+{
+	scene = s;
 }
 
 void Renderer::SetClearColor(float r, float g, float b, float a)
 {
 	glClearColor(r, g, b, a);
-}
-
-void Renderer::SetCurrentCamera(Camera *cam)
-{
-	currentCamera = cam;
-}
-
-void Renderer::AddMesh(Mesh &mesh)
-{
-	meshes.push_back(&mesh);
 }
 
 void Renderer::Init()
@@ -50,9 +46,6 @@ void Renderer::Init()
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 
-	//Clear the current cam
-	currentCamera = nullptr;
-
 	//glPolygonMode(GL_FRONT, GL_LINE);
 	glEnable(GL_DEPTH_TEST);
 }
@@ -63,23 +56,23 @@ void Renderer::Render()
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	//Render each mesh
-	for (int i = 0; i < meshes.size(); i++)
+	for (int i = 0; i < scene->GetQueue()->size(); i++)
 	{
 		//Clear out current texture
 		glActiveTexture(GL_TEXTURE0);
 		glBindTexture(GL_TEXTURE_2D, defaultTex);
 
-		if (currentCamera != nullptr)
+		if (scene->GetCam() != nullptr)
 		{
-			glm::mat4 &V = currentCamera->GetView();
-			glm::mat4 &P = currentCamera->GetProjection();
-			meshes[i]->Draw(V, P);
+			glm::mat4 &V = scene->GetCam()->GetView();
+			glm::mat4 &P = scene->GetCam()->GetProjection();
+			(*scene->GetQueue())[i]->Draw(V, P);
 		}
 		else
 		{
 			glm::mat4 v = glm::mat4(1);
 			glm::mat4 p = glm::mat4(1);
-			meshes[i]->Draw(v, p);
+			(*scene->GetQueue())[i]->Draw(v, p);
 		}
 	}
 }

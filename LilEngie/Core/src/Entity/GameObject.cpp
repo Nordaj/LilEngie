@@ -8,9 +8,15 @@
 GameObject::GameObject(Scene *scene)
 {
 	if (scene == nullptr)
+	{
 		ObjectManager::AddObjectToCurrent(*this);
+		myScene = ObjectManager::GetCurrent();
+	}
 	else
+	{
 		scene->AddObject(*this);
+		myScene = scene;
+	}
 }
 
 void GameObject::AddComponent(Component &comp)
@@ -28,6 +34,11 @@ void* GameObject::GetComponent(std::string comp)
 
 	std::cout << "Could not find component" << std::endl;
 	return nullptr;
+}
+
+Scene* GameObject::GetMyScene()
+{
+	return myScene;
 }
 
 void GameObject::Start()

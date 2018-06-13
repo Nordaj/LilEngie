@@ -13,13 +13,17 @@ void Game::Init()
 	Renderer::Init();
 }
 
-void Game::Run()
+void Game::Run(vFunction callback)
 {
 	ObjectManager::Start();
 
 	while (Window::Open())
 	{
 		ObjectManager::Update();
+
+		if (callback != nullptr)
+			callback();
+
 		Renderer::Render();
 		Window::SwapBuffers();
 		Window::PollEvents();

@@ -5,6 +5,18 @@
 
 //TODO
 ///Lights and camera components should work from transform component
+///Better input system
+///Use heap for Shaders, Mats, Models, Objects, Components, and Scenes
+
+//CHANGES
+///Scene changing	X
+///Update callback	X
+///Input			X
+
+void Update();
+
+Scene mainScene;
+Scene secondScene;
 
 int main()
 {
@@ -46,9 +58,10 @@ int main()
 	#pragma endregion
 
 	#pragma region Scene
-	Scene main;
-	ObjectManager::SetScene(&main);
+	ObjectManager::SetScene(&mainScene);
 	#pragma endregion
+
+	//==========FIRST SCENE==========//
 
 	#pragma region Gears
 	//Create object with transform and mesh
@@ -115,8 +128,37 @@ int main()
 	camCam.position += glm::vec3(0, 0, 3);
 	#pragma endregion
 
-	Game::Run();
+	//==========SECOND SCENE==========//
+
+	#pragma region Cube
+	GameObject cubeObj = GameObject(&secondScene);
+	Transform cubeTransform = Transform(cubeObj);
+	Mesh cubeMesh = Mesh(cubeObj);
+
+	cubeMesh.Setup(BaseMeshes::cubeVertices, BaseMeshes::cubeIndices, unlitWhite);
+
+	cubeTransform.rotation = glm::quat(glm::vec3(glm::radians(45.0f), glm::radians(45.0f), glm::radians(0.0f)));
+	cubeTransform.scale = glm::vec3(0.2f, 0.2f, 0.2f);
+	#pragma endregion
+
+	Game::Run(Update);
 	Game::Close();
 
 	return 0;
+}
+
+void Update()
+{
+	if (Input::GetKey(Key::Space))
+	{
+		//Swith to second if not on
+		if (ObjectManager::GetCurrent() != &secondScene)
+			ObjectManager::SetScene(&secondScene);
+	}
+	else if (Input::GetKey(Key::A))
+	{
+		//Switch to main if not on
+		if (ObjectManager::GetCurrent() != &mainScene)
+			ObjectManager::SetScene(&mainScene);
+	}
 }

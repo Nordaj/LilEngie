@@ -7,7 +7,7 @@ class GameObject;
 class Component
 {
 protected:
-	const GameObject *obj;
+	GameObject *obj;
 
 public:
 	Component(GameObject &obj);

@@ -1,3 +1,6 @@
+#include <vector>
+#include <Entity/Components/Camera.h>
+#include <Entity/Components/Mesh.h>
 #include "Scene.h"
 
 Scene::Scene(std::vector<GameObject*> objs)
@@ -7,6 +10,26 @@ Scene::Scene(std::vector<GameObject*> objs)
 void Scene::AddObject(GameObject &obj)
 {
 	objects.push_back(&obj);
+}
+
+void Scene::AddToQueue(Mesh *m)
+{
+	renderQueue.push_back(m);
+}
+
+Camera* Scene::GetCam()
+{
+	return currentCamera;
+}
+
+void Scene::SetCurrentCamera(Camera *cam)
+{
+	currentCamera = cam;
+}
+
+std::vector<Mesh*>* Scene::GetQueue()
+{
+	return &renderQueue;
 }
 
 void Scene::Start()

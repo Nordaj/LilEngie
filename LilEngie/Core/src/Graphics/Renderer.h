@@ -3,20 +3,19 @@
 #include <vector>
 #include <Entity/Components/Mesh.h>
 #include <Entity/Components/Camera.h>
+#include <Entity/Scene.h>
 
 namespace Renderer
 {
 	namespace
 	{
-		std::vector<Mesh*> meshes;
-		Camera *currentCamera;
+		Scene *scene;
 		unsigned int defaultTex;
 	}
 
 	Camera* GetCurrentCamera();
+	void SetScene(Scene *s);
 	void SetClearColor(float r, float g, float b, float a);
-	void SetCurrentCamera(Camera *cam);
-	void AddMesh(Mesh &mesh);
 	void Init();
 	void Render();
 }
