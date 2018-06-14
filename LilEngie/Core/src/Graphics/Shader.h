@@ -8,7 +8,9 @@ private:
 	unsigned int shaderID;
 
 public:
+	Shader() {}
 	Shader(unsigned int id);
 
 	unsigned int GetID();
+	void Use();
 };

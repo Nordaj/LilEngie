@@ -174,6 +174,7 @@
     <ClCompile Include="Core\src\Graphics\ShaderHandler.cpp" />
     <ClCompile Include="Core\src\Graphics\ShaderReader.cpp" />
     <ClCompile Include="Core\src\Graphics\Texture.cpp" />
+    <ClCompile Include="Core\src\Graphics\TextureHandler.cpp" />
     <ClCompile Include="Core\src\Graphics\UniformHandler.cpp" />
     <ClCompile Include="Core\src\Game\SceneLoader.cpp" />
     <ClCompile Include="Core\src\Input\Input.cpp" />
@@ -206,6 +207,7 @@
     <ClInclude Include="Core\src\Graphics\ShaderHandler.h" />
     <ClInclude Include="Core\src\Graphics\ShaderReader.h" />
     <ClInclude Include="Core\src\Graphics\Texture.h" />
+    <ClInclude Include="Core\src\Graphics\TextureHandler.h" />
     <ClInclude Include="Core\src\Graphics\UniformHandler.h" />
     <ClInclude Include="Core\src\Game\SceneLoader.h" />
     <ClInclude Include="Core\src\Input\Input.h" />

@@ -10,7 +10,7 @@
 class Material
 {
 private:
-	int shader;
+	std::string shader;
 
 	//First is uniform name. second is value to be passed
 	std::map<std::string, Texture> textures;
@@ -19,7 +19,7 @@ private:
 	std::map<std::string, int> integers;
 
 public:
-	Material(int shader);
+	Material(std::string shader);
 
 	//Function to bind current shader and pass all uniforms
 	void Prepare(glm::mat4 &mvp, glm::mat4 &model);

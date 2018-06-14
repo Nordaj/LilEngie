@@ -10,7 +10,8 @@
 ///Use heap for Shaders, Mats, Models, Objects, Components, and Scenes
 
 //CHANGES
-///Start scene loading with setting up models
+///Support loading textures
+///Support loading shaders
 
 void Update();
 
@@ -25,30 +26,21 @@ int main()
 	LightHandler::SetAmbient(glm::vec3(0.05f, 0.05f, 0.05f));
 
 	#pragma region Loading
-	//Load rust texture
-	Texture rust = Texture("Resources/Rusty.png");
-
 	SceneLoader::LoadScene("Resources/TestScene.lilscn");
 	#pragma endregion
 
 	#pragma region Shaders/Mats
-	//Create diffuse shader
-	shader diffuse = Shaders::Create("Resources/Diffuse.shader");
-
-	//Create unlit shader
-	shader unlit = Shaders::Create("Resources/Unlit.shader");
-
 	//Create blue green material
-	mat tan = Mats::Create(diffuse);
+	mat tan = Mats::Create("diffuseShader");
 	Mats::Get(tan)->AddColor("uColor", 0.75f, 0.6f, 0.42f, 1);
 
 	//Create red material
-	mat rustMat = Mats::Create(diffuse);
+	mat rustMat = Mats::Create("diffuseShader");
 	Mats::Get(rustMat)->AddColor("uColor", 1, 1, 1, 1);
-	Mats::Get(rustMat)->AddTexture("uMainTex", rust);
+	Mats::Get(rustMat)->AddTexture("uMainTex", *Textures::Get("rustTexture"));
 
 	//Create unlit material
-	mat unlitWhite = Mats::Create(unlit);
+	mat unlitWhite = Mats::Create("unlitShader");
 	Mats::Get(unlitWhite)->AddColor("uColor", 1, 1, 1, 1);
 	#pragma endregion
 

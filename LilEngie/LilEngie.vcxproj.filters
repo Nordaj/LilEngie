@@ -99,6 +99,9 @@
     <ClCompile Include="Core\src\Graphics\ModelHandler.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Core\src\Graphics\TextureHandler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\LilEngie.h">
@@ -189,6 +192,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Core\src\Graphics\ModelHandler.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\src\Graphics\TextureHandler.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

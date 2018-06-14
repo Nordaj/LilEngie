@@ -12,6 +12,7 @@ tex rustTexture "Resources/Rusty.png"
 //shd command for shader
 //(shd, name, directory)
 shd diffuseShader "Resources/Diffuse.shader"
+shd unlitShader "Resources/Unlit.shader"
 
 //mat command for material
 //(mat, name, shader used, <uniforms>)

@@ -1,6 +1,7 @@
 #pragma once
 
 #include <vector>
+#include <string>
 #include "Material.h"
 #include "ShaderHandler.h"
 
@@ -14,7 +15,7 @@ namespace MaterialHandler
 		std::vector<Material> materials;
 	}
 
-	mat Create(shader shader);
+	mat Create(std::string shader);
 	Material* Get(mat index);
 }
 

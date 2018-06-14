@@ -3,7 +3,7 @@
 #include "Material.h"
 #include "MaterialHandler.h"
 
-mat MaterialHandler::Create(shader shader)
+mat MaterialHandler::Create(std::string shader)
 {
 	materials.push_back(Material(shader));
 	return materials.size() - 1;

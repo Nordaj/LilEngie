@@ -1,23 +1,19 @@
 #pragma once
 
-#include <vector>
+#include <string>
+#include <unordered_map>
 
 #include "Shader.h"
-
-//Just to be clear what it is when storing
-typedef int shader;
 
 namespace ShaderHandler
 {
 	namespace
 	{
-		std::vector<Shader> shaders;
+		std::unordered_map<std::string, Shader> shaders;
 	}
 
-	shader Create(const char *path);
-	Shader* Get(shader index);
-
-	void SetShader(shader index);
+	void Create(std::string name, const char *path);
+	Shader *Get(std::string name);
 }
 
 //Alternative name

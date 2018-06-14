@@ -7,17 +7,17 @@
 #include "Texture.h"
 #include "Material.h"
 
-Material::Material(int shader)
+Material::Material(std::string shader)
 	:shader(shader)
 { }
 
 void Material::Prepare(glm::mat4 &mvp, glm::mat4 &model)
 {
-	//Set shader stuff
-	ShaderHandler::SetShader(shader);
-
 	//Get shader
-	Shader *s = ShaderHandler::Get(shader);
+	Shader *s = Shaders::Get(shader);
+
+	//Use shader
+	s->Use();
 
 	//Pass uniforms
 	UniformHandler::PassMat4(s->GetID(), "uMVPMat", mvp);

@@ -15,6 +15,7 @@
 #include "src/Graphics/LightHandler.h"
 #include "src/Graphics/Model.h"
 #include "src/Graphics/ModelHandler.h"
+#include "src/Graphics/TextureHandler.h"
 
 #include "src/Utilities/ModelLoader.h"
 
