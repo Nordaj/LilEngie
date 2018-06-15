@@ -6,6 +6,7 @@
 #include <Graphics/MeshRenderer.h>
 #include <Graphics/Renderer.h>
 #include <Graphics/UniformHandler.h>
+#include <Graphics/Material.h>
 #include <Graphics/Model.h>
 #include "Transform.h"
 #include "Mesh.h"
@@ -22,7 +23,7 @@ Mesh::Mesh(GameObject &obj)
 	transform = (Transform*)obj.GetComponent(Transform::GetTypeStatic());
 }
 
-void Mesh::Setup(Model *model, int material)
+void Mesh::Setup(Model *model, Material *material)
 {
 	//Setup mesh renderer
 	meshRenderer.Setup(model->vertices, model->indices, material);

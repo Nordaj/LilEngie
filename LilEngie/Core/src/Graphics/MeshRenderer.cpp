@@ -9,7 +9,7 @@
 #include "Shader.h"
 #include "MeshRenderer.h"
 
-void MeshRenderer::Setup(std::vector<float> v, std::vector<unsigned int> i, int mat)
+void MeshRenderer::Setup(std::vector<float> v, std::vector<unsigned int> i, Material *mat)
 {
 	//Assign values
 	material = mat;
@@ -46,10 +46,10 @@ void MeshRenderer::Setup(std::vector<float> v, std::vector<unsigned int> i, int 
 void MeshRenderer::Draw(glm::mat4 &MVP, glm::mat4 &modelMat)
 {
 	//Set current shader
-	MaterialHandler::Get(material)->Prepare(MVP, modelMat);
+	material->Prepare(MVP, modelMat);
 
 	//Setup lighting
-	LightHandler::Prepare(MaterialHandler::Get(material)->GetShader());
+	LightHandler::Prepare(material->GetShader());
 
 	//Bind VAO
 	glBindVertexArray(VAO);

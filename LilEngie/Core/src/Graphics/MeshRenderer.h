@@ -10,7 +10,7 @@ class MeshRenderer
 {
 private:
 	Model model;
-	int material;
+	Material *material;
 
 	unsigned int VBO;
 	unsigned int IBO;
@@ -19,6 +19,6 @@ private:
 public:
 	MeshRenderer() {}
 
-	void Setup(std::vector<float> v, std::vector<unsigned int> i, int mat);
+	void Setup(std::vector<float> v, std::vector<unsigned int> i, Material *mat);
 	void Draw(glm::mat4 &MVP, glm::mat4 &model);
 };

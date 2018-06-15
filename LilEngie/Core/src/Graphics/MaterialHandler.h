@@ -1,22 +1,19 @@
 #pragma once
 
-#include <vector>
+#include <unordered_map>
 #include <string>
 #include "Material.h"
 #include "ShaderHandler.h"
-
-//Just to be clear what it is when storing
-typedef int mat;
 
 namespace MaterialHandler
 {
 	namespace
 	{
-		std::vector<Material> materials;
+		std::unordered_map<std::string, Material> materials;
 	}
 
-	mat Create(std::string shader);
-	Material* Get(mat index);
+	void Add(std::string name, std::string shader);
+	Material* Get(std::string mat);
 }
 
 //Alternative name

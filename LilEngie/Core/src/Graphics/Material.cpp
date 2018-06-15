@@ -55,7 +55,7 @@ Shader* Material::GetShader()
 	return ShaderHandler::Get(shader);
 }
 
-void Material::AddTexture(const char *uniform, Texture texture)
+void Material::AddTexture(const char *uniform, Texture &texture)
 {
 	textures.insert(std::make_pair(uniform, texture));
 }

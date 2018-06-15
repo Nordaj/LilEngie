@@ -3,13 +3,13 @@
 #include "Material.h"
 #include "MaterialHandler.h"
 
-mat MaterialHandler::Create(std::string shader)
+void MaterialHandler::Add(std::string name, std::string shader)
 {
-	materials.push_back(Material(shader));
-	return materials.size() - 1;
+	materials.insert(std::make_pair(name, Material(shader)));
 }
 
-Material* MaterialHandler::Get(mat index)
+Material* MaterialHandler::Get(std::string mat)
 {
-	return &materials[index];
+	std::unordered_map<std::string, Material> &m = materials;
+	return &materials[mat];
 }

@@ -10,8 +10,7 @@
 ///Use heap for Shaders, Mats, Models, Objects, Components, and Scenes
 
 //CHANGES
-///Support loading textures
-///Support loading shaders
+///
 
 void Update();
 
@@ -22,29 +21,11 @@ int main()
 {
 	Game::Init();
 
+	#pragma region Setup
 	Renderer::SetClearColor(0.05f, 0.05f, 0.05f, 1);
 	LightHandler::SetAmbient(glm::vec3(0.05f, 0.05f, 0.05f));
 
-	#pragma region Loading
 	SceneLoader::LoadScene("Resources/TestScene.lilscn");
-	#pragma endregion
-
-	#pragma region Shaders/Mats
-	//Create blue green material
-	mat tan = Mats::Create("diffuseShader");
-	Mats::Get(tan)->AddColor("uColor", 0.75f, 0.6f, 0.42f, 1);
-
-	//Create red material
-	mat rustMat = Mats::Create("diffuseShader");
-	Mats::Get(rustMat)->AddColor("uColor", 1, 1, 1, 1);
-	Mats::Get(rustMat)->AddTexture("uMainTex", *Textures::Get("rustTexture"));
-
-	//Create unlit material
-	mat unlitWhite = Mats::Create("unlitShader");
-	Mats::Get(unlitWhite)->AddColor("uColor", 1, 1, 1, 1);
-	#pragma endregion
-
-	#pragma region Scene
 	ObjectManager::SetScene(&mainScene);
 	#pragma endregion
 
@@ -57,7 +38,7 @@ int main()
 	Mesh mesh = Mesh(obj);
 	
 	//Setup mesh
-	mesh.Setup(Models::Get("gearsModel"), rustMat);
+	mesh.Setup(Models::Get("gearsModel"), Mats::Get("rustMaterial"));
 	
 	//Move transform
 	tran.position = glm::vec3(0, 0, 0);
@@ -76,7 +57,7 @@ int main()
 	Mesh lightMesh = Mesh(light);
 	PointLight ptLight = PointLight(light);
 
-	lightMesh.Setup(&BaseMeshes::cube, unlitWhite);
+	lightMesh.Setup(&BaseMeshes::cube, Mats::Get("unlitMaterial"));
 
 	lightTran.scale = glm::vec3(0.05f, 0.05f, 0.05f);
 	lightTran.rotation = glm::quat(glm::vec3(glm::radians(45.0f), glm::radians(45.0f), glm::radians(45.0f)));
@@ -85,25 +66,6 @@ int main()
 	ptLight.pos = glm::vec3(0, 0, 2);
 	ptLight.color = glm::vec3(1, 1, 1);
 	ptLight.intensity = 0.5f;
-	#pragma endregion
-
-	#pragma region SpotLight
-	/*
-	GameObject spotLightObj = GameObject();
-	SpotLight sLight = SpotLight(spotLightObj);
-	sLight.pos = glm::vec3(0, 0, 3);
-	sLight.color = glm::vec3(1, 1, 1);
-	sLight.angle = glm::cos(glm::radians(20.0f));
-	*/
-	#pragma endregion
-
-	#pragma region DirLight
-	/*
-	GameObject dirLight = GameObject();
-	DirectionalLight dLight = DirectionalLight(dirLight);
-	dLight.dir = glm::vec3(-0.2f, -1.0f, -0.3f);
-	dLight.color = glm::vec3(1, 0.95f, 0.95f);
-	*/
 	#pragma endregion
 
 	#pragma region Camera
@@ -122,7 +84,7 @@ int main()
 	Transform cubeTransform = Transform(cubeObj);
 	Mesh cubeMesh = Mesh(cubeObj);
 
-	cubeMesh.Setup(&BaseMeshes::cube, unlitWhite);
+	cubeMesh.Setup(&BaseMeshes::cube, Mats::Get("unlitMaterial"));
 
 	cubeTransform.rotation = glm::quat(glm::vec3(glm::radians(45.0f), glm::radians(45.0f), glm::radians(0.0f)));
 	cubeTransform.scale = glm::vec3(0.2f, 0.2f, 0.2f);

@@ -19,11 +19,13 @@ shd unlitShader "Resources/Unlit.shader"
 //UNIFORMS FOR MATERIALS:
 //(put in next lines signified by "-", uniform type, uniform name, uniform values seperated by space)
 //(col = color, tex = texture, flt = float, int = integer)
-mat tanMaterial diffuse
+mat tanMaterial diffuseShader
 -col "uColor" 0.75 0.6 0.42 1
-mat rustMaterial diffuse
+mat rustMaterial diffuseShader
 -col "uColor" 1 1 1 1
 -tex "uMainTex" rustTexture
+mat unlitMaterial unlitShader
+-col "uColor" 1 1 1 1
 
 //obj command for game object
 //(obj, name, <components>)

@@ -18,6 +18,5 @@ https://steamcommunity.com/profiles/76561198254676201/images/
 <ul>
   <li>Better input system</li>
   <li>Scene loading</li>
-  <li>Use heap for things that need to use heap</li>
   <li>Physically accurate lighting</li>
 </ul>

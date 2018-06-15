@@ -1,101 +1,191 @@
 #include <string>
 #include <fstream>
+#include <vector>
 #include <Graphics/ModelHandler.h>
 #include <Graphics/Model.h>
 #include <Graphics/Texture.h>
 #include <Graphics/TextureHandler.h>
 #include <Graphics/Shader.h>
 #include <Graphics/ShaderHandler.h>
+#include <Graphics/Material.h>
+#include <Graphics/MaterialHandler.h>
 #include <Utilities/ModelLoader.h>
 #include "SceneLoader.h"
 
-//TODO
-///I would like to make a function that splits a line by spaces and 
-///returns vector of strings instead of manually splitting myself
+//I'm lazy... dont judge me
+typedef std::vector<std::string> sVec;
 
-void ReadModelCmd(std::string line)
+std::vector<std::string> Split(std::string &ref, char refChar)
 {
-	//Get parameters as string
-	std::string params = line.substr(4, line.size() - 4);
+	std::vector<std::string> val;
 
-	//Find first space position
-	int spaceIndex = params.find(' ');
+	//Store remaining params as i cycle through
+	std::string remaining = ref;
 
-	//Take name
-	std::string modelName = params.substr(0, spaceIndex);
+	//Loop through each param
+	for (;;)
+	{
+		//Get index of char
+		int index = remaining.find(refChar);
 
-	//Take directory
-	std::string modelDir = params.substr(spaceIndex + 2, params.size() - (spaceIndex + 3));
+		//Check if done
+		if (index == std::string::npos)
+		{
+			if (remaining.size() > 0)
+				index = remaining.size();
+			else
+				break;
+		}
 
-	//Load model
-	Model model = ModelLoader::Load(modelDir.c_str());
+		//Get it into string
+		std::string param = remaining.substr(0, index);
 
-	//Add to model handler
-	ModelHandler::AddModel(modelName, model);
+		//Add to vector
+		val.push_back(param);
+
+		//Remove from remaining
+		remaining.erase(0, index + 1);
+	}
+
+	return val;
 }
 
-void ReadTextureCmd(std::string line)
+void Erase(std::string &ref, char c)
 {
-	//Get parameters as string
-	std::string params = line.substr(4, line.size() - 4);
+	for (;;)
+	{
+		//Get index to remove if necessary
+		int index = ref.find(c);
+		if (index == std::string::npos)
+			break;
 
-	//Find first space index
-	int spaceIndex = params.find(' ');
-
-	//Take name
-	std::string texName = params.substr(0, spaceIndex);
-
-	//Take directory
-	std::string texDir = params.substr(spaceIndex + 2, params.size() - (spaceIndex + 3));
-
-	//Create texture
-	Texture tex = Texture(texDir.c_str());
-
-	//Add texture to handler
-	TextureHandler::AddTex(texName, tex);
+		ref.erase(index, 1);
+	}
 }
 
-void ReadShaderCmd(std::string line)
+void ReadModelCmd(std::string &line)
 {
-	//Get parameters as string
-	std::string params = line.substr(4, line.size() - 4);
+	//Filter command parameters
+	sVec splits = Split(line, ' ');
+	Erase(splits[2], '"');
 
-	//Find first space index
-	int spaceIndex = params.find(' ');
+	//Setup model
+	Model model = ModelLoader::Load(splits[2].c_str());
+	Models::AddModel(splits[1], model);
+}
 
-	//take name
-	std::string shaderName = params.substr(0, spaceIndex);
+void ReadTextureCmd(std::string &line)
+{
+	//Filter command parameters
+	sVec splits = Split(line, ' ');
+	Erase(splits[2], '"');
 
-	//Take directory
-	std::string shaderDir = params.substr(spaceIndex + 2, params.size() - (spaceIndex + 3));
+	//Setup texture
+	Texture tex = Texture(splits[2].c_str());
+	Textures::AddTex(splits[1], tex);
+}
+
+void ReadShaderCmd(std::string &line)
+{
+	//Filter command parameters
+	sVec splits = Split(line, ' ');
+	Erase(splits[2], '"');
 
 	//Add to shaders
-	Shaders::Create(shaderName, shaderDir.c_str());
+	Shaders::Create(splits[1], splits[2].c_str());
+}
+
+void ReadMaterialCmd(std::string &line)
+{
+	//Filter command parameters
+	sVec splits = Split(line, ' ');
+
+	//Create material
+	MaterialHandler::Add(splits[1], splits[2]);
+}
+
+void UseMaterialDash(std::string &line, std::string &passed)
+{
+	//Get material name
+	std::string matName = Split(passed, ' ')[1];
+
+	//Filter command parameters
+	sVec splits = Split(line, ' ');
+
+	//Remove quotes
+	Erase(splits[1], '"');
+
+	//Add correct uniform looking at type
+	if (splits[0] == "-col")
+	{
+		Mats::Get(matName)->AddColor(
+			splits[1].c_str(), 
+			std::stof(splits[2]), 
+			std::stof(splits[3]),
+			std::stof(splits[4]), 
+			std::stof(splits[5]));
+	}
+	else if (splits[0] == "-tex")
+	{
+		Mats::Get(matName)->AddTexture(
+			splits[1].c_str(), 
+			*Textures::Get(splits[2]));
+	}
+	else if (splits[0] == "-flt")
+	{
+		Mats::Get(matName)->AddFloat(
+			splits[1].c_str(), 
+			std::stof(splits[2]));
+	}
+	else if (splits[0] == "-int")
+	{
+		Mats::Get(matName)->AddInt(
+			splits[1].c_str(), 
+			std::stoi(splits[2]));
+	}
 }
 
 bool SceneLoader::LoadScene(const char *path)
 {
+	//Open file
 	std::ifstream file = std::ifstream(path);
-
-	//Open
 	if (!file.is_open())
 		return false;
+
+	//Keep track of commands that have -'s after the line
+	std::string passedLine;
 
 	//Go through lines
 	std::string line;
 	while (std::getline(file, line))
 	{
-		if (line.substr(0, 3) == "mdl")	//Model
+		if (line.substr(0, 3) == "mdl")			//Model
 		{
 			ReadModelCmd(line);
 		}
-		else if (line.substr(0, 3) == "tex") //Texture
+		else if (line.substr(0, 3) == "tex")	//Texture
 		{
 			ReadTextureCmd(line);
 		}
-		else if (line.substr(0, 3) == "shd") //Shader
+		else if (line.substr(0, 3) == "shd")	//Shader
 		{
 			ReadShaderCmd(line);
+		}
+		else if (line.substr(0, 3) == "mat")	//Material
+		{
+			passedLine = line;
+			ReadMaterialCmd(line);
+		}
+		else if (line.substr(0, 3) == "obj")
+		{
+			//TODO (IDK HOW)
+		}
+		else if (line[0] == '-')
+		{
+			if (passedLine.substr(0, 3) == "mat")		//Material param
+				UseMaterialDash(line, passedLine);
+			else if (passedLine.substr(0, 3) == "obj")	//Object param
+			{ }
 		}
 	}
 

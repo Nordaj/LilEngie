@@ -18,7 +18,7 @@ private:
 public:
 	Mesh(GameObject &obj);
 
-	void Setup(Model *model, int material);
+	void Setup(Model *model, Material *material);
 	MeshRenderer* GetRenderer();
 	glm::mat4* GetTransformation();
 	void Draw(glm::mat4 &v, glm::mat4 &p);

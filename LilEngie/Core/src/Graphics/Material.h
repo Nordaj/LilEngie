@@ -19,13 +19,14 @@ private:
 	std::map<std::string, int> integers;
 
 public:
+	Material() {}
 	Material(std::string shader);
 
 	//Function to bind current shader and pass all uniforms
 	void Prepare(glm::mat4 &mvp, glm::mat4 &model);
 	Shader* GetShader();
 
-	void AddTexture(const char *uniform, Texture texture);
+	void AddTexture(const char *uniform, Texture &texture);
 	void AddColor(const char* uniform, float r, float g, float b, float a);
 	void AddFloat(const char* uniform, float val);
 	void AddInt(const char* uniform, int val);
