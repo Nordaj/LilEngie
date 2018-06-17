@@ -5,12 +5,11 @@
 
 //TODO
 ///Scene loading
-///Lights and camera components should work from transform component
 ///Better input system
-///Use heap for Shaders, Mats, Models, Objects, Components, and Scenes
 
 //CHANGES
-///
+///Camera component works from transform
+///Setting up mesh component is easier
 
 void Update();
 
@@ -38,7 +37,7 @@ int main()
 	Mesh mesh = Mesh(obj);
 	
 	//Setup mesh
-	mesh.Setup(Models::Get("gearsModel"), Mats::Get("rustMaterial"));
+	mesh.Setup("gearsModel", "rustMaterial");
 	
 	//Move transform
 	tran.position = glm::vec3(0, 0, 0);
@@ -57,7 +56,7 @@ int main()
 	Mesh lightMesh = Mesh(light);
 	PointLight ptLight = PointLight(light);
 
-	lightMesh.Setup(&BaseMeshes::cube, Mats::Get("unlitMaterial"));
+	lightMesh.Setup(&BaseMeshes::cube, "unlitMaterial");
 
 	lightTran.scale = glm::vec3(0.05f, 0.05f, 0.05f);
 	lightTran.rotation = glm::quat(glm::vec3(glm::radians(45.0f), glm::radians(45.0f), glm::radians(45.0f)));
@@ -71,10 +70,11 @@ int main()
 	#pragma region Camera
 	//Create object with camera component
 	GameObject camera = GameObject();
+	Transform camTran = Transform(camera);
 	Camera camCam = Camera(camera);
 
 	//Move camera a tad
-	camCam.position += glm::vec3(0, 0, 3);
+	camTran.position += glm::vec3(0, 0, 3);
 	#pragma endregion
 
 	//==========SECOND SCENE==========//
@@ -84,7 +84,7 @@ int main()
 	Transform cubeTransform = Transform(cubeObj);
 	Mesh cubeMesh = Mesh(cubeObj);
 
-	cubeMesh.Setup(&BaseMeshes::cube, Mats::Get("unlitMaterial"));
+	cubeMesh.Setup(&BaseMeshes::cube, "unlitMaterial");
 
 	cubeTransform.rotation = glm::quat(glm::vec3(glm::radians(45.0f), glm::radians(45.0f), glm::radians(0.0f)));
 	cubeTransform.scale = glm::vec3(0.2f, 0.2f, 0.2f);

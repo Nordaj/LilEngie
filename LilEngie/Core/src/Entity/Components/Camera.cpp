@@ -2,22 +2,23 @@
 
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/quaternion.hpp>
 #include <Entity/GameObject.h>
 #include <Application/Window.h>
 #include <Graphics/Renderer.h>
 #include <Entity/ObjectManager.h>
+#include <Entity/Components/Transform.h>
 #include "Camera.h"
 
 Camera::Camera(GameObject &obj)
 	:Component(obj)
 {
+	//Keep track of transform
+	t = (Transform*) obj.GetComponent("Transform");
+
 	fov = 60;
 	near = 0.1f;
 	far = 500;
-
-	position = glm::vec3(0, 0, 0);
-	target = glm::vec3(0, 0, -1);
-	up = glm::vec3(0, 1, 0);
 
 	//Set myself as current if there is none
 	if (Renderer::GetCurrentCamera() == nullptr)
@@ -31,9 +32,11 @@ void Camera::SetCurrent()
 
 void Camera::Update()
 {
-	//Calculate matrices here from other properties so that i only need to do it once per frame
-	view = glm::lookAt(position, target, up);
+	//Calculate view matrix
+	view = glm::mat4_cast(t->rotation);
+	view = glm::translate(view, -(t->position));
 
+	//Calculate projection
 	float aspect = ((float)Window::width) / ((float)Window::height);
 	projection = glm::perspective(glm::radians(fov), aspect, near, far);
 }

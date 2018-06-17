@@ -5,7 +5,6 @@
 #include <glm/glm.hpp>
 #include <Entity/Component.h>
 #include <Graphics/MeshRenderer.h>
-#include <Graphics/Material.h>
 #include <Graphics/Model.h>
 #include "Transform.h"
 
@@ -18,7 +17,8 @@ private:
 public:
 	Mesh(GameObject &obj);
 
-	void Setup(Model *model, Material *material);
+	void Setup(const char *model, const char *material);
+	void Setup(Model *model, const char *material);
 	MeshRenderer* GetRenderer();
 	glm::mat4* GetTransformation();
 	void Draw(glm::mat4 &v, glm::mat4 &p);

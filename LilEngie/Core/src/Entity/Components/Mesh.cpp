@@ -6,7 +6,8 @@
 #include <Graphics/MeshRenderer.h>
 #include <Graphics/Renderer.h>
 #include <Graphics/UniformHandler.h>
-#include <Graphics/Material.h>
+#include <Graphics/MaterialHandler.h>
+#include <Graphics/ModelHandler.h>
 #include <Graphics/Model.h>
 #include "Transform.h"
 #include "Mesh.h"
@@ -23,12 +24,24 @@ Mesh::Mesh(GameObject &obj)
 	transform = (Transform*)obj.GetComponent(Transform::GetTypeStatic());
 }
 
-void Mesh::Setup(Model *model, Material *material)
+void Mesh::Setup(const char *model, const char *material)
 {
 	//Setup mesh renderer
-	meshRenderer.Setup(model->vertices, model->indices, material);
+	meshRenderer.Setup(
+		Models::Get(model)->vertices, 
+		Models::Get(model)->indices, 
+		Mats::Get(material));
 
-	//Add to render list
+	//Add to render queue
+	obj->GetMyScene()->AddToQueue(this);
+}
+
+void Mesh::Setup(Model *model, const char *material)
+{
+	//Setup mesh renderer
+	meshRenderer.Setup(model->vertices, model->indices, Mats::Get(material));
+
+	//Add to render queue
 	obj->GetMyScene()->AddToQueue(this);
 }
 
