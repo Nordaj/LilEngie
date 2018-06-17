@@ -7,9 +7,18 @@
 ///Scene loading
 ///Better input system
 
+///Setup hashmap for objects so i can manage names
+///commit after that cuz changes following are gonna be risky
+///Get scene loading for objects alone
+///Maybe commit if needed
+///Make a header with a single static function that takes in a string for component type and if else a long list of constructors, any user created components will have to work from that
+///Maybe find a clean way to handle parameters so that i can have default values
+///Definitely commit itll be a tight schedule
+
 //CHANGES
-///Camera component works from transform
-///Setting up mesh component is easier
+///Scene now uses hashmap for objects
+///Updated main to work with hashmap
+///Components are now actually stored in the object, object doesnt just store pointers
 
 void Update();
 
@@ -32,9 +41,9 @@ int main()
 
 	#pragma region Gears
 	//Create object with transform and mesh
-	GameObject obj = GameObject();
-	Transform tran = Transform(obj);
-	Mesh mesh = Mesh(obj);
+	GameObject *obj = mainScene.AddObject("Gears");
+	Transform tran = Transform(*obj);
+	Mesh mesh = Mesh(*obj);
 	
 	//Setup mesh
 	mesh.Setup("gearsModel", "rustMaterial");
@@ -51,10 +60,10 @@ int main()
 	#pragma endregion
 
 	#pragma region PointLight
-	GameObject light = GameObject();
-	Transform lightTran = Transform(light);
-	Mesh lightMesh = Mesh(light);
-	PointLight ptLight = PointLight(light);
+	GameObject *light = mainScene.AddObject("PointLight");
+	Transform lightTran = Transform(*light);
+	Mesh lightMesh = Mesh(*light);
+	PointLight ptLight = PointLight(*light);
 
 	lightMesh.Setup(&BaseMeshes::cube, "unlitMaterial");
 
@@ -69,9 +78,9 @@ int main()
 
 	#pragma region Camera
 	//Create object with camera component
-	GameObject camera = GameObject();
-	Transform camTran = Transform(camera);
-	Camera camCam = Camera(camera);
+	GameObject *camera = mainScene.AddObject("Camera");
+	Transform camTran = Transform(*camera);
+	Camera camCam = Camera(*camera);
 
 	//Move camera a tad
 	camTran.position += glm::vec3(0, 0, 3);
@@ -80,9 +89,9 @@ int main()
 	//==========SECOND SCENE==========//
 
 	#pragma region Cube
-	GameObject cubeObj = GameObject(&secondScene);
-	Transform cubeTransform = Transform(cubeObj);
-	Mesh cubeMesh = Mesh(cubeObj);
+	GameObject *cubeObj = secondScene.AddObject("Cube");
+	Transform cubeTransform = Transform(*cubeObj);
+	Mesh cubeMesh = Mesh(*cubeObj);
 
 	cubeMesh.Setup(&BaseMeshes::cube, "unlitMaterial");
 

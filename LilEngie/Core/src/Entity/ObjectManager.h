@@ -14,7 +14,6 @@ namespace ObjectManager
 
 	void SetScene(Scene *s);
 	Scene* GetCurrent();
-	void AddObjectToCurrent(GameObject &obj);
 	void SetCurrentCamera(Camera *cam);
 	void Start();
 	void Update();

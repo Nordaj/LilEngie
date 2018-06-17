@@ -8,15 +8,9 @@
 GameObject::GameObject(Scene *scene)
 {
 	if (scene == nullptr)
-	{
-		ObjectManager::AddObjectToCurrent(*this);
-		myScene = ObjectManager::GetCurrent();
-	}
-	else
-	{
-		scene->AddObject(*this);
-		myScene = scene;
-	}
+		std::cout << "Give your object a scene, cunt" << std::endl;
+
+	myScene = scene;
 }
 
 void GameObject::AddComponent(Component &comp)

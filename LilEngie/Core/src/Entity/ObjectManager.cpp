@@ -21,12 +21,6 @@ Scene* ObjectManager::GetCurrent()
 	return scene;
 }
 
-void ObjectManager::AddObjectToCurrent(GameObject &obj)
-{
-	if (scene != nullptr)
-		scene->AddObject(obj);
-}
-
 void ObjectManager::SetCurrentCamera(Camera *cam)
 {
 	scene->SetCurrentCamera(cam);

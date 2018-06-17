@@ -1,15 +1,23 @@
+#include <string>
+#include <map>
 #include <vector>
 #include <Entity/Components/Camera.h>
 #include <Entity/Components/Mesh.h>
+#include <Entity/GameObject.h>
 #include "Scene.h"
 
-Scene::Scene(std::vector<GameObject*> objs)
-	:objects(objs)
+Scene::Scene()
 { }
 
-void Scene::AddObject(GameObject &obj)
+GameObject *Scene::AddObject(std::string name)
 {
-	objects.push_back(&obj);
+	objects.insert(std::make_pair(name, GameObject(this)));
+	return &objects[name];
+}
+
+GameObject *Scene::GetObject(std::string name)
+{
+	return &objects[name];
 }
 
 void Scene::AddToQueue(Mesh *m)
@@ -34,17 +42,19 @@ std::vector<Mesh*>* Scene::GetQueue()
 
 void Scene::Start()
 {
-	for (int i = 0; i < objects.size(); i++)
+	std::map<std::string, GameObject>::iterator it;
+	for (it = objects.begin(); it != objects.end(); it++)
 	{
-		objects[i]->Start();
+		it->second.Start();
 	}
 }
 
 void Scene::Update()
 {
-	for (int i = 0; i < objects.size(); i++)
+	std::map<std::string, GameObject>::iterator it;
+	for (it = objects.begin(); it != objects.end(); it++)
 	{
-		objects[i]->Update();
+		it->second.Update();
 	}
 }
 
