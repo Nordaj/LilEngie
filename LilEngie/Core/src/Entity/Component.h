@@ -10,8 +10,9 @@ protected:
 	GameObject *obj;
 
 public:
-	Component(GameObject &obj);
+	Component(GameObject *obj);
 	const GameObject* GetObj();
+	void SetObj(GameObject *o);
 
 	virtual std::string GetType();
 	virtual void* Get();

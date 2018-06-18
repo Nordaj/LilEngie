@@ -2,7 +2,7 @@
 #include <Entity/Component.h>
 #include "SpotLight.h"
 
-SpotLight::SpotLight(GameObject &obj)
+SpotLight::SpotLight(GameObject *obj)
 	:Component(obj)
 {
 	//Add to lightmanager

@@ -17,7 +17,7 @@ public:
 	float near;
 	float far;
 
-	Camera(GameObject &obj);
+	Camera(GameObject *obj);
 
 	void SetCurrent();
 	void Update();

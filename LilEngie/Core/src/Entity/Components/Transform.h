@@ -12,7 +12,7 @@ public:
 	glm::vec3 scale;
 	glm::quat rotation;
 
-	Transform(GameObject &obj);
+	Transform(GameObject *obj);
 
 	glm::mat4 GetModel();
 

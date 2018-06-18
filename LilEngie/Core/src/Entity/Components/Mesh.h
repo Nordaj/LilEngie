@@ -15,7 +15,7 @@ private:
 	Transform *transform;
 
 public:
-	Mesh(GameObject &obj);
+	Mesh(GameObject *obj);
 
 	void Setup(const char *model, const char *material);
 	void Setup(Model *model, const char *material);

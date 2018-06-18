@@ -6,6 +6,7 @@
 //TODO
 ///Scene loading
 ///Better input system
+///Use heap
 
 ///Setup hashmap for objects so i can manage names
 ///commit after that cuz changes following are gonna be risky
@@ -16,9 +17,7 @@
 ///Definitely commit itll be a tight schedule
 
 //CHANGES
-///Scene now uses hashmap for objects
-///Updated main to work with hashmap
-///Components are now actually stored in the object, object doesnt just store pointers
+///
 
 void Update();
 
@@ -42,61 +41,61 @@ int main()
 	#pragma region Gears
 	//Create object with transform and mesh
 	GameObject *obj = mainScene.AddObject("Gears");
-	Transform tran = Transform(*obj);
-	Mesh mesh = Mesh(*obj);
+	Transform *tran = new Transform(obj);
+	Mesh *mesh = new Mesh(obj);
 	
 	//Setup mesh
-	mesh.Setup("gearsModel", "rustMaterial");
+	mesh->Setup("gearsModel", "rustMaterial");
 	
 	//Move transform
-	tran.position = glm::vec3(0, 0, 0);
+	tran->position = glm::vec3(0, 0, 0);
 
 	//Scale transform
-	tran.scale = glm::vec3(0.5f, 0.5f, 0.5f);
+	tran->scale = glm::vec3(0.5f, 0.5f, 0.5f);
 
 	//Rotate transform
 	//(pitch, yaw, roll) X->Y->Z
-	tran.rotation = glm::quat(glm::vec3(glm::radians(30.0f), glm::radians(30.0f), glm::radians(0.0f)));
+	tran->rotation = glm::quat(glm::vec3(glm::radians(30.0f), glm::radians(30.0f), glm::radians(0.0f)));
 	#pragma endregion
 
 	#pragma region PointLight
 	GameObject *light = mainScene.AddObject("PointLight");
-	Transform lightTran = Transform(*light);
-	Mesh lightMesh = Mesh(*light);
-	PointLight ptLight = PointLight(*light);
+	Transform *lightTran = new Transform(light);
+	Mesh *lightMesh = new Mesh(light);
+	PointLight *ptLight = new PointLight(light);
 
-	lightMesh.Setup(&BaseMeshes::cube, "unlitMaterial");
+	lightMesh->Setup(&BaseMeshes::cube, "unlitMaterial");
 
-	lightTran.scale = glm::vec3(0.05f, 0.05f, 0.05f);
-	lightTran.rotation = glm::quat(glm::vec3(glm::radians(45.0f), glm::radians(45.0f), glm::radians(45.0f)));
-	lightTran.position = glm::vec3(0, 0, 2);
+	lightTran->scale = glm::vec3(0.05f, 0.05f, 0.05f);
+	lightTran->rotation = glm::quat(glm::vec3(glm::radians(45.0f), glm::radians(45.0f), glm::radians(45.0f)));
+	lightTran->position = glm::vec3(0, 0, 2);
 
-	ptLight.pos = glm::vec3(0, 0, 2);
-	ptLight.color = glm::vec3(1, 1, 1);
-	ptLight.intensity = 0.5f;
+	ptLight->pos = glm::vec3(0, 0, 2);
+	ptLight->color = glm::vec3(1, 1, 1);
+	ptLight->intensity = 0.5f;
 	#pragma endregion
 
 	#pragma region Camera
 	//Create object with camera component
 	GameObject *camera = mainScene.AddObject("Camera");
-	Transform camTran = Transform(*camera);
-	Camera camCam = Camera(*camera);
+	Transform *camTran = new Transform(camera);
+	Camera *camCam = new Camera(camera);
 
 	//Move camera a tad
-	camTran.position += glm::vec3(0, 0, 3);
+	camTran->position += glm::vec3(0, 0, 3);
 	#pragma endregion
 
 	//==========SECOND SCENE==========//
 
 	#pragma region Cube
 	GameObject *cubeObj = secondScene.AddObject("Cube");
-	Transform cubeTransform = Transform(*cubeObj);
-	Mesh cubeMesh = Mesh(*cubeObj);
+	Transform *cubeTransform = new Transform(cubeObj);
+	Mesh *cubeMesh = new Mesh(cubeObj);
 
-	cubeMesh.Setup(&BaseMeshes::cube, "unlitMaterial");
+	cubeMesh->Setup(&BaseMeshes::cube, "unlitMaterial");
 
-	cubeTransform.rotation = glm::quat(glm::vec3(glm::radians(45.0f), glm::radians(45.0f), glm::radians(0.0f)));
-	cubeTransform.scale = glm::vec3(0.2f, 0.2f, 0.2f);
+	cubeTransform->rotation = glm::quat(glm::vec3(glm::radians(45.0f), glm::radians(45.0f), glm::radians(0.0f)));
+	cubeTransform->scale = glm::vec3(0.2f, 0.2f, 0.2f);
 	#pragma endregion
 
 	Game::Run(Update);

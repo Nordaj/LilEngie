@@ -12,16 +12,16 @@
 #include "Transform.h"
 #include "Mesh.h"
 
-Mesh::Mesh(GameObject &obj)
+Mesh::Mesh(GameObject *obj)
 	:Component(obj)
 {
 	//Make sure i have a transform
 	//TODO: figure out how to remove myself instead
-	if (obj.GetComponent("Transform") == nullptr)
+	if (obj->GetComponent("Transform") == nullptr)
 		std::cout << "Don't add me til you get a transform" << std::endl;
 
 	//Keep track of my transform
-	transform = (Transform*)obj.GetComponent(Transform::GetTypeStatic());
+	transform = (Transform*)obj->GetComponent(Transform::GetTypeStatic());
 }
 
 void Mesh::Setup(const char *model, const char *material)

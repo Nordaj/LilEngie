@@ -4,7 +4,7 @@
 #include <Graphics/LightHandler.h>
 #include "DirectionalLight.h"
 
-DirectionalLight::DirectionalLight(GameObject &obj)
+DirectionalLight::DirectionalLight(GameObject *obj)
 	:Component(obj)
 {
 	//Pass to light handler

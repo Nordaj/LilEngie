@@ -13,9 +13,15 @@ GameObject::GameObject(Scene *scene)
 	myScene = scene;
 }
 
-void GameObject::AddComponent(Component &comp)
+GameObject::~GameObject()
 {
-	components.push_back(&comp);
+	for (int i = 0; i < components.size(); i++)
+		delete components[i];
+}
+
+void GameObject::AddComponent(void *comp)
+{
+	components.push_back((Component*)comp);
 }
 
 void* GameObject::GetComponent(std::string comp)
@@ -38,15 +44,11 @@ Scene* GameObject::GetMyScene()
 void GameObject::Start()
 {
 	for (int i = 0; i < components.size(); i++)
-	{
 		components[i]->Start();
-	}
 }
 
 void GameObject::Update()
 {
 	for (int i = 0; i < components.size(); i++)
-	{
 		components[i]->Update();
-	}
 }

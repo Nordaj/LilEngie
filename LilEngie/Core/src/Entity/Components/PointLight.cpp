@@ -4,7 +4,7 @@
 #include <Graphics/LightHandler.h>
 #include "PointLight.h"
 
-PointLight::PointLight(GameObject &obj)
+PointLight::PointLight(GameObject *obj)
 	:Component(obj)
 {
 	//Add to lightmanager

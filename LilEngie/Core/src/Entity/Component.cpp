@@ -3,15 +3,21 @@
 #include "GameObject.h"
 #include "Component.h"
 
-Component::Component(GameObject &obj)
-	:obj(&obj)
+Component::Component(GameObject *obj)
+	:obj(obj)
 { 
-	obj.AddComponent(*this);
+	obj->AddComponent(this);
 }
 
 const GameObject* Component::GetObj()
 {
 	return obj;
+}
+
+void Component::SetObj(GameObject *o)
+{
+	if (obj == nullptr)
+		obj = o;
 }
 
 std::string Component::GetType()

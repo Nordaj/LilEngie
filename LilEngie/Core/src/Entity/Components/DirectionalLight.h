@@ -13,7 +13,7 @@ public:
 	glm::vec3 color;
 	float intensity;
 
-	DirectionalLight(GameObject &obj);
+	DirectionalLight(GameObject *obj);
 
 	//Standard component methods
 	static std::string GetTypeStatic() { return "DirectionalLight"; }

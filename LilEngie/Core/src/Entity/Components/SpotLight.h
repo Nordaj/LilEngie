@@ -12,7 +12,7 @@ public:
 	float intensity;
 	float angle;
 
-	SpotLight(GameObject &obj);
+	SpotLight(GameObject *obj);
 
 	//Standard component methods
 	static std::string GetTypeStatic() { return "SpotLight"; }

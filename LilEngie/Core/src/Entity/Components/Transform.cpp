@@ -4,7 +4,7 @@
 #include <Entity/Component.h>
 #include "Transform.h"
 
-Transform::Transform(GameObject &obj)
+Transform::Transform(GameObject *obj)
 	:Component(obj)
 {
 	scale = glm::vec3(1, 1, 1);

@@ -14,8 +14,9 @@ private:
 
 public:
 	GameObject(Scene *scene = nullptr);
+	~GameObject();
 
-	void AddComponent(Component &comp);
+	void AddComponent(void *comp);
 	void* GetComponent(std::string comp);
 	Scene* GetMyScene();
 

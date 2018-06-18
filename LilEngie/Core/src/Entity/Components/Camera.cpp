@@ -10,11 +10,11 @@
 #include <Entity/Components/Transform.h>
 #include "Camera.h"
 
-Camera::Camera(GameObject &obj)
+Camera::Camera(GameObject *obj)
 	:Component(obj)
 {
 	//Keep track of transform
-	t = (Transform*) obj.GetComponent("Transform");
+	t = (Transform*) obj->GetComponent("Transform");
 
 	fov = 60;
 	near = 0.1f;

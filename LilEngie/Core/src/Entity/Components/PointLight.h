@@ -11,7 +11,7 @@ public:
 	glm::vec3 color;
 	float intensity;
 
-	PointLight(GameObject &obj);
+	PointLight(GameObject *obj);
 
 	//Standard component methods
 	static std::string GetTypeStatic() { return "PointLight"; }
