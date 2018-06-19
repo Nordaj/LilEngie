@@ -10,6 +10,8 @@
 #include <Graphics/Material.h>
 #include <Graphics/MaterialHandler.h>
 #include <Utilities/ModelLoader.h>
+#include <Entity/Scene.h>
+#include "../../ComponentConstruction.h"
 #include "SceneLoader.h"
 
 //I'm lazy... dont judge me
@@ -104,6 +106,15 @@ void ReadMaterialCmd(std::string &line)
 	MaterialHandler::Add(splits[1], splits[2]);
 }
 
+void ReadObjectCmd(std::string &line, Scene *scene)
+{
+	//Filter command parameters
+	sVec splits = Split(line, ' ');
+
+	//Add to current scene
+	scene->AddObject(splits[1]);
+}
+
 void UseMaterialDash(std::string &line, std::string &passed)
 {
 	//Get material name
@@ -145,7 +156,22 @@ void UseMaterialDash(std::string &line, std::string &passed)
 	}
 }
 
-bool SceneLoader::LoadScene(const char *path)
+void UseObjectDash(std::string &line, std::string &passed, Scene *scene)
+{
+	//Get last obj string
+	std::string last = Split(passed, ' ')[1];
+
+	//Filter command parameters
+	sVec splits = Split(line, ' ');
+	std::string type = splits[0];
+	Erase(type, '-');
+	splits.erase(splits.begin());
+
+	//Call component listing
+	CompConstruct::Create(type, scene->GetObject(last), splits);
+}
+
+bool SceneLoader::LoadScene(const char *path, Scene *scene)
 {
 	//Open file
 	std::ifstream file = std::ifstream(path);
@@ -178,14 +204,15 @@ bool SceneLoader::LoadScene(const char *path)
 		}
 		else if (line.substr(0, 3) == "obj")
 		{
-			//TODO (IDK HOW)
+			passedLine = line;
+			ReadObjectCmd(line, scene);
 		}
 		else if (line[0] == '-')
 		{
 			if (passedLine.substr(0, 3) == "mat")		//Material param
 				UseMaterialDash(line, passedLine);
 			else if (passedLine.substr(0, 3) == "obj")	//Object param
-			{ }
+				UseObjectDash(line, passedLine, scene);
 		}
 	}
 

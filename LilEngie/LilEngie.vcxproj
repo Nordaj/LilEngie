@@ -182,6 +182,7 @@
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ComponentConstruction.h" />
     <ClInclude Include="Core\src\Application\Window.h" />
     <ClInclude Include="Core\src\Entity\Component.h" />
     <ClInclude Include="Core\src\Entity\Components\Camera.h" />

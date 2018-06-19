@@ -21,13 +21,13 @@ Camera::Camera(GameObject *obj)
 	far = 500;
 
 	//Set myself as current if there is none
-	if (Renderer::GetCurrentCamera() == nullptr)
+	if (obj->GetMyScene()->GetCam() == nullptr)
 		SetCurrent();
 }
 
 void Camera::SetCurrent()
 {
-	ObjectManager::SetCurrentCamera(this);
+	obj->GetMyScene()->SetCurrentCamera(this);
 }
 
 void Camera::Update()

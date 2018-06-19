@@ -27,6 +27,7 @@ void Scene::AddToQueue(Mesh *m)
 
 Camera* Scene::GetCam()
 {
+	//I NEED TO FIGURE OUT WHATS WRONG HERE
 	return currentCamera;
 }
 

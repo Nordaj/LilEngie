@@ -32,31 +32,11 @@ int main()
 	Renderer::SetClearColor(0.05f, 0.05f, 0.05f, 1);
 	LightHandler::SetAmbient(glm::vec3(0.05f, 0.05f, 0.05f));
 
-	SceneLoader::LoadScene("Resources/TestScene.lilscn");
+	SceneLoader::LoadScene("Resources/TestScene.lilscn", &mainScene);
 	ObjectManager::SetScene(&mainScene);
 	#pragma endregion
 
 	//==========FIRST SCENE==========//
-
-	#pragma region Gears
-	//Create object with transform and mesh
-	GameObject *obj = mainScene.AddObject("Gears");
-	Transform *tran = new Transform(obj);
-	Mesh *mesh = new Mesh(obj);
-	
-	//Setup mesh
-	mesh->Setup("gearsModel", "rustMaterial");
-	
-	//Move transform
-	tran->position = glm::vec3(0, 0, 0);
-
-	//Scale transform
-	tran->scale = glm::vec3(0.5f, 0.5f, 0.5f);
-
-	//Rotate transform
-	//(pitch, yaw, roll) X->Y->Z
-	tran->rotation = glm::quat(glm::vec3(glm::radians(30.0f), glm::radians(30.0f), glm::radians(0.0f)));
-	#pragma endregion
 
 	#pragma region PointLight
 	GameObject *light = mainScene.AddObject("PointLight");
@@ -73,16 +53,6 @@ int main()
 	ptLight->pos = glm::vec3(0, 0, 2);
 	ptLight->color = glm::vec3(1, 1, 1);
 	ptLight->intensity = 0.5f;
-	#pragma endregion
-
-	#pragma region Camera
-	//Create object with camera component
-	GameObject *camera = mainScene.AddObject("Camera");
-	Transform *camTran = new Transform(camera);
-	Camera *camCam = new Camera(camera);
-
-	//Move camera a tad
-	camTran->position += glm::vec3(0, 0, 3);
 	#pragma endregion
 
 	//==========SECOND SCENE==========//

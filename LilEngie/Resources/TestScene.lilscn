@@ -31,11 +31,12 @@ mat unlitMaterial unlitShader
 //(obj, name, <components>)
 //(put in next lines signified by "-", component type, seperate parameters by space)
 //(Only supports transform/mesh/camera, not sure what to do about user created components)
-//(trn = transform(parameters: (posXYZ), (rotXYZW), (scaleXYZ)))
-//(msh = mesh(parameters: model, material)))
-//(cam = camera(parameters: (posXYZ), (targetXYZ)))
+//(Transform = parameters: (posXYZ), (eulerXYZ), (scaleXYZ))
+//(Mesh = parameters: model, material))
 obj gearsObject
--trn (0, 0, 0) (0, 0, 0, 1) (1, 1, 1)
--msh gearsModel rustMaterial
+-Transform 0 0 0 30 30 0 0.5 0.5 0.5
+-Mesh gearsModel rustMaterial
+
 obj camObject
--cam (0, 0, 3) (0, 0, 0)
+-Transform 0 0 3 0 0 0 1 1 1
+-Camera
