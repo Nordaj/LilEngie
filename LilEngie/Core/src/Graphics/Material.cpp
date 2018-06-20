@@ -7,14 +7,14 @@
 #include "Texture.h"
 #include "Material.h"
 
-Material::Material(std::string shader)
-	:shader(shader)
+Material::Material(std::string shader, ShaderHandler *shaderHandler)
+	:shader(shader), shaderHandler(shaderHandler)
 { }
 
 void Material::Prepare(glm::mat4 &mvp, glm::mat4 &model)
 {
 	//Get shader
-	Shader *s = Shaders::Get(shader);
+	Shader *s = shaderHandler->Get(shader);
 
 	//Use shader
 	s->Use();
@@ -52,10 +52,10 @@ void Material::Prepare(glm::mat4 &mvp, glm::mat4 &model)
 
 Shader* Material::GetShader()
 {
-	return ShaderHandler::Get(shader);
+	return shaderHandler->Get(shader);
 }
 
-void Material::AddTexture(const char *uniform, Texture &texture)
+void Material::AddTexture(const char *uniform, Texture texture)
 {
 	textures.insert(std::make_pair(uniform, texture));
 }

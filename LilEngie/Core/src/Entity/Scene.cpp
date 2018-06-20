@@ -1,9 +1,11 @@
+#include <iostream>
 #include <string>
 #include <map>
 #include <vector>
 #include <Entity/Components/Camera.h>
 #include <Entity/Components/Mesh.h>
 #include <Entity/GameObject.h>
+#include <Graphics/LightHandler.h>
 #include "Scene.h"
 
 Scene::Scene()
@@ -27,7 +29,6 @@ void Scene::AddToQueue(Mesh *m)
 
 Camera* Scene::GetCam()
 {
-	//I NEED TO FIGURE OUT WHATS WRONG HERE
 	return currentCamera;
 }
 
@@ -36,7 +37,7 @@ void Scene::SetCurrentCamera(Camera *cam)
 	currentCamera = cam;
 }
 
-std::vector<Mesh*>* Scene::GetQueue()
+std::vector<Mesh*> *Scene::GetQueue()
 {
 	return &renderQueue;
 }
@@ -61,6 +62,5 @@ void Scene::Update()
 
 void Scene::Close()
 {
-	//TODO
-	///Not sure what id need, probably remove all objects from render queue
+	LightHandler::Clean();
 }

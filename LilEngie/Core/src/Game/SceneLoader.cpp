@@ -65,18 +65,18 @@ void Erase(std::string &ref, char c)
 	}
 }
 
-void ReadModelCmd(std::string &line)
+void ReadModelCmd(std::string &line, Scene *scene)
 {
 	//Filter command parameters
 	sVec splits = Split(line, ' ');
 	Erase(splits[2], '"');
 
-	//Setup model
-	Model model = ModelLoader::Load(splits[2].c_str());
-	Models::AddModel(splits[1], model);
+	//Setup model TODO
+	Model *model = ModelLoader::Load(splits[2].c_str());
+	scene->models.AddModel(splits[1], model);
 }
 
-void ReadTextureCmd(std::string &line)
+void ReadTextureCmd(std::string &line, Scene *scene)
 {
 	//Filter command parameters
 	sVec splits = Split(line, ' ');
@@ -84,26 +84,26 @@ void ReadTextureCmd(std::string &line)
 
 	//Setup texture
 	Texture tex = Texture(splits[2].c_str());
-	Textures::AddTex(splits[1], tex);
+	scene->textures.AddTex(splits[1], tex);
 }
 
-void ReadShaderCmd(std::string &line)
+void ReadShaderCmd(std::string &line, Scene *scene)
 {
 	//Filter command parameters
 	sVec splits = Split(line, ' ');
 	Erase(splits[2], '"');
 
 	//Add to shaders
-	Shaders::Create(splits[1], splits[2].c_str());
+	scene->shaders.Create(splits[1], splits[2].c_str());
 }
 
-void ReadMaterialCmd(std::string &line)
+void ReadMaterialCmd(std::string &line, Scene *scene)
 {
 	//Filter command parameters
 	sVec splits = Split(line, ' ');
 
 	//Create material
-	MaterialHandler::Add(splits[1], splits[2]);
+	scene->materials.Add(splits[1], splits[2], &scene->shaders);
 }
 
 void ReadObjectCmd(std::string &line, Scene *scene)
@@ -115,7 +115,7 @@ void ReadObjectCmd(std::string &line, Scene *scene)
 	scene->AddObject(splits[1]);
 }
 
-void UseMaterialDash(std::string &line, std::string &passed)
+void UseMaterialDash(std::string &line, std::string &passed, Scene *scene)
 {
 	//Get material name
 	std::string matName = Split(passed, ' ')[1];
@@ -129,7 +129,7 @@ void UseMaterialDash(std::string &line, std::string &passed)
 	//Add correct uniform looking at type
 	if (splits[0] == "-col")
 	{
-		Mats::Get(matName)->AddColor(
+		scene->materials.Get(matName)->AddColor(
 			splits[1].c_str(), 
 			std::stof(splits[2]), 
 			std::stof(splits[3]),
@@ -138,19 +138,19 @@ void UseMaterialDash(std::string &line, std::string &passed)
 	}
 	else if (splits[0] == "-tex")
 	{
-		Mats::Get(matName)->AddTexture(
+		scene->materials.Get(matName)->AddTexture(
 			splits[1].c_str(), 
-			*Textures::Get(splits[2]));
+			*scene->textures.Get(splits[2]));
 	}
 	else if (splits[0] == "-flt")
 	{
-		Mats::Get(matName)->AddFloat(
+		scene->materials.Get(matName)->AddFloat(
 			splits[1].c_str(), 
 			std::stof(splits[2]));
 	}
 	else if (splits[0] == "-int")
 	{
-		Mats::Get(matName)->AddInt(
+		scene->materials.Get(matName)->AddInt(
 			splits[1].c_str(), 
 			std::stoi(splits[2]));
 	}
@@ -187,20 +187,20 @@ bool SceneLoader::LoadScene(const char *path, Scene *scene)
 	{
 		if (line.substr(0, 3) == "mdl")			//Model
 		{
-			ReadModelCmd(line);
+			ReadModelCmd(line, scene);
 		}
 		else if (line.substr(0, 3) == "tex")	//Texture
 		{
-			ReadTextureCmd(line);
+			ReadTextureCmd(line, scene);
 		}
 		else if (line.substr(0, 3) == "shd")	//Shader
 		{
-			ReadShaderCmd(line);
+			ReadShaderCmd(line, scene);
 		}
 		else if (line.substr(0, 3) == "mat")	//Material
 		{
 			passedLine = line;
-			ReadMaterialCmd(line);
+			ReadMaterialCmd(line, scene);
 		}
 		else if (line.substr(0, 3) == "obj")
 		{
@@ -210,7 +210,7 @@ bool SceneLoader::LoadScene(const char *path, Scene *scene)
 		else if (line[0] == '-')
 		{
 			if (passedLine.substr(0, 3) == "mat")		//Material param
-				UseMaterialDash(line, passedLine);
+				UseMaterialDash(line, passedLine, scene);
 			else if (passedLine.substr(0, 3) == "obj")	//Object param
 				UseObjectDash(line, passedLine, scene);
 		}

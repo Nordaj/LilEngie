@@ -17,6 +17,9 @@ https://steamcommunity.com/profiles/76561198254676201/images/
 <h2>Plans</h2>
 <ul>
   <li>Better input system</li>
-  <li>Scene loading</li>
   <li>Physically accurate lighting</li>
+  <li>Better manage the scenes</li>
+  <li>Use heap for game objects and scenes</li>
+  <li>Shader error handling</li>
+  <li>Scene loading error handling</li>
 </ul>

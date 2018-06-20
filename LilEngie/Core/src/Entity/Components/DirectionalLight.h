@@ -14,6 +14,7 @@ public:
 	float intensity;
 
 	DirectionalLight(GameObject *obj);
+	void Start();
 
 	//Standard component methods
 	static std::string GetTypeStatic() { return "DirectionalLight"; }

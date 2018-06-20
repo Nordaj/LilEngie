@@ -22,4 +22,5 @@ namespace LightHandler
 	void AddSpotLight(SpotLight *light);
 	void SetAmbient(glm::vec3 a);
 	void Prepare(Shader *shader);
+	void Clean();
 }

@@ -16,11 +16,34 @@ namespace CompConstruct
 		
 		if (name == "Camera")
 		{
-			return new Camera(obj);
+			//I wanted camera parameters to be optional
+			if (params.size() == 0)
+				return new Camera(obj);
+
+			//In case i do have params, we can use them
+			Camera *c = new Camera(obj);
+			c->fov = std::stof(params[0]);
+			c->near = std::stof(params[1]);
+			c->far = std::stof(params[2]);
+			return c;
 		}
 		else if (name == "DirectionalLight")
 		{
-			return new DirectionalLight(obj);
+			DirectionalLight *dl = new DirectionalLight(obj);
+
+			dl->dir = glm::vec3(
+				std::stof(params[0]),
+				std::stof(params[1]),
+				std::stof(params[2]));
+
+			dl->color = glm::vec3(
+				std::stof(params[3]),
+				std::stof(params[4]),
+				std::stof(params[5]));
+
+			dl->intensity = std::stof(params[6]);
+
+			return dl;
 		}
 		else if (name == "Mesh")
 		{
@@ -30,11 +53,45 @@ namespace CompConstruct
 		}
 		else if (name == "PointLight")
 		{
-			return new PointLight(obj);
+			PointLight *pl = new PointLight(obj);
+
+			pl->pos = glm::vec3(
+				std::stof(params[0]),
+				std::stof(params[1]),
+				std::stof(params[2]));
+
+			pl->color = glm::vec3(
+				std::stof(params[3]),
+				std::stof(params[4]),
+				std::stof(params[5]));
+
+			pl->intensity = std::stof(params[6]);
+
+			return pl;
 		}
 		else if (name == "SpotLight")
 		{
-			return new SpotLight(obj);
+			SpotLight *sl = new SpotLight(obj);
+
+			sl->pos = glm::vec3(
+				std::stof(params[0]),
+				std::stof(params[1]),
+				std::stof(params[2]));
+
+			sl->dir = glm::vec3(
+				std::stof(params[3]),
+				std::stof(params[4]),
+				std::stof(params[5]));
+
+			sl->color = glm::vec3(
+				std::stof(params[6]),
+				std::stof(params[7]),
+				std::stof(params[8]));
+
+			sl->intensity = std::stof(params[9]);
+			sl->angle = glm::cos(glm::radians(std::stof(params[10])));
+
+			return sl;
 		}
 		else if (name == "Transform")
 		{

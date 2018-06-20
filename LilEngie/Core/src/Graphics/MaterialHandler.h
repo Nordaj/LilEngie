@@ -1,20 +1,17 @@
 #pragma once
 
-#include <unordered_map>
+#include <map>
 #include <string>
 #include "Material.h"
 #include "ShaderHandler.h"
 
-namespace MaterialHandler
+class MaterialHandler
 {
-	namespace
-	{
-		std::unordered_map<std::string, Material> materials;
-	}
+private:
+	std::map<std::string, Material*> materials;
 
-	void Add(std::string name, std::string shader);
+public:
+	~MaterialHandler();
+	void Add(std::string name, std::string shader, ShaderHandler *shaderHandler);
 	Material* Get(std::string mat);
-}
-
-//Alternative name
-namespace Mats = MaterialHandler;
+};

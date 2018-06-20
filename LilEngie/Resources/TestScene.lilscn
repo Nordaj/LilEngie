@@ -2,7 +2,6 @@
 
 //mdl command for model
 //(mdl, name, directory)
-mdl gunModel "Resources/MattyGun.obj"
 mdl gearsModel "Resources/RustyGearsMatty.fbx"
 
 //tex command for texture
@@ -33,10 +32,27 @@ mat unlitMaterial unlitShader
 //(Only supports transform/mesh/camera, not sure what to do about user created components)
 //(Transform = parameters: (posXYZ), (eulerXYZ), (scaleXYZ))
 //(Mesh = parameters: model, material))
+//(PointLight = parameters: (posXYZ), (colorRGB), intensity)
+//(Camera = parameters: fov, near, far)
+//(DirectionalLight = parameters: (dirXYZ), (colorRGB), intensity)
+obj camObject
+-Transform 0 0 3 0 0 0 1 1 1
+-Camera
+
+obj lightObject
+-Transform 0 0 2 45 45 45 0.05f 0.05f 0.05f
+-Mesh BaseCube unlitMaterial
+-PointLight 0 0 2 1 1 1 0.5
+
 obj gearsObject
 -Transform 0 0 0 30 30 0 0.5 0.5 0.5
 -Mesh gearsModel rustMaterial
 
-obj camObject
--Transform 0 0 3 0 0 0 1 1 1
--Camera
+//The first object in the second loaded scene has the same transformation and material as the last in this scene but different models
+
+
+
+
+
+
+

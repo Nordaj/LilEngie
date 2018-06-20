@@ -5,16 +5,14 @@
 
 #include "Shader.h"
 
-namespace ShaderHandler
+class ShaderHandler
 {
-	namespace
-	{
-		std::unordered_map<std::string, Shader> shaders;
-	}
+private:
+	std::unordered_map<std::string, Shader> shaders;
 
+public:
 	void Create(std::string name, const char *path);
 	Shader *Get(std::string name);
-}
 
-//Alternative name
-namespace Shaders = ShaderHandler;
+	//Would like to add get current method
+};

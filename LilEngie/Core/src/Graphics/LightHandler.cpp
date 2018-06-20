@@ -1,3 +1,4 @@
+#include <iostream>
 #include <vector>
 #include <Entity/Components/PointLight.h>
 #include "Shader.h"
@@ -69,4 +70,12 @@ void LightHandler::Prepare(Shader *shader)
 
 	//Pass ambient
 	UniformHandler::PassVec3(shader->GetID(), (char*)"uAmbient", ambient);
+}
+
+void LightHandler::Clean()
+{
+	pointLights.clear();
+	dirLights.clear();
+	spotLights.clear();
+	ambient = glm::vec3(0, 0, 0);
 }

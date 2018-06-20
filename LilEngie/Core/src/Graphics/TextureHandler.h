@@ -4,15 +4,12 @@
 #include <string>
 #include "Texture.h"
 
-namespace TextureHandler
+class TextureHandler
 {
-	namespace
-	{
-		std::unordered_map<std::string, Texture> textures;
-	}
+private:
+	std::unordered_map<std::string, Texture> textures;
 
+public:
 	Texture *Get(std::string name);
 	void AddTex(std::string name, Texture tex);
-}
-
-namespace Textures = TextureHandler;
+};

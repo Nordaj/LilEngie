@@ -28,9 +28,9 @@ void Mesh::Setup(const char *model, const char *material)
 {
 	//Setup mesh renderer
 	meshRenderer.Setup(
-		Models::Get(model)->vertices, 
-		Models::Get(model)->indices, 
-		Mats::Get(material));
+		obj->GetMyScene()->models.Get(model)->vertices, 
+		obj->GetMyScene()->models.Get(model)->indices,
+		obj->GetMyScene()->materials.Get(material));
 
 	//Add to render queue
 	obj->GetMyScene()->AddToQueue(this);
@@ -39,7 +39,7 @@ void Mesh::Setup(const char *model, const char *material)
 void Mesh::Setup(Model *model, const char *material)
 {
 	//Setup mesh renderer
-	meshRenderer.Setup(model->vertices, model->indices, Mats::Get(material));
+	meshRenderer.Setup(model->vertices, model->indices, obj->GetMyScene()->materials.Get(material));
 
 	//Add to render queue
 	obj->GetMyScene()->AddToQueue(this);

@@ -1,18 +1,18 @@
 #pragma once
 
-#include <unordered_map>
+#include <map>
 #include <string>
 #include "Model.h"
 
-namespace ModelHandler
+class ModelHandler
 {
-	namespace
-	{
-		std::unordered_map<std::string, Model> models;
-	}
+private:
+	std::map<std::string, Model*> models;
+
+public:
+	ModelHandler();
+	~ModelHandler();
 
 	Model *Get(std::string name);
-	void AddModel(std::string name, Model model);
-}
-
-namespace Models = ModelHandler;
+	void AddModel(std::string name, Model *model);
+};

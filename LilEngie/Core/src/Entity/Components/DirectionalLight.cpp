@@ -7,10 +7,13 @@
 DirectionalLight::DirectionalLight(GameObject *obj)
 	:Component(obj)
 {
-	//Pass to light handler
-	LightHandler::AddDirLight(this);
-
 	//Set defaults
 	color = glm::vec3(1, 1, 1);
 	intensity = 1;
+}
+
+void DirectionalLight::Start()
+{
+	//Pass to light handler
+	LightHandler::AddDirLight(this);
 }

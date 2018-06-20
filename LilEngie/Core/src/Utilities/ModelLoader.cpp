@@ -86,7 +86,7 @@ int ModelLoader::LoadOBJManual(const char* path, std::vector<float> *verts,  std
 	}
 }
 
-Model ModelLoader::Load(const char* path)
+Model *ModelLoader::Load(const char* path)
 {
 	//Load into importer
 	Assimp::Importer importer;
@@ -100,28 +100,28 @@ Model ModelLoader::Load(const char* path)
 	aiMesh *mesh = scene->mMeshes[0];
 
 	//Model to return
-	Model model;
+	Model *model = new Model();
 
 	//Get verts
 	for (int i = 0; i < mesh->mNumVertices; i++)
 	{
-		model.vertices.push_back(mesh->mVertices[i].x);
-		model.vertices.push_back(mesh->mVertices[i].y);
-		model.vertices.push_back(mesh->mVertices[i].z);
-		model.vertices.push_back(mesh->mNormals[i].x);
-		model.vertices.push_back(mesh->mNormals[i].y);
-		model.vertices.push_back(mesh->mNormals[i].z);
+		model->vertices.push_back(mesh->mVertices[i].x);
+		model->vertices.push_back(mesh->mVertices[i].y);
+		model->vertices.push_back(mesh->mVertices[i].z);
+		model->vertices.push_back(mesh->mNormals[i].x);
+		model->vertices.push_back(mesh->mNormals[i].y);
+		model->vertices.push_back(mesh->mNormals[i].z);
 
 		//If model has tex coords, use them, else, use 0
 		if (mesh->mTextureCoords[0]) 
 		{
-			model.vertices.push_back(mesh->mTextureCoords[0][i].x);
-			model.vertices.push_back(mesh->mTextureCoords[0][i].y);
+			model->vertices.push_back(mesh->mTextureCoords[0][i].x);
+			model->vertices.push_back(mesh->mTextureCoords[0][i].y);
 		}
 		else
 		{
-			model.vertices.push_back(0);
-			model.vertices.push_back(0);
+			model->vertices.push_back(0);
+			model->vertices.push_back(0);
 		}
 	}
 
@@ -132,7 +132,7 @@ Model ModelLoader::Load(const char* path)
 		aiFace face = mesh->mFaces[i];
 		for (unsigned int j = 0; j < face.mNumIndices; j++)
 		{
-			model.indices.push_back(face.mIndices[j]);
+			model->indices.push_back(face.mIndices[j]);
 		}
 	}
 
