@@ -13,8 +13,8 @@ int main()
 	Renderer::SetClearColor(0.05f, 0.05f, 0.05f, 1);
 	LightHandler::SetAmbient(glm::vec3(0.05f, 0.05f, 0.05f));
 
-	SceneLoader::LoadScene("Resources/TestScene.lilscn", &mainScene);
-	SceneLoader::LoadScene("Resources/SecondScene.lilscn", &secondScene);
+	SceneLoader::LoadScene("Resources/Scenes/TestScene.lilscn", &mainScene);
+	SceneLoader::LoadScene("Resources/Scenes/SecondScene.lilscn", &secondScene);
 	ObjectManager::SetScene(&mainScene);
 
 	Game::Run(Update);

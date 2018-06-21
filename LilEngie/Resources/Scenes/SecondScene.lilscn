@@ -1,6 +1,6 @@
-mdl gunModel "Resources/MattyGun.obj"
+mdl gunModel "Resources/Models/MattyGun.obj"
 
-shd unlit "Resources/Unlit.shader"
+shd unlit "Resources/Shaders/Standard/Unlit.shader"
 
 mat unlitRed unlit
 -col "uColor" 1 0 0 1

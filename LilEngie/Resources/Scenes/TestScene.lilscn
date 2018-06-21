@@ -2,16 +2,16 @@
 
 //mdl command for model
 //(mdl, name, directory)
-mdl gearsModel "Resources/RustyGearsMatty.fbx"
+mdl gearsModel "Resources/Models/RustyGearsMatty.fbx"
 
 //tex command for texture
 //(tex, name, directory)
-tex rustTexture "Resources/Rusty.png"
+tex rustTexture "Resources/Textures/Rusty.png"
 
 //shd command for shader
 //(shd, name, directory)
-shd diffuseShader "Resources/Diffuse.shader"
-shd unlitShader "Resources/Unlit.shader"
+shd diffuseShader "Resources/Shaders/Standard/Diffuse.shader"
+shd unlitShader "Resources/Shaders/Standard/Unlit.shader"
 
 //mat command for material
 //(mat, name, shader used, <uniforms>)
