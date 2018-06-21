@@ -59,12 +59,43 @@ in vec2 iUv;
 
 out vec4 color;
 
+vec3 CalcPointLights(vec3 norm);
+vec3 CalcSpotLights(vec3 norm);
+vec3 CalcDirLights(vec3 norm);
+
 void main()
 {
+	//Lighting calculations
 	vec3 norm = normalize(iNormal);
+	vec3 pointLights = CalcPointLights(norm);
+	vec3 spotLights = CalcSpotLights(norm);
+	vec3 dirLights = CalcDirLights(norm);
+	vec3 lightColor = dirLights + spotLights + pointLights + uAmbient;
 
-	//Calculate point lights (i know its not physically accurate, will get attenuation later)
-	vec3 combinedPointLights = vec3(0, 0, 0);
+	//Multiply color
+	vec3 c = uColor.rgb * lightColor * texture(uMainTex, iUv).rgb;
+
+	//Output
+	color = vec4(c, uColor.a);
+}
+
+float Attenuation(float distance, float constant = 1, float lin = 1, float quadratic = 2)
+{
+	//Light attenuation formula: 1 / Kc + KlD + KqD^2
+	///Kc = constant
+	///Kl = linear
+	///Kq = quadratic
+	///D  = distance
+	//Source: http://politecnicacuenca.com/light-attenuation/
+
+	return 1 / (constant + (lin * distance) + (quadratic * (distance * distance)));
+}
+
+vec3 CalcPointLights(vec3 norm)
+{
+	//I need to get attenuation
+
+	vec3 combined = vec3(0, 0, 0);
 	for (int i = 0; i < 8; i++)
 	{
 		//Dont use if i am empty
@@ -77,19 +108,25 @@ void main()
 		//Get distance
 		float dist = distance(uPointLights[i].position, iFragPos);
 
+		//Get attenuation
+		float attenuation = Attenuation(dist);
+
 		//Get the brightness
-		float val = (dot(norm, lightDir) * uPointLights[i].intensity) / dist;
+		float val = (dot(norm, lightDir) * attenuation * uPointLights[i].intensity) / dist;
 		if (val < 0) val = 0;
 
 		//Calculate color
 		vec3 c = val * uPointLights[i].color;
 
 		//Add to combined lights
-		combinedPointLights += c;
+		combined += c;
 	}
+	return combined;
+}
 
-	//Caclulate spot lights 
-	vec3 combinedSpotLights = vec3(0, 0, 0);
+vec3 CalcSpotLights(vec3 norm)
+{
+	vec3 combined = vec3(0, 0, 0);
 	for (int i = 0; i < 8; i++)
 	{
 		//Dont use if i am empty
@@ -109,8 +146,11 @@ void main()
 			//Get distance
 			float dist = distance(uSpotLights[i].position, iFragPos);
 
+			//Get attenuation
+			float attenuation = Attenuation(dist);
+
 			//Get the brightness
-			val = (dot(norm, lightDir) * uSpotLights[i].intensity) / dist;
+			val = (dot(norm, lightDir) * attenuation * uSpotLights[i].intensity) / dist;
 			if (val < 0) val = 0;
 		}
 		else
@@ -123,11 +163,14 @@ void main()
 		vec3 c = val * uSpotLights[i].color;
 
 		//Add to combined lights
-		combinedPointLights += c;
+		combined += c;
 	}
+	return combined;
+}
 
-	//Calculate directional lights
-	vec3 combinedDirLights = vec3(0, 0, 0);
+vec3 CalcDirLights(vec3 norm)
+{
+	vec3 combined = vec3(0, 0, 0);
 	for (int i = 0; i < 4; i++)
 	{
 		//Dont use if i am empty
@@ -142,15 +185,7 @@ void main()
 		vec3 c = val * uDirLights[i].color;
 
 		//Add to combined lights
-		combinedDirLights += c;
+		combined += c;
 	}
-
-	//Combine all lights
-	vec3 combinedLights = combinedDirLights + combinedPointLights + uAmbient;
-
-	//Multiply color
-	vec3 c = uColor.rgb * combinedLights * texture(uMainTex, iUv).rgb;
-
-	//Output
-	color = vec4(c, uColor.a);
+	return combined;
 }

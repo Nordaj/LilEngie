@@ -1,3 +1,4 @@
+#include <iostream>
 #include <vector>
 #include <string>
 #include <GL/glew.h>
@@ -17,6 +18,24 @@ unsigned int CompileShader(std::string &src, int type)
 
 	//Compile
 	glCompileShader(id);
+
+	//Error handling
+	int result;
+	glGetShaderiv(id, GL_COMPILE_STATUS, &result);
+	if (!result)
+	{
+		//Get length
+		int length;
+		glGetShaderiv(id, GL_INFO_LOG_LENGTH, &length);
+
+		//Get message
+		char *msg = (char*)alloca(length * sizeof(char));
+		glGetShaderInfoLog(id, length, &length, msg);
+
+		//Output
+		std::cout << "Your shader doesn't work..." << std::endl;
+		std::cout << msg << std::endl;
+	}
 
 	return id;
 }

@@ -201,8 +201,4 @@
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Unlit.shader" />
-    <None Include="Resources\Diffuse.shader" />
-  </ItemGroup>
 </Project>

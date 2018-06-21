@@ -215,10 +215,6 @@
     <ClInclude Include="Core\src\Input\Keys.h" />
     <ClInclude Include="Core\src\Utilities\ModelLoader.h" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Diffuse.shader" />
-    <None Include="Resources\Unlit.shader" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
