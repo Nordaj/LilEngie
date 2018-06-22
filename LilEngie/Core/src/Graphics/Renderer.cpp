@@ -76,3 +76,8 @@ void Renderer::Render()
 		}
 	}
 }
+
+void Renderer::Resize(int width, int height)
+{
+	glViewport(0, 0, width, height);
+}

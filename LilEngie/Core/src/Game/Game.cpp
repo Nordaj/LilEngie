@@ -16,7 +16,7 @@ void Game::Init()
 
 void Game::Run(vFunction callback)
 {
-	while (Window::Open())
+	while (Window::Open() && !closing)
 	{
 		ObjectManager::Update();
 
@@ -27,10 +27,13 @@ void Game::Run(vFunction callback)
 		Window::SwapBuffers();
 		Window::PollEvents();
 	}
+
+	ObjectManager::GetCurrent()->Close();
+	Window::Close();
+	Window::Clean();
 }
 
 void Game::Close()
 {
-	ObjectManager::GetCurrent()->Close();
-	Window::Close();
+	closing = true;
 }

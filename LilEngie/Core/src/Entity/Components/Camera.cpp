@@ -1,5 +1,6 @@
 #pragma once
 
+#include <iostream>
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/quaternion.hpp>
@@ -38,6 +39,7 @@ void Camera::Update()
 
 	//Calculate projection
 	float aspect = ((float)Window::width) / ((float)Window::height);
+	std::cout << aspect << std::endl;
 	projection = glm::perspective(glm::radians(fov), aspect, near, far);
 }
 

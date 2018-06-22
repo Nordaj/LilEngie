@@ -10,13 +10,14 @@ namespace Window
 		GLFWwindow *window;
 	}
 
-	static int width = 1280;
-	static int height = 720;
-	static char title[] = "My Game";
+	extern int width;
+	extern int height;
+	extern char title[];
 
 	void Init();
 	bool Open();
 	void SwapBuffers();
 	void PollEvents();
 	void Close();
+	void Clean();
 }

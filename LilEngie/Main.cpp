@@ -37,4 +37,8 @@ void Update()
 		if (ObjectManager::GetCurrent() != &mainScene)
 			ObjectManager::SetScene(&mainScene);
 	}
+	else if (Input::GetKey(Key::C))
+	{
+		Game::Close();
+	}
 }
