@@ -4,12 +4,7 @@
 
 namespace Window
 {
-	//Private members
-	namespace
-	{
-		GLFWwindow *window;
-	}
-
+	//Public
 	extern int width;
 	extern int height;
 	extern char title[];

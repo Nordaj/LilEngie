@@ -7,7 +7,7 @@
 #include <Entity/GameObject.h>
 #include <Application/Window.h>
 #include <Graphics/Renderer.h>
-#include <Entity/ObjectManager.h>
+#include <Entity/SceneManager.h>
 #include <Entity/Components/Transform.h>
 #include "Camera.h"
 
@@ -39,7 +39,6 @@ void Camera::Update()
 
 	//Calculate projection
 	float aspect = ((float)Window::width) / ((float)Window::height);
-	std::cout << aspect << std::endl;
 	projection = glm::perspective(glm::radians(fov), aspect, near, far);
 }
 

@@ -2,6 +2,8 @@
 #include "Keys.h"
 #include "Input.h"
 
+GLFWwindow *win;
+
 void Input::Init(GLFWwindow *window)
 {
 	win = window;

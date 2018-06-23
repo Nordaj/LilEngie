@@ -9,6 +9,7 @@
 #include <Graphics/MaterialHandler.h>
 #include <Graphics/ModelHandler.h>
 #include <Graphics/Model.h>
+#include <Application/Debug.h>
 #include "Transform.h"
 #include "Mesh.h"
 
@@ -18,7 +19,7 @@ Mesh::Mesh(GameObject *obj)
 	//Make sure i have a transform
 	//TODO: figure out how to remove myself instead
 	if (obj->GetComponent("Transform") == nullptr)
-		std::cout << "Don't add me til you get a transform" << std::endl;
+		LOG("Don't add me til you get a transform", Warning, false);
 
 	//Keep track of my transform
 	transform = (Transform*)obj->GetComponent(Transform::GetTypeStatic());

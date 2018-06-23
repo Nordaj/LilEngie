@@ -15,7 +15,7 @@ int main()
 
 	SceneLoader::LoadScene("Resources/Scenes/TestScene.lilscn", &mainScene);
 	SceneLoader::LoadScene("Resources/Scenes/SecondScene.lilscn", &secondScene);
-	ObjectManager::SetScene(&mainScene);
+	SceneManager::SetScene(&mainScene);
 
 	Game::Run(Update);
 	Game::Close();
@@ -28,14 +28,14 @@ void Update()
 	if (Input::GetKey(Key::Space))
 	{
 		//Swith to second if not on
-		if (ObjectManager::GetCurrent() != &secondScene)
-			ObjectManager::SetScene(&secondScene);
+		if (SceneManager::GetCurrent() != &secondScene)
+			SceneManager::SetScene(&secondScene);
 	}
 	else if (Input::GetKey(Key::A))
 	{
 		//Switch to main if not on
-		if (ObjectManager::GetCurrent() != &mainScene)
-			ObjectManager::SetScene(&mainScene);
+		if (SceneManager::GetCurrent() != &mainScene)
+			SceneManager::SetScene(&mainScene);
 	}
 	else if (Input::GetKey(Key::C))
 	{

@@ -24,5 +24,4 @@ https://steamcommunity.com/profiles/76561198254676201/images/
   <li>Text rendering</li>
   <li>Window resizing handling</li>
   <li>Specular lighting</li>
-  <li>Minor cleanup</li>
 </ul>

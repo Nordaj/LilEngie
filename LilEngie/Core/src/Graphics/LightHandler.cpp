@@ -6,6 +6,15 @@
 #include "UniformHandler.h"
 #include "LightHandler.h"
 
+namespace LightHandler
+{
+	//Private
+	std::vector<PointLight*> pointLights;
+	std::vector<DirectionalLight*> dirLights;
+	std::vector<SpotLight*> spotLights;
+	glm::vec3 ambient;
+}
+
 void LightHandler::AddPointLight(PointLight *light)
 {
 	pointLights.push_back(light);

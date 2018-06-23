@@ -3,6 +3,7 @@
 #include <string>
 #include <GL/glew.h>
 
+#include <Application/Debug.h>
 #include "ShaderReader.h"
 #include "Shader.h"
 #include "ShaderHandler.h"
@@ -33,8 +34,8 @@ unsigned int CompileShader(std::string &src, int type)
 		glGetShaderInfoLog(id, length, &length, msg);
 
 		//Output
-		std::cout << "Your shader doesn't work..." << std::endl;
-		std::cout << msg << std::endl;
+		LOG("Your shader doesn't work...");
+		LOG(msg, Log);
 	}
 
 	return id;

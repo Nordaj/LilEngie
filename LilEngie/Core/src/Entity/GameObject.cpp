@@ -1,14 +1,15 @@
 #include <iostream>
 #include <vector>
 #include <string>
-#include "ObjectManager.h"
+#include <Application/Debug.h>
+#include "SceneManager.h"
 #include "Component.h"
 #include "GameObject.h"
 
 GameObject::GameObject(Scene *scene)
 {
 	if (scene == nullptr)
-		std::cout << "Give your object a scene, cunt" << std::endl;
+		LOG("Give your object a scene, cunt");
 
 	myScene = scene;
 }
@@ -32,7 +33,7 @@ void* GameObject::GetComponent(std::string comp)
 			return components[i]->Get();
 	}
 
-	std::cout << "Could not find component" << std::endl;
+	LOG("Could not find component");
 	return nullptr;
 }
 

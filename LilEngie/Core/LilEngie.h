@@ -7,6 +7,7 @@
 #include "src/Game/SceneLoader.h"
 
 #include "src/Application/Window.h"
+#include "src/Application/Debug.h"
 
 #include "src/Graphics/Renderer.h"
 #include "src/Graphics/BaseMeshes.h"
@@ -20,7 +21,7 @@
 #include "src/Utilities/ModelLoader.h"
 
 #include "src/Entity/Scene.h"
-#include "src/Entity/ObjectManager.h"
+#include "src/Entity/SceneManager.h"
 #include "src/Entity/GameObject.h"
 #include "src/Entity/Component.h"
 #include "src/Entity/Components/Mesh.h"

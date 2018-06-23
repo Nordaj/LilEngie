@@ -151,6 +151,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Core\src\Application\Debug.cpp" />
     <ClCompile Include="Core\src\Application\Window.cpp" />
     <ClCompile Include="Core\src\Entity\Component.cpp" />
     <ClCompile Include="Core\src\Entity\Components\Camera.cpp" />
@@ -160,7 +161,7 @@
     <ClCompile Include="Core\src\Entity\Components\SpotLight.cpp" />
     <ClCompile Include="Core\src\Entity\Components\Transform.cpp" />
     <ClCompile Include="Core\src\Entity\GameObject.cpp" />
-    <ClCompile Include="Core\src\Entity\ObjectManager.cpp" />
+    <ClCompile Include="Core\src\Entity\SceneManager.cpp" />
     <ClCompile Include="Core\src\Entity\Scene.cpp" />
     <ClCompile Include="Core\src\Game\Game.cpp" />
     <ClCompile Include="Core\src\Graphics\LightHandler.cpp" />
@@ -183,6 +184,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ComponentConstruction.h" />
+    <ClInclude Include="Core\src\Application\Debug.h" />
     <ClInclude Include="Core\src\Application\Window.h" />
     <ClInclude Include="Core\src\Entity\Component.h" />
     <ClInclude Include="Core\src\Entity\Components\Camera.h" />
@@ -192,7 +194,7 @@
     <ClInclude Include="Core\src\Entity\Components\SpotLight.h" />
     <ClInclude Include="Core\src\Entity\Components\Transform.h" />
     <ClInclude Include="Core\src\Entity\GameObject.h" />
-    <ClInclude Include="Core\src\Entity\ObjectManager.h" />
+    <ClInclude Include="Core\src\Entity\SceneManager.h" />
     <ClInclude Include="Core\src\Entity\Scene.h" />
     <ClInclude Include="Core\src\Game\Game.h" />
     <ClInclude Include="Core\LilEngie.h" />

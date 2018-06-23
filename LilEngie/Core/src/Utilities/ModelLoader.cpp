@@ -5,6 +5,7 @@
 #include <assimp/Importer.hpp>
 #include <assimp/scene.h>
 #include <assimp/postprocess.h>
+#include <Application/Debug.h>
 #include "ModelLoader.h"
 
 //DO NOT USE, UNDER WORK
@@ -93,8 +94,8 @@ Model *ModelLoader::Load(const char* path)
 	const aiScene *scene = importer.ReadFile(path, aiProcess_Triangulate | aiProcess_GenNormals);
 
 	//Check for problems
-	if (!scene || scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode) 
-		std::cout << "Could not load mesh" << std::endl;
+	if (!scene || scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode)
+		LOG("Could not load mesh");
 
 	//Get aimesh, just get the first mesh of loaded file. I don't care about loading multiple obj's rn
 	aiMesh *mesh = scene->mMeshes[0];

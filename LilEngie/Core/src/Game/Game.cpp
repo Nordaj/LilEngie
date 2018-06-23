@@ -5,8 +5,15 @@
 #include <Application/Window.h>
 #include <Graphics/Renderer.h>
 #include <Graphics/ModelHandler.h>
-#include <Entity/ObjectManager.h>
+#include <Entity/SceneManager.h>
 #include "Game.h"
+
+//Properties
+namespace Game
+{
+	//Private
+	bool closing;
+}
 
 void Game::Init()
 {
@@ -18,7 +25,7 @@ void Game::Run(vFunction callback)
 {
 	while (Window::Open() && !closing)
 	{
-		ObjectManager::Update();
+		SceneManager::Update();
 
 		if (callback != nullptr)
 			callback();
@@ -28,7 +35,7 @@ void Game::Run(vFunction callback)
 		Window::PollEvents();
 	}
 
-	ObjectManager::GetCurrent()->Close();
+	SceneManager::GetCurrent()->Close();
 	Window::Close();
 	Window::Clean();
 }

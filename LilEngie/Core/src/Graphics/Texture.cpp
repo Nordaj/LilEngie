@@ -1,6 +1,7 @@
 #include <iostream>
 #include <stb_image.h>
 #include <GL/glew.h>
+#include <Application/Debug.h>
 #include "Texture.h"
 
 Texture::Texture(const char *path, bool repeat, bool filter)
@@ -17,7 +18,7 @@ Texture::Texture(const char *path, bool repeat, bool filter)
 	//Check for problems (not even sure if it returns nullptr on fail)
 	if (data == nullptr)
 	{
-		std::cout << "A problem happened" << std::endl;
+		LOG("Could not load texture");
 	}
 
 	//Get the format

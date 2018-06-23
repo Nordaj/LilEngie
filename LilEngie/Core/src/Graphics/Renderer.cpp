@@ -6,10 +6,19 @@
 #include <Entity/Components/Camera.h>
 #include <Entity/Scene.h>
 #include <Game/Game.h>
+#include <Application/Debug.h>
 #include "UniformHandler.h"
 #include "MaterialHandler.h"
 #include "MeshRenderer.h"
 #include "Renderer.h"
+
+//Properties
+namespace Renderer
+{
+	//Private
+	Scene *scene;
+	unsigned int defaultTex;
+}
 
 Camera* Renderer::GetCurrentCamera()
 {
@@ -31,7 +40,7 @@ void Renderer::Init()
 	//Init glew
 	if (glewInit() != GLEW_OK)
 	{
-		std::cout << "Failed to init glew" << std::endl;
+		ERROR("Failed to init glew");
 		std::cin.get();
 		Game::Close();
 	}

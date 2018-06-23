@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <Application/Debug.h>
 #include "GameObject.h"
 #include "Component.h"
 
@@ -22,13 +23,13 @@ void Component::SetObj(GameObject *o)
 
 std::string Component::GetType()
 {
-	std::cout << "GetType virtual method din work..." << std::endl;
+	LOG("GetType virtual method din work...", Warning, false);
 	return "";
 }
 
 void* Component::Get() 
 { 
-	std::cout << "GetComponent virtual method din work.." << std::endl;
+	LOG("GetComponent virtual method din work..", Warning, false);
 	return nullptr; 
 }
 

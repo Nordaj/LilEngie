@@ -9,14 +9,6 @@
 
 namespace LightHandler
 {
-	namespace
-	{
-		std::vector<PointLight*> pointLights;
-		std::vector<DirectionalLight*> dirLights;
-		std::vector<SpotLight*> spotLights;
-		glm::vec3 ambient;
-	}
-
 	void AddPointLight(PointLight *light);
 	void AddDirLight(DirectionalLight *light);
 	void AddSpotLight(SpotLight *light);
