@@ -20,8 +20,6 @@ https://steamcommunity.com/profiles/76561198254676201/images/
   <li>Better manage the scenes</li>
   <li>Use heap for game objects and scenes</li>
   <li>Scene loading error handling</li>
-  <li>Better way to handle errors</li>
   <li>Text rendering</li>
-  <li>Window resizing handling</li>
   <li>Specular lighting</li>
 </ul>

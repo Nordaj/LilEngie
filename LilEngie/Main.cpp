@@ -37,8 +37,11 @@ void Update()
 		if (SceneManager::GetCurrent() != &mainScene)
 			SceneManager::SetScene(&mainScene);
 	}
-	else if (Input::GetKey(Key::C))
-	{
+
+	if (Input::GetKey(Key::C))
 		Game::Close();
-	}
+
+	//Spin
+	Transform *t = (Transform*)mainScene.GetObject("gearsObject")->GetComponent("Transform");
+	t->rotation = glm::rotate(t->rotation, glm::radians(0.1f), glm::vec3(0, 1, 0));
 }
