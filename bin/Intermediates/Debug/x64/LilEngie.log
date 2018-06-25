@@ -1,6 +1,6 @@
-﻿  Renderer.cpp
-d:\documents\github\lilengie\lilengie\core\src\graphics\renderer.cpp(51): warning C4838: conversion from 'int' to 'char' requires a narrowing conversion
-d:\documents\github\lilengie\lilengie\core\src\graphics\renderer.cpp(51): warning C4309: 'initializing': truncation of constant value
+﻿  Character.cpp
+  TextHandler.cpp
+d:\documents\github\lilengie\lilengie\core\src\graphics\text\texthandler.cpp(51): warning C4244: 'argument': conversion from 'FT_Pos' to 'float', possible loss of data
   TextRenderer.cpp
   Generating Code...
 LINK : warning LNK4098: defaultlib 'LIBCMT' conflicts with use of other libs; use /NODEFAULTLIB:library

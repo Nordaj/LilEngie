@@ -11,6 +11,11 @@ ModelHandler::ModelHandler()
 	cube->vertices = BaseMeshes::cube.vertices;
 	cube->indices = BaseMeshes::cube.indices;
 	AddModel("BaseCube", cube);
+
+	Model *quad = new Model();
+	quad->vertices = BaseMeshes::quad.vertices;
+	quad->indices = BaseMeshes::quad.indices;
+	AddModel("BaseQuad", quad);
 }
 
 ModelHandler::~ModelHandler()
