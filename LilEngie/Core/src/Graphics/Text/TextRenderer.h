@@ -2,23 +2,17 @@
 
 #include <string>
 #include <glm/glm.hpp>
-#include <Graphics/Model.h>
-#include <Graphics/Material.h>
+#include "Font.h"
 
+//Text object that stores text, text data, and handles rendering
 class TextRenderer
 {
-private:
-	unsigned int VBO;
-	unsigned int IBO;
-	unsigned int VAO;
-
 public:
-	TextRenderer();
-
-	float scale;
+	float size;
 	glm::vec2 position;
 	glm::vec3 color;
 	std::string text;
+	std::string fontName;
 
-	void Draw();
+	void Render(Font *font);
 };

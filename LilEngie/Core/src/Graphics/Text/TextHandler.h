@@ -1,12 +1,14 @@
 #pragma once
 
-#include <glm/common.hpp>
-#include "Character.h"
-
+//Takes care of all fonts, textrenderers, and loading
 namespace TextHandler
 {
+	//Public
+	extern std::vector<TextRenderer> texts;
+
 	void Init();
-	Character *GetChar(char c);
+	void AddFont(const char *name, const char *font);
+	void Render();
 }
 
-namespace Text = TextHandler;
+namespace Texts = TextHandler;

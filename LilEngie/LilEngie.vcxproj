@@ -91,12 +91,12 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\GLEW\include\;$(SolutionDir)Dependencies\GLFW\WIN32\include\;$(SolutionDir)Dependencies\GLM\;$(ProjectDir)Core\src\;$(SolutionDir)Dependencies\ASSIMP\include\;$(SolutionDir)Dependencies\STB_IMAGE;$(SolutionDir)Dependencies\FREETYPE\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\GLEW\include\;$(SolutionDir)Dependencies\GLFW\WIN32\include\;$(SolutionDir)Dependencies\GLM\;$(ProjectDir)Core\src\;$(SolutionDir)Dependencies\ASSIMP\include\;$(SolutionDir)Dependencies\STB_IMAGE;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>GLEW_STATIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>$(SolutionDir)Dependencies\GLEW\lib\Release\Win32\;$(SolutionDir)Dependencies\GLFW\WIN32\lib\;$(SolutionDir)Dependencies\FREETYPE\bin\Win32\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>glew32s.lib;glfw3.lib;opengl32.lib;freetype.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)Dependencies\GLEW\lib\Release\Win32\;$(SolutionDir)Dependencies\GLFW\WIN32\lib\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>glew32s.lib;glfw3.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
     </Link>
   </ItemDefinitionGroup>
@@ -106,12 +106,12 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\GLEW\include\;$(SolutionDir)Dependencies\GLFW\WIN32\include\;$(SolutionDir)Dependencies\GLM\;$(ProjectDir)Core\src\;$(SolutionDir)Dependencies\ASSIMP\include\;$(SolutionDir)Dependencies\STB_IMAGE;$(SolutionDir)Dependencies\FREETYPE\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\GLEW\include\;$(SolutionDir)Dependencies\GLFW\WIN32\include\;$(SolutionDir)Dependencies\GLM\;$(ProjectDir)Core\src\;$(SolutionDir)Dependencies\ASSIMP\include\;$(SolutionDir)Dependencies\STB_IMAGE;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>GLEW_STATIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>$(SolutionDir)Dependencies\GLEW\lib\Release\x64\;$(SolutionDir)Dependencies\GLFW\x64\lib\;$(SolutionDir)Dependencies\ASSIMP\lib\x64\;$(SolutionDir)Dependencies\FREETYPE\bin\x64\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>glew32s.lib;glfw3.lib;opengl32.lib;freetype.lib;assimp-vc140-mt.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)Dependencies\GLEW\lib\Release\x64\;$(SolutionDir)Dependencies\GLFW\x64\lib\;$(SolutionDir)Dependencies\ASSIMP\lib\x64\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>glew32s.lib;glfw3.lib;opengl32.lib;assimp-vc140-mt.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -122,14 +122,14 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\GLEW\include\;$(SolutionDir)Dependencies\GLFW\WIN32\include\;$(SolutionDir)Dependencies\GLM\;$(ProjectDir)Core\src\;$(SolutionDir)Dependencies\ASSIMP\include\;$(SolutionDir)Dependencies\STB_IMAGE;$(SolutionDir)Dependencies\FREETYPE\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\GLEW\include\;$(SolutionDir)Dependencies\GLFW\WIN32\include\;$(SolutionDir)Dependencies\GLM\;$(ProjectDir)Core\src\;$(SolutionDir)Dependencies\ASSIMP\include\;$(SolutionDir)Dependencies\STB_IMAGE;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>GLEW_STATIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>$(SolutionDir)Dependencies\GLEW\lib\Release\Win32\;$(SolutionDir)Dependencies\GLFW\WIN32\lib\;$(SolutionDir)Dependencies\FREETYPE\bin\Win32\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>glew32s.lib;glfw3.lib;opengl32.lib;freetype.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)Dependencies\GLEW\lib\Release\Win32\;$(SolutionDir)Dependencies\GLFW\WIN32\lib\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>glew32s.lib;glfw3.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -140,14 +140,14 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\GLEW\include\;$(SolutionDir)Dependencies\GLFW\WIN32\include\;$(SolutionDir)Dependencies\GLM\;$(ProjectDir)Core\src\;$(SolutionDir)Dependencies\ASSIMP\include\;$(SolutionDir)Dependencies\STB_IMAGE;$(SolutionDir)Dependencies\FREETYPE\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\GLEW\include\;$(SolutionDir)Dependencies\GLFW\WIN32\include\;$(SolutionDir)Dependencies\GLM\;$(ProjectDir)Core\src\;$(SolutionDir)Dependencies\ASSIMP\include\;$(SolutionDir)Dependencies\STB_IMAGE;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>GLEW_STATIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>$(SolutionDir)Dependencies\GLEW\lib\Release\x64\;$(SolutionDir)Dependencies\GLFW\x64\lib\;$(SolutionDir)Dependencies\ASSIMP\lib\x64\;$(SolutionDir)Dependencies\FREETYPE\bin\x64\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>glew32s.lib;glfw3.lib;opengl32.lib;freetype.lib;assimp-vc140-mt.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)Dependencies\GLEW\lib\Release\x64\;$(SolutionDir)Dependencies\GLFW\x64\lib\;$(SolutionDir)Dependencies\ASSIMP\lib\x64\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>glew32s.lib;glfw3.lib;opengl32.lib;assimp-vc140-mt.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -164,7 +164,6 @@
     <ClCompile Include="Core\src\Entity\SceneManager.cpp" />
     <ClCompile Include="Core\src\Entity\Scene.cpp" />
     <ClCompile Include="Core\src\Game\Game.cpp" />
-    <ClCompile Include="Core\src\Graphics\Text\Character.cpp" />
     <ClCompile Include="Core\src\Graphics\LightHandler.cpp" />
     <ClCompile Include="Core\src\Graphics\Material.cpp" />
     <ClCompile Include="Core\src\Graphics\MaterialHandler.cpp" />
@@ -175,9 +174,12 @@
     <ClCompile Include="Core\src\Graphics\Shader.cpp" />
     <ClCompile Include="Core\src\Graphics\ShaderHandler.cpp" />
     <ClCompile Include="Core\src\Graphics\ShaderReader.cpp" />
-    <ClCompile Include="Core\src\Graphics\Text\TextHandler.cpp" />
     <ClCompile Include="Core\src\Graphics\Texture.cpp" />
     <ClCompile Include="Core\src\Graphics\TextureHandler.cpp" />
+    <ClCompile Include="Core\src\Graphics\Text\Character.cpp" />
+    <ClCompile Include="Core\src\Graphics\Text\Font.cpp" />
+    <ClCompile Include="Core\src\Graphics\Text\FontLoader.cpp" />
+    <ClCompile Include="Core\src\Graphics\Text\TextHandler.cpp" />
     <ClCompile Include="Core\src\Graphics\Text\TextRenderer.cpp" />
     <ClCompile Include="Core\src\Graphics\UniformHandler.cpp" />
     <ClCompile Include="Core\src\Game\SceneLoader.cpp" />
@@ -202,7 +204,6 @@
     <ClInclude Include="Core\src\Game\Game.h" />
     <ClInclude Include="Core\LilEngie.h" />
     <ClInclude Include="Core\src\Graphics\BaseMeshes.h" />
-    <ClInclude Include="Core\src\Graphics\Text\Character.h" />
     <ClInclude Include="Core\src\Graphics\LightHandler.h" />
     <ClInclude Include="Core\src\Graphics\Material.h" />
     <ClInclude Include="Core\src\Graphics\MaterialHandler.h" />
@@ -213,9 +214,12 @@
     <ClInclude Include="Core\src\Graphics\Shader.h" />
     <ClInclude Include="Core\src\Graphics\ShaderHandler.h" />
     <ClInclude Include="Core\src\Graphics\ShaderReader.h" />
-    <ClInclude Include="Core\src\Graphics\Text\TextHandler.h" />
     <ClInclude Include="Core\src\Graphics\Texture.h" />
     <ClInclude Include="Core\src\Graphics\TextureHandler.h" />
+    <ClInclude Include="Core\src\Graphics\Text\Character.h" />
+    <ClInclude Include="Core\src\Graphics\Text\Font.h" />
+    <ClInclude Include="Core\src\Graphics\Text\FontLoader.h" />
+    <ClInclude Include="Core\src\Graphics\Text\TextHandler.h" />
     <ClInclude Include="Core\src\Graphics\Text\TextRenderer.h" />
     <ClInclude Include="Core\src\Graphics\UniformHandler.h" />
     <ClInclude Include="Core\src\Game\SceneLoader.h" />
