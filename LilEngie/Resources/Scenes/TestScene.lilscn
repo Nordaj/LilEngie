@@ -12,6 +12,7 @@ tex rustTexture "Resources/Textures/Rusty.png"
 //(shd, name, directory)
 shd diffuseShader "Resources/Shaders/Standard/Diffuse.shader"
 shd unlitShader "Resources/Shaders/Standard/Unlit.shader"
+shd textShader "Resources/Shaders/Standard/Text.shader"
 
 //mat command for material
 //(mat, name, shader used, <uniforms>)
@@ -25,6 +26,7 @@ mat rustMaterial diffuseShader
 -tex "uMainTex" rustTexture
 mat unlitMaterial unlitShader
 -col "uColor" 1 1 1 1
+mat textMaterial textShader
 
 //obj command for game object
 //(obj, name, <components>)

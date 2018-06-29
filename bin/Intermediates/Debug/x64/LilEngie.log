@@ -1,7 +1,4 @@
-﻿  FontLoader.cpp
-d:\documents\github\lilengie\lilengie\core\src\graphics\text\fontloader.cpp(43): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-d:\documents\github\lilengie\lilengie\core\src\graphics\text\fontloader.cpp(49): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
-LINK : warning LNK4098: defaultlib 'LIBCMT' conflicts with use of other libs; use /NODEFAULTLIB:library
-LINK : warning LNK4098: defaultlib 'MSVCRT' conflicts with use of other libs; use /NODEFAULTLIB:library
-glew32s.lib(glew.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'glew32s.lib(glew.obj)' or at 'D:\Documents\GitHub\LilEngie\bin\Debug\x64\vc120.pdb'; linking object as if no debug info
+﻿  Renderer.cpp
+d:\documents\github\lilengie\lilengie\core\src\graphics\renderer.cpp(55): warning C4838: conversion from 'int' to 'char' requires a narrowing conversion
+d:\documents\github\lilengie\lilengie\core\src\graphics\renderer.cpp(55): warning C4309: 'initializing': truncation of constant value
   LilEngie.vcxproj -> D:\Documents\GitHub\LilEngie\bin\Debug\x64\LilEngie.exe

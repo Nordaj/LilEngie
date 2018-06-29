@@ -22,4 +22,5 @@ https://steamcommunity.com/profiles/76561198254676201/images/
   <li>Scene loading error handling</li>
   <li>Text rendering</li>
   <li>Specular lighting</li>
+  <li>Don't forget to handle scene cleanup</li>
 </ul>

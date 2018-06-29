@@ -26,6 +26,7 @@ public:
 
 	//Function to bind current shader and pass all uniforms
 	void Prepare(glm::mat4 &mvp, glm::mat4 &model);
+	void Prepare();
 	Shader* GetShader();
 
 	void AddTexture(const char *uniform, Texture texture);

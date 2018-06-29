@@ -17,6 +17,16 @@ int main()
 	SceneLoader::LoadScene("Resources/Scenes/SecondScene.lilscn", &secondScene);
 	SceneManager::SetScene(&mainScene);
 
+	TextRenderer tr = TextRenderer();
+	tr.text = "N";
+	tr.scene = &mainScene;
+	tr.color = glm::vec4(0, 1, 1, 1);
+	tr.fontName = "Ariel";
+	tr.position = glm::vec2(0, 0);
+	tr.materialName = "textMaterial";
+	tr.size = 20;
+	TextHandler::texts.push_back(tr);
+
 	Game::Run(Update);
 	Game::Close();
 

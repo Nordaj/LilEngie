@@ -8,12 +8,18 @@ namespace FontLoader
 	//Single out spaces, no repeats
 	void SpaceErase(std::string *line)
 	{
+		//Erase any double instances of space
 		for (int i = 0; i < line->size(); i++)
 		{
 			if ((*line)[i] == ' ')
 			{
 				if ((*line)[i + 1] == ' ')
+				{
 					line->erase(i, 1);
+					
+					//Prevent from skipping char after erase
+					i--;
+				}
 			}
 		}
 	}
@@ -21,11 +27,20 @@ namespace FontLoader
 	//Clear out all chars that are not numbers
 	void NumOnly(std::string *line)
 	{
-		for (int i = 0; i < line->size(); i++)
+		//Setup copy
+		std::string cpy = *line;
+
+		for (int i = 0; i < cpy.size(); i++)
 		{
-			if ((line[0][i] < '0' || line[0][0] > '9') && line[0][i] != '-' && line[0][i] != '.')
-				line->erase(i, 1);
+			if ((cpy[i] < '0' || cpy[i] > '9') && cpy[i] != '-' && cpy[i] != '.' && cpy[i] != ' ')
+			{
+				cpy.erase(i, 1);
+				i--;
+			}
 		}
+
+		//Assign value
+		*line = cpy;
 	}
 
 	//Split into vector by char
@@ -35,6 +50,12 @@ namespace FontLoader
 
 		//Store remaining params as i cycle through
 		std::string remaining = line;
+
+		//Remove spaces in front/back
+		if (remaining[0] == ' ')
+			remaining.erase(0, 1);
+		if (remaining[remaining.size()] == ' ')
+			remaining.erase(remaining.size(), 1);
 
 		//Loop through each param
 		for (;;)
@@ -79,7 +100,7 @@ namespace FontLoader
 	}
 }
 
-int FontLoader::Load(const char *path, CharMap *map)
+int FontLoader::Load(const char *path, CharMap *map, std::string *texName)
 {
 	//Open file
 	std::ifstream file = std::ifstream(path);
@@ -102,6 +123,25 @@ int FontLoader::Load(const char *path, CharMap *map)
 			//Add to charmap, using ID[0] to get char 
 			char c = std::stoi(params[0]);
 			map->insert(std::make_pair(c, character));
+		}
+		//Check if its that line that tells me where my texture is
+		else if (line.substr(0, 4) == "page")
+		{
+			//Get the file name from that line that tells me the file name
+			int index = line.find('"');
+			std::string textureName = line.substr(index + 1, line.size() - index);
+			textureName.erase(textureName.size() - 1, 1);
+
+			//Copy path param to string and erase file name
+			std::string p = path;
+			int finalSlash = p.find_last_of('/');
+			p.erase(finalSlash + 1, p.size() - finalSlash + 1);
+
+			//Append strings
+			textureName = p + textureName;
+
+			//Assign
+			(*texName) = textureName;
 		}
 	}
 

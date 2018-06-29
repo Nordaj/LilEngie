@@ -50,6 +50,39 @@ void Material::Prepare(glm::mat4 &mvp, glm::mat4 &model)
 		UniformHandler::PassInt(s->GetID(), intIt->first.c_str(), intIt->second);
 }
 
+void Material::Prepare()
+{
+	//Get shader
+	Shader *s = shaderHandler->Get(shader);
+
+	//Use shader
+	s->Use();
+
+	//Pass all textures (a bit more complex than the rest)
+	std::map<std::string, Texture>::iterator texIt;
+	int i = 0;
+	for (texIt = textures.begin(); texIt != textures.end(); texIt++)
+	{
+		UniformHandler::PassTexture(s->GetID(), texIt->first.c_str(), i, texIt->second.GetID());
+		i++;
+	}
+
+	//Pass all colors
+	std::map<std::string, glm::vec4>::iterator colIt;
+	for (colIt = colors.begin(); colIt != colors.end(); colIt++)
+		UniformHandler::PassVec4(s->GetID(), colIt->first.c_str(), colIt->second);
+
+	//Pass all floats
+	std::map<std::string, float>::iterator fIt;
+	for (fIt = floats.begin(); fIt != floats.end(); fIt++)
+		UniformHandler::PassFloat(s->GetID(), fIt->first.c_str(), fIt->second);
+
+	//Pass all ints
+	std::map<std::string, int>::iterator intIt;
+	for (intIt = integers.begin(); intIt != integers.end(); intIt++)
+		UniformHandler::PassInt(s->GetID(), intIt->first.c_str(), intIt->second);
+}
+
 Shader* Material::GetShader()
 {
 	return shaderHandler->Get(shader);

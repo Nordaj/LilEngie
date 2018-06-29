@@ -57,3 +57,18 @@ void MeshRenderer::Draw(glm::mat4 &MVP, glm::mat4 &modelMat)
 	//Draw
 	glDrawElements(GL_TRIANGLES, model.indices.size(), GL_UNSIGNED_INT, nullptr);
 }
+
+void MeshRenderer::Draw()
+{
+	//Set current shader
+	material->Prepare();
+
+	//Setup lighting
+	LightHandler::Prepare(material->GetShader());
+
+	//Bind VAO
+	glBindVertexArray(VAO);
+
+	//Draw
+	glDrawElements(GL_TRIANGLES, model.indices.size(), GL_UNSIGNED_INT, nullptr);
+}

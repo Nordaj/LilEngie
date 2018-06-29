@@ -4,16 +4,22 @@
 #include <Application/Debug.h>
 #include "Texture.h"
 
-Texture::Texture(const char *path, bool repeat, bool filter)
+Texture::Texture(const char *path, bool repeat, bool filter, int *width, int *height)
 {
 	//Setup variables
-	int width;
-	int height;
-	int channels;
+	int locWidth, locHeight;
+	int *widthPtr, *heightPtr;
+	int channels = 1; //Assume 1
+
+	//Assign width and heights depending on if im using params
+	if (width != nullptr) widthPtr = width;
+	else widthPtr = &locWidth;
+	if (height != nullptr) heightPtr = height;
+	else heightPtr = &locHeight;
 
 	//Load texture
 	stbi_set_flip_vertically_on_load(true);
-	unsigned char *data = stbi_load(path, &width, &height, &channels, 0);
+	unsigned char *data = stbi_load(path, widthPtr, heightPtr, &channels, 0);
 
 	//Check for problems (not even sure if it returns nullptr on fail)
 	if (data == nullptr)
@@ -31,7 +37,7 @@ Texture::Texture(const char *path, bool repeat, bool filter)
 	//Setup with opengl
 	glGenTextures(1, &tex);
 	glBindTexture(GL_TEXTURE_2D, tex);
-	glTexImage2D(GL_TEXTURE_2D, 0, format, width, height, 0, format, GL_UNSIGNED_BYTE, data);
+	glTexImage2D(GL_TEXTURE_2D, 0, format, *widthPtr, *heightPtr, 0, format, GL_UNSIGNED_BYTE, data);
 	glGenerateMipmap(GL_TEXTURE_2D);
 
 	if (repeat)

@@ -7,6 +7,7 @@
 #include <Entity/Scene.h>
 #include <Game/Game.h>
 #include <Application/Debug.h>
+#include "Text/TextHandler.h"
 #include "UniformHandler.h"
 #include "MaterialHandler.h"
 #include "MeshRenderer.h"
@@ -45,6 +46,9 @@ void Renderer::Init()
 		Game::Close();
 	}
 
+	//Init text renderer
+	TextHandler::Init();
+
 	//Setup defualt texture
 	glGenTextures(1, &defaultTex);
 	glBindTexture(GL_TEXTURE_2D, defaultTex);
@@ -57,6 +61,9 @@ void Renderer::Init()
 
 	//glPolygonMode(GL_FRONT, GL_LINE);
 	glEnable(GL_DEPTH_TEST);
+
+	//Blending mode
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 }
 
 void Renderer::Render()
@@ -84,6 +91,17 @@ void Renderer::Render()
 			(*scene->GetQueue())[i]->Draw(v, p);
 		}
 	}
+
+	//Transparency stuff
+	glDisable(GL_DEPTH_TEST);
+	glEnable(GL_BLEND);
+
+	//Render text last
+	TextHandler::Render();
+
+	//Undo blending stuff
+	glDisable(GL_BLEND);
+	glEnable(GL_DEPTH_TEST);
 }
 
 void Renderer::Resize(int width, int height)

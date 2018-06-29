@@ -8,5 +8,8 @@ class Font
 {
 public:
 	unsigned int texID;
+	int width, height;
 	std::unordered_map<char, Character> characters;
+
+	void SetupTexture(const char *path);
 };
