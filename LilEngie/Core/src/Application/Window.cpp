@@ -12,7 +12,7 @@ namespace Window
 	//Public
 	int width = 1280;
 	int height = 720;
-	char title[] = "My Game";
+	char title[] = "Lil Engie";
 
 	//Private
 	GLFWwindow *window;

@@ -18,13 +18,13 @@ int main()
 	SceneManager::SetScene(&mainScene);
 
 	TextRenderer tr = TextRenderer();
-	tr.text = "N";
+	tr.text = "This is some sample text...";
 	tr.scene = &mainScene;
 	tr.color = glm::vec4(0, 1, 1, 1);
 	tr.fontName = "Ariel";
-	tr.position = glm::vec2(0, 0);
+	tr.position = glm::vec2(-1, 1);
 	tr.materialName = "textMaterial";
-	tr.size = 20;
+	tr.size = 130;
 	TextHandler::texts.push_back(tr);
 
 	Game::Run(Update);

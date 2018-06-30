@@ -9,7 +9,8 @@
 class TextRenderer
 {
 public:
-	float size = 10;
+	float size = 30;
+	//Use 0-1 scale
 	glm::vec2 position;
 	glm::vec4 color;
 	std::string text;
@@ -21,6 +22,10 @@ public:
 	void Render(Font *font);
 
 private:
-	glm::vec2 ToPixelBased(glm::vec2 normalizedCoord);
-	glm::vec2 ToNormalized(glm::vec2 pixelBasedCoord);
+	enum Axis { X, Y };
+
+	void PrepRender(Font *font);
+	float FntToScreen(float f, Axis axis, Font *font = nullptr);
+	float ConvertFontSizes(float f, Font *font = nullptr);
+	float PixelsToScreenCoords(float f, Axis axis);
 };

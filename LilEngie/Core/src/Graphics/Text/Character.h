@@ -6,6 +6,7 @@ class Character
 public:
 	int posX, posY;
 	int width, height;
+
 	int offsetX, offsetY;
 	int advance;
 };
