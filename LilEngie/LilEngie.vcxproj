@@ -159,6 +159,7 @@
     <ClCompile Include="Core\src\Entity\Components\Mesh.cpp" />
     <ClCompile Include="Core\src\Entity\Components\PointLight.cpp" />
     <ClCompile Include="Core\src\Entity\Components\SpotLight.cpp" />
+    <ClCompile Include="Core\src\Entity\Components\Text.cpp" />
     <ClCompile Include="Core\src\Entity\Components\Transform.cpp" />
     <ClCompile Include="Core\src\Entity\GameObject.cpp" />
     <ClCompile Include="Core\src\Entity\SceneManager.cpp" />
@@ -197,6 +198,7 @@
     <ClInclude Include="Core\src\Entity\Components\Mesh.h" />
     <ClInclude Include="Core\src\Entity\Components\PointLight.h" />
     <ClInclude Include="Core\src\Entity\Components\SpotLight.h" />
+    <ClInclude Include="Core\src\Entity\Components\Text.h" />
     <ClInclude Include="Core\src\Entity\Components\Transform.h" />
     <ClInclude Include="Core\src\Entity\GameObject.h" />
     <ClInclude Include="Core\src\Entity\SceneManager.h" />

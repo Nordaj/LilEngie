@@ -13,6 +13,15 @@ namespace CompConstruct
 		//The GameObject class takes care of deleting the component
 
 		///As of right now, im only using params on what i need to use them for, later i need to add choice to use params or not
+		//I should instead get every param with a param specifier and a value after it. then pass a hash map to interpret instead of vector
+		//This way I can easily keep defaults for when theyre not specified
+		//The syntax would look like:
+		//Position: 0 0 0
+		//Or maybe
+		//Position(0, 0, 0)
+		//IDK man so many options
+
+		//I should also abstract each setup to a components static function
 		
 		if (name == "Camera")
 		{
@@ -111,6 +120,28 @@ namespace CompConstruct
 				std::stof(params[6]),
 				std::stof(params[7]),
 				std::stof(params[8]));
+
+			return t;
+		}
+		else if (name == "Text")
+		{
+			Text *t = new Text(obj);
+
+			t->renderer.size = std::stof(params[0]);
+			t->renderer.position = glm::vec2(
+				std::stof(params[1]),
+				std::stof(params[2])
+			);
+			t->renderer.color = glm::vec4(
+				std::stof(params[3]),
+				std::stof(params[4]),
+				std::stof(params[5]),
+				std::stof(params[6])
+			);
+			t->renderer.text = params[7];//This wont work like you want it to...
+			t->renderer.fontName = params[8];
+			t->renderer.materialName = params[9];
+			t->renderer.scene = obj->GetMyScene();
 
 			return t;
 		}

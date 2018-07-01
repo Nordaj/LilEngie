@@ -25,7 +25,7 @@ public:
 	glm::mat4& GetView();
 
 	//Standard component methods
-	static std::string GetTypeStatic() { return "Mesh"; }
+	static std::string GetTypeStatic() { return "Camera"; }
 	std::string GetType() { return GetTypeStatic(); }
 	void* Get() { return this; }
 };

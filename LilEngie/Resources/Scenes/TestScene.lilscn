@@ -37,6 +37,7 @@ mat textMaterial textShader
 //(PointLight = parameters: (posXYZ), (colorRGB), intensity)
 //(Camera = parameters: fov, near, far)
 //(DirectionalLight = parameters: (dirXYZ), (colorRGB), intensity)
+//(Text = parameters: size, (posXY(0-1)), (colorRGBA), text(no spaces yet), fontName, matName
 obj camObject
 -Transform 0 0 3 0 0 0 1 1 1
 -Camera
@@ -50,8 +51,8 @@ obj gearsObject
 -Transform 0 0 0 30 30 0 0.5 0.5 0.5
 -Mesh gearsModel rustMaterial
 
-//The first object in the second loaded scene has the same transformation and material as the last in this scene but different models
-
+obj textObject
+-Text 50 -0.95f 1 0.5f 1 0 1 TestText Ariel textMaterial
 
 
 

@@ -14,7 +14,7 @@ namespace TextHandler
 	std::unordered_map<std::string, Font*> fonts;
 
 	//Public
-	std::vector<TextRenderer> texts = std::vector<TextRenderer>();
+	std::vector<TextRenderer*> texts = std::vector<TextRenderer*>();
 	unsigned int VBO, IBO, VAO;
 
 	//Private
@@ -69,7 +69,7 @@ void TextHandler::Render()
 {
 	for (int i = 0; i < texts.size(); i++)
 	{
-		Font *f = fonts[texts[i].fontName];
-		texts[i].Render(f);
+		Font *f = fonts[texts[i]->fontName];
+		texts[i]->Render(f);
 	}
 }

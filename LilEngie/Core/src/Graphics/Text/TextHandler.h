@@ -8,7 +8,7 @@
 namespace TextHandler
 {
 	//Public
-	extern std::vector<TextRenderer> texts;
+	extern std::vector<TextRenderer*> texts;
 	extern unsigned int VBO, IBO, VAO;
 
 	void Init();

@@ -6,6 +6,8 @@ void Update();
 Scene mainScene;
 Scene secondScene;
 
+//I need to only render text if it belongs to current scene
+
 int main()
 {
 	Game::Init();
@@ -16,16 +18,6 @@ int main()
 	SceneLoader::LoadScene("Resources/Scenes/TestScene.lilscn", &mainScene);
 	SceneLoader::LoadScene("Resources/Scenes/SecondScene.lilscn", &secondScene);
 	SceneManager::SetScene(&mainScene);
-
-	TextRenderer tr = TextRenderer();
-	tr.text = "This is some sample text...";
-	tr.scene = &mainScene;
-	tr.color = glm::vec4(0, 1, 1, 1);
-	tr.fontName = "Ariel";
-	tr.position = glm::vec2(-1, 1);
-	tr.materialName = "textMaterial";
-	tr.size = 130;
-	TextHandler::texts.push_back(tr);
 
 	Game::Run(Update);
 	Game::Close();

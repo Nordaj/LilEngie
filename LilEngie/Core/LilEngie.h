@@ -34,6 +34,7 @@
 #include "src/Entity/Components/PointLight.h"
 #include "src/Entity/Components/DirectionalLight.h"
 #include "src/Entity/Components/SpotLight.h"
+#include "src/Entity/Components/Text.h"
 
 #include "src/Utilities/ModelLoader.h"
 

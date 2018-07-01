@@ -11,10 +11,10 @@ class TextRenderer
 public:
 	float size = 30;
 	//Use 0-1 scale
-	glm::vec2 position;
-	glm::vec4 color;
-	std::string text;
-	std::string fontName;
+	glm::vec2 position = { -1, 1 };
+	glm::vec4 color = { 1, 1, 1, 1 };
+	std::string text = "Sample Text";
+	std::string fontName = "Ariel";
 	//Don't worry about assigning the font texture. I got you bro
 	std::string materialName;
 	Scene *scene;
