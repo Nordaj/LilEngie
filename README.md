@@ -19,8 +19,8 @@ https://steamcommunity.com/profiles/76561198254676201/images/
   <li>Better input system</li>
   <li>Better manage the scenes</li>
   <li>Use heap for game objects and scenes</li>
-  <li>Scene loading error handling</li>
-  <li>Text rendering</li>
+  <li>Bett scene loading error handling</li>
   <li>Specular lighting</li>
   <li>Don't forget to handle scene cleanup</li>
+  <li>Text cleanup with scenes</li>
 </ul>

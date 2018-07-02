@@ -20,3 +20,5 @@ public:
 	virtual void Start();
 	virtual void Update();
 };
+
+#define COMPONENT_ID(x) public: static std::string GetTypeStatic() { return x; } std::string GetType() { return GetTypeStatic(); } void* Get() { return this; }

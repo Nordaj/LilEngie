@@ -8,6 +8,11 @@ Scene secondScene;
 
 //I need to only render text if it belongs to current scene
 
+//Changes
+///Define for standard component stuff -
+///Much better component parsing for scene loading -
+///Every component has defaults -
+
 int main()
 {
 	Game::Init();

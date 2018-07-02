@@ -6,5 +6,5 @@ mat unlitRed unlit
 -col "uColor" 1 0 0 1
 
 obj cubeObj
--Transform 1 0 0 45 45 0 0.4 0.4 0.4
--Mesh BaseCube unlitRed
+-Transform Rotation(45, 45, 0) Scale(0.4, 0.4, 0.4)
+-Mesh Model(BaseCube) Material(unlitRed)

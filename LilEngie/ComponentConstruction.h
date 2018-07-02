@@ -2,12 +2,15 @@
 
 #include <string>
 #include <vector>
+#include <unordered_map>
 #include "Core/LilEngie.h"
 
 namespace CompConstruct
 {
+	typedef std::unordered_map<std::string, std::vector<std::string>> paramMap;
+
 	//I know this is an odd way to do it, I am all ears for better ideas
-	static Component *Create(std::string &name, GameObject *obj, std::vector<std::string> &params)
+	static Component *Create(std::string &name, GameObject *obj, paramMap *params)
 	{
 		//Each component must be created just like the core components, on the heap
 		//The GameObject class takes care of deleting the component
@@ -25,56 +28,82 @@ namespace CompConstruct
 		
 		if (name == "Camera")
 		{
-			//I wanted camera parameters to be optional
-			if (params.size() == 0)
-				return new Camera(obj);
-
-			//In case i do have params, we can use them
 			Camera *c = new Camera(obj);
-			c->fov = std::stof(params[0]);
-			c->near = std::stof(params[1]);
-			c->far = std::stof(params[2]);
+
+			if (params->find("Fov") != params->end())
+				c->fov = std::stof((*params)["Fov"][0]);
+
+			if (params->find("Near") != params->end())
+				c->near = std::stof((*params)["Near"][0]);
+
+			if (params->find("Far") != params->end())
+				c->far = std::stof((*params)["Far"][0]);
+
 			return c;
 		}
 		else if (name == "DirectionalLight")
 		{
 			DirectionalLight *dl = new DirectionalLight(obj);
 
-			dl->dir = glm::vec3(
-				std::stof(params[0]),
-				std::stof(params[1]),
-				std::stof(params[2]));
+			if (params->find("Direction") != params->end())
+			{
+				dl->dir = glm::vec3(
+					std::stof((*params)["Direction"][0]),
+					std::stof((*params)["Direction"][1]),
+					std::stof((*params)["Direction"][2]));
+			}
 
-			dl->color = glm::vec3(
-				std::stof(params[3]),
-				std::stof(params[4]),
-				std::stof(params[5]));
+			if (params->find("Color") != params->end())
+			{
+				dl->color = glm::vec3(
+					std::stof((*params)["Color"][0]),
+					std::stof((*params)["Color"][1]),
+					std::stof((*params)["Color"][2]));
+			}
 
-			dl->intensity = std::stof(params[6]);
+			if (params->find("Intensity") != params->end())
+				dl->intensity = std::stof((*params)["Intensity"][0]);
 
 			return dl;
 		}
 		else if (name == "Mesh")
 		{
 			Mesh *m = new Mesh(obj);
-			m->Setup(params[0].c_str(), params[1].c_str());
+
+			//Require both model and material
+			if (params->find("Model") == params->end())
+				return nullptr;
+			if (params->find("Material") == params->end())
+				return nullptr;
+
+			m->Setup(
+				(*params)["Model"][0].c_str(), 
+				(*params)["Material"][0].c_str());
+
 			return m;
 		}
 		else if (name == "PointLight")
 		{
 			PointLight *pl = new PointLight(obj);
 
-			pl->pos = glm::vec3(
-				std::stof(params[0]),
-				std::stof(params[1]),
-				std::stof(params[2]));
+			if (params->find("Position") != params->end())
+			{
+				pl->pos = glm::vec3(
+					std::stof((*params)["Position"][0]),
+					std::stof((*params)["Position"][1]),
+					std::stof((*params)["Position"][2]));
+			}
 
-			pl->color = glm::vec3(
-				std::stof(params[3]),
-				std::stof(params[4]),
-				std::stof(params[5]));
+			if (params->find("Color") != params->end())
+			{
+				pl->color = glm::vec3(
+					std::stof((*params)["Color"][0]),
+					std::stof((*params)["Color"][1]),
+					std::stof((*params)["Color"][2]));
+			}
 
-			pl->intensity = std::stof(params[6]);
+			if (params->find("Intensity") != params->end())
+				pl->intensity = std::stof((*params)["Intensity"][0]);
 
 			return pl;
 		}
@@ -82,23 +111,35 @@ namespace CompConstruct
 		{
 			SpotLight *sl = new SpotLight(obj);
 
-			sl->pos = glm::vec3(
-				std::stof(params[0]),
-				std::stof(params[1]),
-				std::stof(params[2]));
+			if (params->find("Position") != params->end())
+			{
+				sl->pos = glm::vec3(
+					std::stof((*params)["Position"][0]),
+					std::stof((*params)["Position"][1]),
+					std::stof((*params)["Position"][2]));
+			}
 
-			sl->dir = glm::vec3(
-				std::stof(params[3]),
-				std::stof(params[4]),
-				std::stof(params[5]));
+			if (params->find("Direction") != params->end())
+			{
+				sl->dir = glm::vec3(
+					std::stof((*params)["Direction"][0]),
+					std::stof((*params)["Direction"][1]),
+					std::stof((*params)["Direction"][2]));
+			}
 
-			sl->color = glm::vec3(
-				std::stof(params[6]),
-				std::stof(params[7]),
-				std::stof(params[8]));
+			if (params->find("Color") != params->end())
+			{
+				sl->color = glm::vec3(
+					std::stof((*params)["Color"][0]),
+					std::stof((*params)["Color"][1]),
+					std::stof((*params)["Color"][2]));
+			}
 
-			sl->intensity = std::stof(params[9]);
-			sl->angle = glm::cos(glm::radians(std::stof(params[10])));
+			if (params->find("Intensity") != params->end())
+				sl->intensity = std::stof((*params)["Intensity"][0]);
+
+			if (params->find("Angle") != params->end())
+				sl->angle = glm::cos(glm::radians(std::stof((*params)["Angle"][0])));
 
 			return sl;
 		}
@@ -106,20 +147,29 @@ namespace CompConstruct
 		{
 			Transform *t = new Transform(obj);
 
-			t->position = glm::vec3(
-				std::stof(params[0]), 
-				std::stof(params[1]), 
-				std::stof(params[2]));
+			if (params->find("Position") != params->end())
+			{
+				t->position = glm::vec3(
+					std::stof((*params)["Position"][0]),
+					std::stof((*params)["Position"][1]),
+					std::stof((*params)["Position"][2]));
+			}
 
-			t->rotation = glm::quat(glm::vec3(
-				glm::radians(std::stof(params[3])), 
-				glm::radians(std::stof(params[4])), 
-				glm::radians(std::stof(params[5]))));
+			if (params->find("Rotation") != params->end())
+			{
+				t->rotation = glm::quat(glm::vec3(
+					glm::radians(std::stof((*params)["Rotation"][0])),
+					glm::radians(std::stof((*params)["Rotation"][1])),
+					glm::radians(std::stof((*params)["Rotation"][2]))));
+			}
 
-			t->scale = glm::vec3(
-				std::stof(params[6]),
-				std::stof(params[7]),
-				std::stof(params[8]));
+			if (params->find("Scale") != params->end())
+			{
+				t->scale = glm::vec3(
+					std::stof((*params)["Scale"][0]),
+					std::stof((*params)["Scale"][1]),
+					std::stof((*params)["Scale"][2]));
+			}
 
 			return t;
 		}
@@ -127,20 +177,41 @@ namespace CompConstruct
 		{
 			Text *t = new Text(obj);
 
-			t->renderer.size = std::stof(params[0]);
-			t->renderer.position = glm::vec2(
-				std::stof(params[1]),
-				std::stof(params[2])
-			);
-			t->renderer.color = glm::vec4(
-				std::stof(params[3]),
-				std::stof(params[4]),
-				std::stof(params[5]),
-				std::stof(params[6])
-			);
-			t->renderer.text = params[7];//This wont work like you want it to...
-			t->renderer.fontName = params[8];
-			t->renderer.materialName = params[9];
+			//Require material 
+			if (params->find("Material") == params->end())
+				return nullptr;
+
+			if (params->find("Size") != params->end())
+				t->renderer.size = std::stof((*params)["Size"][0]);
+
+			if (params->find("Position") != params->end())
+			{
+				t->renderer.position = glm::vec2(
+					std::stof((*params)["Position"][0]),
+					std::stof((*params)["Position"][1])
+				);
+			}
+
+			if (params->find("Color") != params->end())
+			{
+				t->renderer.color = glm::vec4(
+					std::stof((*params)["Color"][0]),
+					std::stof((*params)["Color"][1]),
+					std::stof((*params)["Color"][2]),
+					std::stof((*params)["Color"][3])
+				);
+			}
+
+			if (params->find("Text") != params->end())
+				t->renderer.text = (*params)["Text"][0];
+
+			if (params->find("Font") != params->end())
+				t->renderer.fontName = (*params)["Font"][0];
+
+			if (params->find("Material") != params->end())
+				t->renderer.materialName = (*params)["Material"][0];
+
+
 			t->renderer.scene = obj->GetMyScene();
 
 			return t;

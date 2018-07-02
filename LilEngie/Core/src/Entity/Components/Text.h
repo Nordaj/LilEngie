@@ -12,8 +12,5 @@ public:
 
 	Text(GameObject *obj);
 
-	//Standard component methods
-	static std::string GetTypeStatic() { return "Text"; } 
-	std::string GetType() { return GetTypeStatic(); }
-	void* Get() { return this; }
+	COMPONENT_ID("Text")
 };

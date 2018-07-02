@@ -9,7 +9,7 @@
 class TextRenderer
 {
 public:
-	float size = 30;
+	float size = 50;
 	//Use 0-1 scale
 	glm::vec2 position = { -1, 1 };
 	glm::vec4 color = { 1, 1, 1, 1 };

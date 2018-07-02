@@ -7,11 +7,7 @@
 
 PointLight::PointLight(GameObject *obj)
 	:Component(obj)
-{
-	//Set defaults
-	color = glm::vec3(1, 1, 1);
-	intensity = 1;
-}
+{ }
 
 void PointLight::Start()
 {

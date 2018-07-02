@@ -8,16 +8,13 @@
 class Transform : public Component
 {
 public:
-	glm::vec3 position;
-	glm::vec3 scale;
-	glm::quat rotation;
+	glm::vec3 position = { 0, 0, 0 };
+	glm::vec3 scale = { 1, 1, 1 };
+	glm::quat rotation = glm::quat(1, 0, 0, 0);
 
 	Transform(GameObject *obj);
 
 	glm::mat4 GetModel();
 
-	//Standard component methods
-	static std::string GetTypeStatic() { return "Transform"; }
-	std::string GetType() { return GetTypeStatic(); }
-	void* Get() { return this; }
+	COMPONENT_ID("Transform")
 };

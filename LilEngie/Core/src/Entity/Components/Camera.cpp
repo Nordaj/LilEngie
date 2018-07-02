@@ -17,10 +17,6 @@ Camera::Camera(GameObject *obj)
 	//Keep track of transform
 	t = (Transform*) obj->GetComponent("Transform");
 
-	fov = 60;
-	near = 0.1f;
-	far = 500;
-
 	//Set myself as current if there is none
 	if (obj->GetMyScene()->GetCam() == nullptr)
 		SetCurrent();

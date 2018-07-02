@@ -6,9 +6,7 @@
 
 Transform::Transform(GameObject *obj)
 	:Component(obj)
-{
-	scale = glm::vec3(1, 1, 1);
-}
+{ }
 
 glm::mat4 Transform::GetModel()
 {

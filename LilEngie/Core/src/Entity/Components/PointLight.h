@@ -7,15 +7,12 @@
 class PointLight : public Component
 {
 public:
-	glm::vec3 pos;
-	glm::vec3 color;
-	float intensity;
+	glm::vec3 pos = { 0, 0, 0 };
+	glm::vec3 color = { 1, 1, 1 };
+	float intensity = 1;
 
 	PointLight(GameObject *obj);
 	void Start();
 
-	//Standard component methods
-	static std::string GetTypeStatic() { return "PointLight"; }
-	std::string GetType() { return GetTypeStatic(); }
-	void* Get() { return this; }
+	COMPONENT_ID("PointLight")
 };

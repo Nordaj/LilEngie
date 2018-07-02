@@ -6,17 +6,14 @@
 class SpotLight : public Component
 {
 public:
-	glm::vec3 pos;
-	glm::vec3 dir;
-	glm::vec3 color;
-	float intensity;
-	float angle;
+	glm::vec3 pos = { 0, 0, 0 };
+	glm::vec3 dir = { 0, 0, -1 };
+	glm::vec3 color = { 1, 1, 1 };
+	float intensity = 1;
+	float angle = glm::cos(glm::radians(10.0f));
 
 	SpotLight(GameObject *obj);
 	void Start();
 
-	//Standard component methods
-	static std::string GetTypeStatic() { return "SpotLight"; }
-	std::string GetType() { return GetTypeStatic(); }
-	void* Get() { return this; }
+	COMPONENT_ID("SpotLight")
 };

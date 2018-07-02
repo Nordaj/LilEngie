@@ -13,9 +13,9 @@ private:
 	Transform *t;
 
 public:
-	float fov;
-	float near;
-	float far;
+	float fov = 60;
+	float near = 0.1f;
+	float far = 500;
 
 	Camera(GameObject *obj);
 
@@ -24,8 +24,5 @@ public:
 	glm::mat4& GetProjection();
 	glm::mat4& GetView();
 
-	//Standard component methods
-	static std::string GetTypeStatic() { return "Camera"; }
-	std::string GetType() { return GetTypeStatic(); }
-	void* Get() { return this; }
+	COMPONENT_ID("Camera")
 };

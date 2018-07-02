@@ -1,6 +1,7 @@
 #include <string>
 #include <fstream>
 #include <vector>
+#include <unordered_map>
 #include <Graphics/ModelHandler.h>
 #include <Graphics/Model.h>
 #include <Graphics/Texture.h>
@@ -52,6 +53,41 @@ std::vector<std::string> Split(std::string &ref, char refChar)
 	return val;
 }
 
+std::vector<std::string> SplitParams(std::string &ref)
+{
+	bool inParam = false;
+	int prev = -1;
+	std::string rem = ref; //Stores remaining
+	sVec params;
+
+	for (int i = 0; i < ref.size(); i++)
+	{
+		//Keep track of whether im in a param
+		if (rem[i] == '(')
+			inParam = true;
+		else if (rem[i] == ')')
+			inParam = false;
+
+		//Split if im a space
+		if ((rem[i] == ' ' || i == rem.size() - 1) && !inParam)
+		{
+			std::string param = rem.substr(prev + 1, i + 1 - (prev + 1));
+			prev = i;
+
+			//Remove space if its there
+			if (param[param.size() - 1] == ' ')
+				param.erase(param.size() - 1, 1);
+
+			params.push_back(param);
+		}
+	}
+
+	if (inParam)
+		ERROR(("You have a problem with your parenthesis: \n" + ref).c_str());
+
+	return params;
+}
+
 void Erase(std::string &ref, char c)
 {
 	for (;;)
@@ -62,6 +98,18 @@ void Erase(std::string &ref, char c)
 			break;
 
 		ref.erase(index, 1);
+	}
+}
+
+void GetNamesNValues(sVec *names, sVec *values, sVec &splits)
+{
+	for (int i = 0; i < splits.size(); i++)
+	{
+		int index = splits[i].find('(');
+		std::string name = splits[i].substr(0, index);
+		std::string vals = splits[i].substr(index + 1, splits[i].size() - (index + 2));
+		names->push_back(name);
+		values->push_back(vals);
 	}
 }
 
@@ -161,14 +209,31 @@ void UseObjectDash(std::string &line, std::string &passed, Scene *scene)
 	//Get last obj string
 	std::string last = Split(passed, ' ')[1];
 
-	//Filter command parameters
-	sVec splits = Split(line, ' ');
+	//Split up parameters
+	sVec splits = SplitParams(line);
 	std::string type = splits[0];
 	Erase(type, '-');
 	splits.erase(splits.begin());
 
+	//Split param names and values
+	sVec names;
+	sVec values;
+	GetNamesNValues(&names, &values, splits);
+
+	//Add stuff to map
+	std::unordered_map<std::string, sVec> parameters;
+	for (int i = 0; i < names.size(); i++)
+	{
+		sVec vals = Split(values[i], ',');
+		parameters.insert(std::make_pair(names[i], vals));
+	}
+
 	//Call component listing
-	CompConstruct::Create(type, scene->GetObject(last), splits);
+	void *t = CompConstruct::Create(type, scene->GetObject(last), &parameters);
+
+	//Error handling (not great but can hopefully kinda work for now)
+	if (t == nullptr)
+		ERROR(("Could not create component with: \n" + line).c_str());
 }
 
 bool SceneLoader::LoadScene(const char *path, Scene *scene)
@@ -202,7 +267,7 @@ bool SceneLoader::LoadScene(const char *path, Scene *scene)
 			passedLine = line;
 			ReadMaterialCmd(line, scene);
 		}
-		else if (line.substr(0, 3) == "obj")
+		else if (line.substr(0, 3) == "obj")	//Object
 		{
 			passedLine = line;
 			ReadObjectCmd(line, scene);

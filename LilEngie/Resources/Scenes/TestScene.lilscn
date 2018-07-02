@@ -30,29 +30,40 @@ mat textMaterial textShader
 
 //obj command for game object
 //(obj, name, <components>)
-//(put in next lines signified by "-", component type, seperate parameters by space)
-//(Only supports transform/mesh/camera, not sure what to do about user created components)
-//(Transform = parameters: (posXYZ), (eulerXYZ), (scaleXYZ))
-//(Mesh = parameters: model, material))
-//(PointLight = parameters: (posXYZ), (colorRGB), intensity)
-//(Camera = parameters: fov, near, far)
-//(DirectionalLight = parameters: (dirXYZ), (colorRGB), intensity)
-//(Text = parameters: size, (posXY(0-1)), (colorRGBA), text(no spaces yet), fontName, matName
+//(put in next lines signified by "-", component type, parameters)
+
+//===COMPONENT PARAMETER LIST===//
+//-Transform Position(X,Y,Z), Rotation(Pitch,Yaw,Roll), Scale(X,Y,Z)
+//-Mesh Model(name), Material(name)
+//-PointLight Position(X,Y,Z), Color(R,G,B), Intensity(value)
+//-Camera Fov(value), Near(value), Far(value)
+//-DirectionalLight Direction(X,Y,Z), Color(R,G,B), Intensity(value)
+//-Text size, Position(X,Y), Color(R,G,B,A), Text(value), Font(value), Material(value)
 obj camObject
--Transform 0 0 3 0 0 0 1 1 1
+-Transform Position(0, 0, 3)
 -Camera
 
 obj lightObject
--Transform 0 0 2 45 45 45 0.05f 0.05f 0.05f
--Mesh BaseCube unlitMaterial
--PointLight 0 0 2 1 1 1 0.5
+-Transform Position(0, 0, 2) Rotation(45, 45, 45) Scale(0.05f, 0.05f, 0.05f)
+-Mesh Model(BaseCube) Material(unlitMaterial)
+-PointLight Position(0, 0, 2) Color(1, 1, 1, 0.5)
 
 obj gearsObject
--Transform 0 0 0 30 30 0 0.5 0.5 0.5
--Mesh gearsModel rustMaterial
+-Transform Rotation(30, 30, 0) Scale(0.5, 0.5, 0.5)
+-Mesh Model(gearsModel) Material(rustMaterial)
 
 obj textObject
--Text 50 -0.95f 1 0.5f 1 0 1 TestText Ariel textMaterial
+-Text Text(This is Lil Engie. A 3D engine made by Jordan Chapman.) Material(textMaterial)
+
+
+
+
+
+
+
+
+
+
 
 
 

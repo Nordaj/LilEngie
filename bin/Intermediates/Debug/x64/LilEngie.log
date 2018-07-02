@@ -1,2 +1,39 @@
-﻿  Main.cpp
+﻿  Window.cpp
+  Component.cpp
+  Camera.cpp
+  DirectionalLight.cpp
+  Mesh.cpp
+  PointLight.cpp
+  SpotLight.cpp
+  Text.cpp
+  Transform.cpp
+  GameObject.cpp
+  Scene.cpp
+  SceneManager.cpp
+  Game.cpp
+  SceneLoader.cpp
+d:\documents\github\lilengie\lilengie\core\src\game\sceneloader.cpp(32): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+d:\documents\github\lilengie\lilengie\core\src\game\sceneloader.cpp(38): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+d:\documents\github\lilengie\lilengie\core\src\game\sceneloader.cpp(96): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+d:\documents\github\lilengie\lilengie\core\src\game\sceneloader.cpp(108): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  LightHandler.cpp
+  MeshRenderer.cpp
+d:\documents\github\lilengie\lilengie\core\src\graphics\meshrenderer.cpp(58): warning C4267: 'argument': conversion from 'size_t' to 'GLsizei', possible loss of data
+d:\documents\github\lilengie\lilengie\core\src\graphics\meshrenderer.cpp(73): warning C4267: 'argument': conversion from 'size_t' to 'GLsizei', possible loss of data
+  Renderer.cpp
+d:\documents\github\lilengie\lilengie\core\src\graphics\renderer.cpp(55): warning C4838: conversion from 'int' to 'char' requires a narrowing conversion
+d:\documents\github\lilengie\lilengie\core\src\graphics\renderer.cpp(55): warning C4309: 'initializing': truncation of constant value
+  TextHandler.cpp
+  TextRenderer.cpp
+d:\documents\github\lilengie\lilengie\core\src\graphics\text\textrenderer.cpp(41): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+d:\documents\github\lilengie\lilengie\core\src\graphics\text\textrenderer.cpp(42): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+d:\documents\github\lilengie\lilengie\core\src\graphics\text\textrenderer.cpp(43): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+d:\documents\github\lilengie\lilengie\core\src\graphics\text\textrenderer.cpp(44): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+d:\documents\github\lilengie\lilengie\core\src\graphics\text\textrenderer.cpp(48): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+d:\documents\github\lilengie\lilengie\core\src\graphics\text\textrenderer.cpp(68): warning C4267: 'argument': conversion from 'size_t' to 'GLsizei', possible loss of data
+  Main.cpp
+  Generating Code...
+d:\documents\github\lilengie\lilengie\core\src\graphics\text\textrenderer.cpp(104): warning C4715: 'TextRenderer::ConvertFontSizes': not all control paths return a value
+d:\documents\github\lilengie\lilengie\componentconstruction.h(219): warning C4715: 'CompConstruct::Create': not all control paths return a value
+d:\documents\github\lilengie\lilengie\core\src\entity\components\mesh.cpp(56): warning C4172: returning address of local variable or temporary
   LilEngie.vcxproj -> D:\Documents\GitHub\LilEngie\bin\Debug\x64\LilEngie.exe

@@ -90,7 +90,7 @@ float TextRenderer::FntToScreen(float f, Axis axis, Font *font)
 {
 	float r;
 	r = ConvertFontSizes(f, font);
-	r = PixelsToScreenCoords(f, axis);
+	r = PixelsToScreenCoords(r, axis);
 	return r;
 }
 

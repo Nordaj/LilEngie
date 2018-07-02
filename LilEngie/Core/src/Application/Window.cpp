@@ -29,14 +29,7 @@ void Window::Init()
 {
 	//Init glfw
 	if (!glfwInit())
-	{
 		ERROR("Could not init glfw");
-		std::cin.get();
-		//TODO: I dont want to go up a level here, 
-		//need better error handling
-		Game::Close();
-		return;
-	}
 
 	//Create window
 	window = glfwCreateWindow(width, height, title, NULL, NULL);

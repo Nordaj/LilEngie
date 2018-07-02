@@ -9,15 +9,12 @@
 class DirectionalLight : public Component
 {
 public:
-	glm::vec3 dir;
-	glm::vec3 color;
-	float intensity;
+	glm::vec3 dir = { 0, 0, -1 };
+	glm::vec3 color = { 1, 1, 1 };
+	float intensity = 1;
 
 	DirectionalLight(GameObject *obj);
 	void Start();
 
-	//Standard component methods
-	static std::string GetTypeStatic() { return "DirectionalLight"; }
-	std::string GetType() { return GetTypeStatic(); }
-	void* Get() { return this; }
+	COMPONENT_ID("DirectionalLight")
 };
