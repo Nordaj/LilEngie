@@ -9,6 +9,7 @@
 #include <Graphics/ModelHandler.h>
 #include <Graphics/TextureHandler.h>
 #include <Graphics/MaterialHandler.h>
+#include <Graphics/Text/TextHandler.h>
 #include "GameObject.h"
 
 class Scene
@@ -23,6 +24,7 @@ public:
 	ModelHandler models;
 	TextureHandler textures;
 	MaterialHandler materials;
+	TextHandler texts;
 
 	Scene();
 

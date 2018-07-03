@@ -97,7 +97,7 @@ void Renderer::Render()
 	glEnable(GL_BLEND);
 
 	//Render text last
-	TextHandler::Render();
+	scene->texts.Render();
 
 	//Undo blending stuff
 	glDisable(GL_BLEND);

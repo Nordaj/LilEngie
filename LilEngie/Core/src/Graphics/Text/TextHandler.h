@@ -1,19 +1,27 @@
 #pragma once
 
 #include <vector>
-#include "TextRenderer.h"
 #include <Graphics/MeshRenderer.h>
 
-//Takes care of all fonts, textrenderers, and loading
-namespace TextHandler
-{
-	//Public
-	extern std::vector<TextRenderer*> texts;
-	extern unsigned int VBO, IBO, VAO;
+class Font;
+class TextRenderer;
 
-	void Init();
+//Takes care of all fonts, textrenderers, and loading
+class TextHandler
+{
+private:
+	std::unordered_map<std::string, Font*> fonts;
+
+public:
+	std::vector<TextRenderer*> texts;
+	static unsigned int VBO, IBO, VAO;
+
+	TextHandler();
 	void AddFont(const char *name, const char *font);
 	void Render();
-}
 
-namespace Texts = TextHandler;
+	static void Init();
+
+private:
+	static void SetupCharQuad();
+};

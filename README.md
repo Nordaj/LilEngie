@@ -16,11 +16,10 @@ https://steamcommunity.com/profiles/76561198254676201/images/
 
 <h2>Plans</h2>
 <ul>
+  <li>Specular lighting (with specular maps)</li>
+  <li>Normal maps</li>
   <li>Better input system</li>
-  <li>Better manage the scenes</li>
-  <li>Use heap for game objects and scenes</li>
-  <li>Bett scene loading error handling</li>
-  <li>Specular lighting</li>
-  <li>Don't forget to handle scene cleanup</li>
-  <li>Text cleanup with scenes</li>
+  <li>Improve scene loading error handling</li>
+  <li>Improve scene management</li>
+  <li>Scene unloading</li>
 </ul>

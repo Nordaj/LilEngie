@@ -11,5 +11,6 @@ public:
 	int width, height;
 	std::unordered_map<char, Character> characters;
 
+	Font() {}
 	void SetupTexture(const char *path);
 };
