@@ -30,7 +30,7 @@ void TextHandler::AddFont(const char *name, const char *path)
 	std::string texName;
 
 	Font *font = new Font();
-	FontLoader::Load(path, &(font->characters), &texName);
+	FontLoader::Load(path, &(font->characters), &texName, &font->size);
 	font->SetupTexture(texName.c_str());
 
 	fonts.insert(std::make_pair(name, font));

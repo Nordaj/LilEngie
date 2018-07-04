@@ -1,2 +1,9 @@
-﻿  Main.cpp
+﻿  TextRenderer.cpp
+d:\documents\github\lilengie\lilengie\core\src\graphics\text\textrenderer.cpp(41): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+d:\documents\github\lilengie\lilengie\core\src\graphics\text\textrenderer.cpp(42): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+d:\documents\github\lilengie\lilengie\core\src\graphics\text\textrenderer.cpp(43): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+d:\documents\github\lilengie\lilengie\core\src\graphics\text\textrenderer.cpp(44): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+d:\documents\github\lilengie\lilengie\core\src\graphics\text\textrenderer.cpp(48): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+d:\documents\github\lilengie\lilengie\core\src\graphics\text\textrenderer.cpp(68): warning C4267: 'argument': conversion from 'size_t' to 'GLsizei', possible loss of data
+d:\documents\github\lilengie\lilengie\core\src\graphics\text\textrenderer.cpp(104): warning C4715: 'TextRenderer::ConvertFontSizes': not all control paths return a value
   LilEngie.vcxproj -> D:\Documents\GitHub\LilEngie\bin\Debug\x64\LilEngie.exe

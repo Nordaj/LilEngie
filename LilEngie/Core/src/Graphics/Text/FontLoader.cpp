@@ -1,6 +1,7 @@
 #include <fstream>
 #include <vector>
 #include <string>
+#include <Application/Debug.h>
 #include "FontLoader.h"
 
 namespace FontLoader
@@ -51,10 +52,10 @@ namespace FontLoader
 		//Store remaining params as i cycle through
 		std::string remaining = line;
 
-		//Remove spaces in front/back
-		if (remaining[0] == ' ')
+		//Remove chars in front/back
+		if (remaining[0] == refChar)
 			remaining.erase(0, 1);
-		if (remaining[remaining.size()] == ' ')
+		if (remaining[remaining.size()] == refChar)
 			remaining.erase(remaining.size(), 1);
 
 		//Loop through each param
@@ -98,9 +99,19 @@ namespace FontLoader
 		c.advance = std::stoi(numbers[7]);
 		return c;
 	}
+
+	//Get font size from info line
+	int GetSize(std::string &ref)
+	{
+		//Definitely not an efficient method. Optimize later
+		std::string cpy = ref;
+		std::vector<std::string> nums = Split(cpy, ' ');
+		NumOnly(&nums[2]);
+		return std::stoi(nums[2]);
+	}
 }
 
-int FontLoader::Load(const char *path, CharMap *map, std::string *texName)
+int FontLoader::Load(const char *path, CharMap *map, std::string *texName, float *fontSize)
 {
 	//Open file
 	std::ifstream file = std::ifstream(path);
@@ -142,6 +153,10 @@ int FontLoader::Load(const char *path, CharMap *map, std::string *texName)
 
 			//Assign
 			(*texName) = textureName;
+		}
+		else if (line.substr(0, 4) == "info")
+		{
+			*fontSize = GetSize(line);
 		}
 	}
 

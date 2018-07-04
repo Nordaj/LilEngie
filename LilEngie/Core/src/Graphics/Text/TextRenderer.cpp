@@ -38,14 +38,14 @@ void TextRenderer::Render(Font *font)
 		//Calculate rect for positions
 		glm::vec4 pRect = 
 		{ //X, Y, Width, Height
-			cursor	   + FntToScreen(c->offsetX, Axis::X),
-			position.y - FntToScreen(c->offsetY, Axis::Y),
-			FntToScreen(c->width,  Axis::X),
-			FntToScreen(c->height, Axis::Y)
+			cursor	   + FntToScreen(c->offsetX, Axis::X, font),
+			position.y - FntToScreen(c->offsetY, Axis::Y, font),
+			FntToScreen(c->width,  Axis::X, font),
+			FntToScreen(c->height, Axis::Y, font)
 		};
 
 		//Move cursor
-		cursor += FntToScreen(c->advance, Axis::X);
+		cursor += FntToScreen(c->advance, Axis::X, font);
 
 		//Get new verts I want to replace VBO with
 		float newVerts[] =
@@ -98,7 +98,7 @@ float TextRenderer::FntToScreen(float f, Axis axis, Font *font)
 float TextRenderer::ConvertFontSizes(float f, Font *font)
 {
 	if (font == nullptr) //Assume size = 82.0f
-		return (f / 82.0f) * size;
+		return (f / font->size) * size;
 	//else //Use ref font size from font
 	//TODO
 }

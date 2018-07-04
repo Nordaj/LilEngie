@@ -7,9 +7,8 @@ Scene *mainScene;
 Scene *secondScene;
 
 //Changes
-///TextHandler is a class, part of scenes -
-///Scenes/objects now use heap -
-///Text only render if its current scene -
+///reference font size is now interpreted -
+///use distance fields for any effects
 
 int main()
 {
