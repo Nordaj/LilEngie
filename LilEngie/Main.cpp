@@ -7,8 +7,7 @@ Scene *mainScene;
 Scene *secondScene;
 
 //Changes
-///reference font size is now interpreted -
-///use distance fields for any effects
+///use distance fields for text effects -
 
 int main()
 {
@@ -17,8 +16,8 @@ int main()
 	mainScene = new Scene();
 	secondScene = new Scene();
 
-	Renderer::SetClearColor(0.05f, 0.05f, 0.05f, 1);
-	LightHandler::SetAmbient(glm::vec3(0.05f, 0.05f, 0.05f));
+	Renderer::SetClearColor(0.1, 0.1, 0.1, 1);
+	LightHandler::SetAmbient(glm::vec3(0.2, 0.2, 0.2));
 
 	SceneLoader::LoadScene("Resources/Scenes/TestScene.lilscn", mainScene);
 	SceneLoader::LoadScene("Resources/Scenes/SecondScene.lilscn", secondScene);

@@ -17,6 +17,11 @@ void main()
 
 uniform vec4 uColor;
 uniform sampler2D uCharacters;
+uniform float uCutoff;
+uniform float uBorderWidth;
+uniform vec4 uBorderColor;
+uniform float uGlowAmount;
+uniform vec4 uGlowColor;
 
 in vec2 iUv;
 
@@ -24,7 +29,19 @@ out vec4 color;
 
 void main()
 {
-	float character = texture(uCharacters, iUv).r;
+	vec4 c = uColor;
 
-	color = uColor * character;
+	float character = texture(uCharacters, iUv).a;
+
+	if (character < uCutoff)
+	{
+		if (character > uCutoff - uBorderWidth)
+			c = uBorderColor;
+		else
+			c = vec4(0, 0, 0, 0);
+
+		c += uGlowColor * uGlowAmount * character;
+	}
+
+	color = c;
 }

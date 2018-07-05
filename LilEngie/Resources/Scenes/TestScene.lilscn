@@ -27,6 +27,11 @@ mat rustMaterial diffuseShader
 mat unlitMaterial unlitShader
 -col "uColor" 1 1 1 1
 mat textMaterial textShader
+-flt "uCutoff" 0.5f
+-flt "uBorderWidth" 0.2f
+-col "uBorderColor" 1 1 1 1
+//-flt "uGlowAmount" 2
+//-col "uGlowColor" 0 1 0 1
 
 //obj command for game object
 //(obj, name, <components>)
@@ -53,7 +58,7 @@ obj gearsObject
 -Mesh Model(gearsModel) Material(rustMaterial)
 
 obj textObject
--Text Text(This is Lil Engie. A 3D engine made by Jordan Chapman.) Material(textMaterial)
+-Text Text(This is Lil Engie. A 3D engine made by Jordan Chapman.) Material(textMaterial) Color(0, 0, 0, 0)
 
 
 
