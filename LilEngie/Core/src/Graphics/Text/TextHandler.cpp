@@ -1,5 +1,5 @@
 #include <string>
-#include <unordered_map>
+#include <map>
 #include <vector>
 #include <GL/glew.h>
 #include <Graphics/BaseMeshes.h>
@@ -69,4 +69,15 @@ void TextHandler::SetupCharQuad()
 
 	glEnableVertexAttribArray(1);
 	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 5, (void*)(sizeof(float) * 3));
+}
+
+void TextHandler::Clean()
+{
+	//Free memory
+	std::map<std::string, Font*>::iterator it;
+	for (it = fonts.begin(); it != fonts.end(); it++)
+		delete it->second;
+
+	//Clear map
+	fonts.clear();
 }

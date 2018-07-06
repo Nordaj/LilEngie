@@ -12,3 +12,8 @@ void TextureHandler::AddTex(std::string name, Texture tex)
 {
 	textures.insert(std::make_pair(name, tex));
 }
+
+void TextureHandler::Clean()
+{
+	textures.clear();
+}

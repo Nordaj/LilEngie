@@ -15,11 +15,12 @@
 class Scene
 {
 private:
-	std::map<std::string, GameObject> objects;
+	std::map<std::string, GameObject*> objects;
 	std::vector<Mesh*> renderQueue;
 	Camera *currentCamera;
 
 public:
+	bool isLoaded;
 	ShaderHandler shaders;
 	ModelHandler models;
 	TextureHandler textures;
@@ -27,6 +28,7 @@ public:
 	TextHandler texts;
 
 	Scene();
+	~Scene();
 
 	GameObject *AddObject(std::string name);
 	GameObject *GetObject(std::string name);
@@ -36,5 +38,10 @@ public:
 	std::vector<Mesh*> *GetQueue();
 	void Start();
 	void Update();
+	//Closing a scene dumps any resources from being currently used. 
+	//This does not unload. To unload a scene, use Unload
 	void Close(); 
+	//Unloading a scene closes then cleans up any loaded resources and objects.
+	//In order to use the scene again, you will need to call SceneLoader::LoadScene()
+	void Unload();
 };

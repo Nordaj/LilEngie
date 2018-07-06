@@ -80,3 +80,8 @@ Shader *ShaderHandler::Get(std::string name)
 {
 	return &shaders[name];
 }
+
+void ShaderHandler::Clean()
+{
+	shaders.clear();
+}

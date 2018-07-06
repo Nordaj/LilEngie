@@ -14,4 +14,5 @@ public:
 	~MaterialHandler();
 	void Add(std::string name, std::string shader, ShaderHandler *shaderHandler);
 	Material* Get(std::string mat);
+	void Clean();
 };

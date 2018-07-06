@@ -21,6 +21,7 @@ https://steamcommunity.com/profiles/76561198254676201/images/
   <li>Better input system</li>
   <li>Improve scene loading error handling</li>
   <li>Improve scene management</li>
-  <li>Scene unloading</li>
   <li>Handle fonts in scenes like other resources<li>
+  <li>Make sure I have no memory issues</li>
+  <li>Make ambient lighting a part of the scene</li>
 </ul>

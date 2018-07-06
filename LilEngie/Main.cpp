@@ -2,56 +2,97 @@
 #include <string>
 #include "Core/LilEngie.h"
 
+//FIX BEFORE MIDNIGHT
+
 void Update();
-Scene *mainScene;
-Scene *secondScene;
+Scene *mainScene = nullptr;
+Scene *secondScene = nullptr;
+bool space;
 
 //Changes
-///use distance fields for text effects -
+///
 
 int main()
 {
 	Game::Init();
 
-	mainScene = new Scene();
-	secondScene = new Scene();
-
 	Renderer::SetClearColor(0.1, 0.1, 0.1, 1);
 	LightHandler::SetAmbient(glm::vec3(0.2, 0.2, 0.2));
 
+	mainScene = new Scene();
+	secondScene = new Scene();
+
 	SceneLoader::LoadScene("Resources/Scenes/TestScene.lilscn", mainScene);
-	SceneLoader::LoadScene("Resources/Scenes/SecondScene.lilscn", secondScene);
 	SceneManager::SetScene(mainScene);
 
 	Game::Run(Update);
 	Game::Close();
 
-	//A way to automate this would be nice...
-	delete mainScene;
-	delete secondScene;
+	if (mainScene != nullptr)
+	{
+		mainScene->Unload();
+		delete mainScene;
+	}
+
+	if (secondScene != nullptr)
+	{
+		secondScene->Unload();
+		delete secondScene;
+	}
 
 	return 0;
 }
 
 void Update()
 {
+	//Scene toggling
 	if (Input::GetKey(Key::Space))
 	{
-		//Swith to second if not on
-		if (SceneManager::GetCurrent() != secondScene)
-			SceneManager::SetScene(secondScene);
+		if (!space)
+		{
+			if (SceneManager::GetCurrent() == mainScene)
+			{
+				//Clean up other scene
+				mainScene->Unload();
+				delete mainScene;
+				mainScene = nullptr;
+
+				//Setup new scene
+				secondScene = new Scene();
+				SceneLoader::LoadScene("Resources/Scenes/SecondScene.lilscn", secondScene);
+				SceneManager::SetScene(secondScene);
+			}
+			else if (SceneManager::GetCurrent() == secondScene)
+			{
+				//Clean up other scene
+				secondScene->Unload();
+				delete secondScene;
+				secondScene = nullptr;
+
+				//Setup new scene
+				mainScene = new Scene();
+				SceneLoader::LoadScene("Resources/Scenes/TestScene.lilscn", mainScene);
+				SceneManager::SetScene(mainScene);
+			}
+		}
+		else
+		{
+			space = true;
+		}
 	}
-	else if (Input::GetKey(Key::A))
+	else
 	{
-		//Switch to main if not on
-		if (SceneManager::GetCurrent() != mainScene)
-			SceneManager::SetScene(mainScene);
+		space = false;
 	}
 
+	//Close on C
 	if (Input::GetKey(Key::C))
 		Game::Close();
 
-	//Spin
-	Transform *t = (Transform*)mainScene->GetObject("gearsObject")->GetComponent("Transform");
-	t->rotation = glm::rotate(t->rotation, glm::radians(0.1f), glm::vec3(0, 1, 0));
+	//Spin if im in main scene
+	if (SceneManager::GetCurrent() == mainScene)
+	{
+		Transform *t = (Transform*)mainScene->GetObject("gearsObject")->GetComponent("Transform");
+		t->rotation = glm::rotate(t->rotation, glm::radians(0.1f), glm::vec3(0, 1, 0));
+	}
 }

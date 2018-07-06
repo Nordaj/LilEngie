@@ -238,6 +238,9 @@ void UseObjectDash(std::string &line, std::string &passed, Scene *scene)
 
 bool SceneLoader::LoadScene(const char *path, Scene *scene)
 {
+	//Construct scene
+	//scene = new Scene();
+
 	//Open file
 	std::ifstream file = std::ifstream(path);
 	if (!file.is_open())
@@ -280,6 +283,9 @@ bool SceneLoader::LoadScene(const char *path, Scene *scene)
 				UseObjectDash(line, passedLine, scene);
 		}
 	}
+
+	//Set scene as loaded
+	scene->isLoaded = true;
 
 	return true;
 }

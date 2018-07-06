@@ -27,6 +27,8 @@ Mesh::Mesh(GameObject *obj)
 
 void Mesh::Setup(const char *model, const char *material)
 {
+	obj->GetMyScene()->materials.Get(material);
+
 	//Setup mesh renderer
 	meshRenderer.Setup(
 		obj->GetMyScene()->models.Get(model)->vertices, 

@@ -12,4 +12,5 @@ private:
 public:
 	Texture *Get(std::string name);
 	void AddTex(std::string name, Texture tex);
+	void Clean();
 };

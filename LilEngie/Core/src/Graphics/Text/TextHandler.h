@@ -1,6 +1,7 @@
 #pragma once
 
 #include <vector>
+#include <map>
 #include <Graphics/MeshRenderer.h>
 
 class Font;
@@ -10,7 +11,7 @@ class TextRenderer;
 class TextHandler
 {
 private:
-	std::unordered_map<std::string, Font*> fonts;
+	std::map<std::string, Font*> fonts;
 
 public:
 	std::vector<TextRenderer*> texts;
@@ -19,6 +20,7 @@ public:
 	TextHandler();
 	void AddFont(const char *name, const char *font);
 	void Render();
+	void Clean();
 
 	static void Init();
 

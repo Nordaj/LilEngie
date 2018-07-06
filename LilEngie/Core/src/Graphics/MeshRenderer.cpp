@@ -9,7 +9,7 @@
 #include "Shader.h"
 #include "MeshRenderer.h"
 
-void MeshRenderer::Setup(std::vector<float> v, std::vector<unsigned int> i, Material *mat)
+void MeshRenderer::Setup(std::vector<float> &v, std::vector<unsigned int> &i, Material *mat)
 {
 	//Assign values
 	material = mat;

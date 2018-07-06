@@ -15,4 +15,5 @@ public:
 
 	Model *Get(std::string name);
 	void AddModel(std::string name, Model *model);
+	void Clean();
 };

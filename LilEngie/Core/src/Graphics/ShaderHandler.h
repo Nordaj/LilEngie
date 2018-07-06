@@ -13,6 +13,7 @@ private:
 public:
 	void Create(std::string name, const char *path);
 	Shader *Get(std::string name);
+	void Clean();
 
 	//Would like to add get current method
 };

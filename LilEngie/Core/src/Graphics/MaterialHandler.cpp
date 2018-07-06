@@ -5,9 +5,7 @@
 
 MaterialHandler::~MaterialHandler()
 {
-	std::map<std::string, Material*>::iterator it;
-	for (it = materials.begin(); it != materials.end(); it++)
-		delete it->second;
+	Clean();
 }
 
 void MaterialHandler::Add(std::string name, std::string shader, ShaderHandler *shaderHandler)
@@ -19,4 +17,15 @@ void MaterialHandler::Add(std::string name, std::string shader, ShaderHandler *s
 Material* MaterialHandler::Get(std::string mat)
 {
 	return materials[mat];
+}
+
+void MaterialHandler::Clean()
+{
+	//Dealocate all materials
+	std::map<std::string, Material*>::iterator it;
+	for (it = materials.begin(); it != materials.end(); it++)
+		delete it->second;
+
+	//Clear
+	materials.clear();
 }

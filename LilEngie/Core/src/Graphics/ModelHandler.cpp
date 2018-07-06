@@ -20,10 +20,7 @@ ModelHandler::ModelHandler()
 
 ModelHandler::~ModelHandler()
 {
-	//Deallocate everything
-	std::map<std::string, Model*>::iterator it;
-	for (it = models.begin(); it != models.end(); it++)
-		delete it->second;
+	Clean();
 }
 
 Model *ModelHandler::Get(std::string name)
@@ -34,4 +31,15 @@ Model *ModelHandler::Get(std::string name)
 void ModelHandler::AddModel(std::string name, Model *model)
 {
 	models.insert(std::make_pair(name, model));
+}
+
+void ModelHandler::Clean()
+{
+	//Deallocate everything
+	std::map<std::string, Model*>::iterator it;
+	for (it = models.begin(); it != models.end(); it++)
+		delete it->second;
+
+	//Clear the map
+	models.clear();
 }
