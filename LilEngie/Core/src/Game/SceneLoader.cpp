@@ -236,7 +236,7 @@ void UseObjectDash(std::string &line, std::string &passed, Scene *scene)
 		ERROR(("Could not create component with: \n" + line).c_str());
 }
 
-bool SceneLoader::LoadScene(const char *path, Scene *scene)
+void SceneLoader::LoadScene(const char *path, Scene *scene)
 {
 	//Construct scene
 	//scene = new Scene();
@@ -244,7 +244,7 @@ bool SceneLoader::LoadScene(const char *path, Scene *scene)
 	//Open file
 	std::ifstream file = std::ifstream(path);
 	if (!file.is_open())
-		return false;
+		ERROR(((std::string)"Could not load .lilscn file with the path:\n" + path).c_str());
 
 	//Keep track of commands that have -'s after the line
 	std::string passedLine;
@@ -253,6 +253,14 @@ bool SceneLoader::LoadScene(const char *path, Scene *scene)
 	std::string line;
 	while (std::getline(file, line))
 	{
+		if (line.substr(0, 2) == "//")			//Comment
+		{
+			continue;
+		}
+		else if (line == "")					//White line
+		{
+			continue;
+		}
 		if (line.substr(0, 3) == "mdl")			//Model
 		{
 			ReadModelCmd(line, scene);
@@ -277,15 +285,18 @@ bool SceneLoader::LoadScene(const char *path, Scene *scene)
 		}
 		else if (line[0] == '-')
 		{
-			if (passedLine.substr(0, 3) == "mat")		//Material param
+			//Decide parameter type
+			if (passedLine.substr(0, 3) == "mat")		
 				UseMaterialDash(line, passedLine, scene);
-			else if (passedLine.substr(0, 3) == "obj")	//Object param
+			else if (passedLine.substr(0, 3) == "obj")	
 				UseObjectDash(line, passedLine, scene);
+		}
+		else									//Not a valid command type
+		{
+			ERROR(("Invalid command type: \n" + line).c_str());
 		}
 	}
 
 	//Set scene as loaded
 	scene->isLoaded = true;
-
-	return true;
 }
