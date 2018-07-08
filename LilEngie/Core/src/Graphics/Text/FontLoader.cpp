@@ -2,6 +2,7 @@
 #include <vector>
 #include <string>
 #include <Application/Debug.h>
+#include "Character.h"
 #include "FontLoader.h"
 
 namespace FontLoader

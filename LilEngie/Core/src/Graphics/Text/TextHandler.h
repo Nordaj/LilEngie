@@ -18,6 +18,7 @@ public:
 	static unsigned int VBO, IBO, VAO;
 
 	TextHandler();
+	~TextHandler();
 	void AddFont(const char *name, const char *font);
 	void Render();
 	void Clean();

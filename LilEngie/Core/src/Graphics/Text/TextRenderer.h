@@ -19,8 +19,6 @@ public:
 	std::string materialName;
 	Scene *scene;
 
-	void Render(Font *font);
-
 private:
 	enum Axis { X, Y };
 
@@ -28,4 +26,7 @@ private:
 	float FntToScreen(float f, Axis axis, Font *font = nullptr);
 	float ConvertFontSizes(float f, Font *font = nullptr);
 	float PixelsToScreenCoords(float f, Axis axis);
+
+public:
+	void Render(Font *font);
 };

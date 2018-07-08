@@ -26,6 +26,8 @@ public:
 	TextureHandler textures;
 	MaterialHandler materials;
 	TextHandler texts;
+	glm::vec3 ambient = { 0.1f, 0.1f, 0.1f };
+	glm::vec3 clearColor = { 0.1f, 0.1f, 0.1f };
 
 	Scene();
 	~Scene();

@@ -291,6 +291,24 @@ void SceneLoader::LoadScene(const char *path, Scene *scene)
 			else if (passedLine.substr(0, 3) == "obj")	
 				UseObjectDash(line, passedLine, scene);
 		}
+		else if (line.substr(0, 3) == "amb")	//Ambient color
+		{
+			sVec params = Split(line, ' ');
+			scene->ambient = glm::vec3(
+				std::stof(params[1]),
+				std::stof(params[2]),
+				std::stof(params[3])
+			);
+		}
+		else if (line.substr(0, 3) == "clr")	//Clear color
+		{
+			sVec params = Split(line, ' ');
+			scene->clearColor = glm::vec3(
+				std::stof(params[1]),
+				std::stof(params[2]),
+				std::stof(params[3])
+			);
+		}
 		else									//Not a valid command type
 		{
 			ERROR(("Invalid command type: \n" + line).c_str());

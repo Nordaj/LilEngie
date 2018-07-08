@@ -19,6 +19,11 @@ TextHandler::TextHandler()
 	AddFont("Ariel", "Resources/Fonts/Standard/Ariel.fnt");
 }
 
+TextHandler::~TextHandler()
+{
+	Clean();
+}
+
 void TextHandler::Init()
 {
 	//Setup characterMesh
@@ -73,11 +78,17 @@ void TextHandler::SetupCharQuad()
 
 void TextHandler::Clean()
 {
-	//Free memory
+	//Free fonts memory
 	std::map<std::string, Font*>::iterator it;
 	for (it = fonts.begin(); it != fonts.end(); it++)
+	{
+		it->second->Clean();
 		delete it->second;
+	}
 
-	//Clear map
+	//Clear fonts
 	fonts.clear();
+
+	//Clear texts
+	texts.clear();
 }

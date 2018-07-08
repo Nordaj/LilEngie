@@ -1,5 +1,11 @@
 //This is a comment, will not be interpreted
 
+//amb command for ambient color
+amb 0.1f 0.3f 0.6f
+
+//clr command for clear color
+clr 0.1f 0.5f 1
+
 //mdl command for model
 //(mdl, name, directory)
 mdl gearsModel "Resources/Models/RustyGearsMatty.fbx"

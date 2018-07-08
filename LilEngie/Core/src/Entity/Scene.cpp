@@ -6,6 +6,7 @@
 #include <Entity/Components/Mesh.h>
 #include <Entity/GameObject.h>
 #include <Graphics/LightHandler.h>
+#include <Graphics/Renderer.h>
 #include <Application/Debug.h>
 #include "Scene.h"
 
@@ -51,11 +52,16 @@ std::vector<Mesh*> *Scene::GetQueue()
 
 void Scene::Start()
 {
+	//Start all objects
 	std::map<std::string, GameObject*>::iterator it;
 	for (it = objects.begin(); it != objects.end(); it++)
 	{
 		it->second->Start();
 	}
+
+	//Set ambient and clear color
+	LightHandler::SetAmbient(ambient);
+	Renderer::SetClearColor(clearColor.r, clearColor.g, clearColor.b, 1);
 }
 
 void Scene::Update()

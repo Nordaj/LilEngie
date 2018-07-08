@@ -13,5 +13,7 @@ public:
 	std::unordered_map<char, Character> characters;
 
 	Font() {}
+	~Font();
+	void Clean();
 	void SetupTexture(const char *path);
 };

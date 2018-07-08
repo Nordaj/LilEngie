@@ -16,13 +16,9 @@ int main()
 {
 	Game::Init();
 
-	Renderer::SetClearColor(0.1, 0.1, 0.1, 1);
-	LightHandler::SetAmbient(glm::vec3(0.2, 0.2, 0.2));
-
 	mainScene = new Scene();
-	secondScene = new Scene();
-
 	SceneLoader::LoadScene("Resources/Scenes/TestScene.lilscn", mainScene);
+
 	SceneManager::SetScene(mainScene);
 
 	Game::Run(Update);
