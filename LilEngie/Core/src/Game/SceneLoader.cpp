@@ -12,6 +12,7 @@
 #include <Graphics/MaterialHandler.h>
 #include <Utilities/ModelLoader.h>
 #include <Entity/Scene.h>
+#include <Entity/SceneManager.h>
 #include "../../ComponentConstruction.h"
 #include "SceneLoader.h"
 
@@ -236,10 +237,14 @@ void UseObjectDash(std::string &line, std::string &passed, Scene *scene)
 		ERROR(("Could not create component with: \n" + line).c_str());
 }
 
-void SceneLoader::LoadScene(const char *path, Scene *scene)
+void SceneLoader::LoadScene(const char *path, Scene **inScene, bool setCurrent)
 {
+	//Make sure its empty
+	if (*inScene != nullptr)
+		ERROR("Empty scene expected in LoadScene(). Pass a scene pointer holding nullptr instead.");
+
 	//Construct scene
-	//scene = new Scene();
+	Scene *scene = new Scene();
 
 	//Open file
 	std::ifstream file = std::ifstream(path);
@@ -317,4 +322,11 @@ void SceneLoader::LoadScene(const char *path, Scene *scene)
 
 	//Set scene as loaded
 	scene->isLoaded = true;
+
+	//Set current if necessary
+	if (setCurrent)
+		SceneManager::SetScene(scene);
+
+	//Assign input pointer
+	*inScene = scene;
 }

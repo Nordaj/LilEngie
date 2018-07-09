@@ -20,7 +20,6 @@ https://steamcommunity.com/profiles/76561198254676201/images/
   <li>Normal maps</li>
   <li>Better input system</li>
   <li>Improve scene loading error handling</li>
-  <li>Improve scene management</li>
   <li>Handle fonts in scenes like other resources<li>
   <li>Make sure I have no memory issues</li>
 </ul>

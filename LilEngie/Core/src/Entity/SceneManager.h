@@ -12,4 +12,10 @@ namespace SceneManager
 	void Start();
 	void Update();
 	bool CheckScene();
+	void UnloadScene(Scene **s);
+	//Just an abstraction of SceneLoader::LoadScene
+	void LoadScene(const char *path, Scene **inScene, bool setCurrent = true);
+	void Close();
 }
+
+namespace Scenes = SceneManager;

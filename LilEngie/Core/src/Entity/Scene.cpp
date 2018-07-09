@@ -103,4 +103,7 @@ void Scene::Unload()
 	textures.Clean();
 	materials.Clean();
 	texts.Clean();
+
+	//Delete myself
+	delete this;
 }

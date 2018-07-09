@@ -4,7 +4,6 @@
 #include <glm/gtc/matrix_transform.hpp>
 
 #include "src/Game/Game.h"
-#include "src/Game/SceneLoader.h"
 
 #include "src/Application/Window.h"
 #include "src/Application/Debug.h"

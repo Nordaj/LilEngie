@@ -2,39 +2,21 @@
 #include <string>
 #include "Core/LilEngie.h"
 
-//FIX BEFORE MIDNIGHT
-
 void Update();
+
 Scene *mainScene = nullptr;
 Scene *secondScene = nullptr;
 bool space;
 
 //Changes
-///
+///Scene management improvements
 
 int main()
 {
 	Game::Init();
-
-	mainScene = new Scene();
-	SceneLoader::LoadScene("Resources/Scenes/TestScene.lilscn", mainScene);
-
-	SceneManager::SetScene(mainScene);
-
+	Scenes::LoadScene("Resources/Scenes/TestScene.lilscn", &mainScene);
 	Game::Run(Update);
 	Game::Close();
-
-	if (mainScene != nullptr)
-	{
-		mainScene->Unload();
-		delete mainScene;
-	}
-
-	if (secondScene != nullptr)
-	{
-		secondScene->Unload();
-		delete secondScene;
-	}
 
 	return 0;
 }
@@ -46,40 +28,22 @@ void Update()
 	{
 		if (!space)
 		{
-			if (SceneManager::GetCurrent() == mainScene)
+			if (Scenes::GetCurrent() == mainScene)
 			{
-				//Clean up other scene
-				mainScene->Unload();
-				delete mainScene;
-				mainScene = nullptr;
-
-				//Setup new scene
-				secondScene = new Scene();
-				SceneLoader::LoadScene("Resources/Scenes/SecondScene.lilscn", secondScene);
-				SceneManager::SetScene(secondScene);
+				Scenes::UnloadScene(&mainScene);
+				Scenes::LoadScene("Resources/Scenes/SecondScene.lilscn", &secondScene);
 			}
 			else if (SceneManager::GetCurrent() == secondScene)
 			{
-				//Clean up other scene
-				secondScene->Unload();
-				delete secondScene;
-				secondScene = nullptr;
-
-				//Setup new scene
-				mainScene = new Scene();
-				SceneLoader::LoadScene("Resources/Scenes/TestScene.lilscn", mainScene);
-				SceneManager::SetScene(mainScene);
+				Scenes::UnloadScene(&secondScene);
+				Scenes::LoadScene("Resources/Scenes/TestScene.lilscn", &mainScene);
 			}
 		}
 		else
-		{
 			space = true;
-		}
 	}
 	else
-	{
 		space = false;
-	}
 
 	//Close on C
 	if (Input::GetKey(Key::C))
@@ -88,7 +52,10 @@ void Update()
 	//Spin if im in main scene
 	if (SceneManager::GetCurrent() == mainScene)
 	{
-		Transform *t = (Transform*)mainScene->GetObject("gearsObject")->GetComponent("Transform");
+		//Get pointer to transform
+		GameObject *g = mainScene->GetObject("gearsObject");
+		Transform *t = (Transform*)g->GetComponent("Transform");
+
 		t->rotation = glm::rotate(t->rotation, glm::radians(0.1f), glm::vec3(0, 1, 0));
 	}
 }

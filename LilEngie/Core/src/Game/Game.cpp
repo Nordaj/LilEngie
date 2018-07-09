@@ -35,7 +35,7 @@ void Game::Run(vFunction callback)
 		Window::PollEvents();
 	}
 
-	SceneManager::GetCurrent()->Unload();
+	Scenes::Close();
 	Window::Close();
 	Window::Clean();
 }

@@ -4,6 +4,6 @@
 
 namespace SceneLoader
 {
-	//Returns true on success
-	void LoadScene(const char *path, Scene *scene);
+	//Handles creation and loading of the scene
+	void LoadScene(const char *path, Scene **inScene, bool setCurrent = true);
 }

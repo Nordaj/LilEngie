@@ -1,6 +1,7 @@
 #include <vector>
 #include <Graphics/Renderer.h>
 #include <Entity/Components/Camera.h>
+#include <Game/SceneLoader.h>
 #include "GameObject.h"
 #include "Scene.h"
 #include "SceneManager.h"
@@ -48,4 +49,20 @@ void SceneManager::Update()
 bool SceneManager::CheckScene()
 {
 	return scene != nullptr;
+}
+
+void SceneManager::UnloadScene(Scene **s)
+{
+	(*s)->Unload();
+	*s = nullptr;
+}
+
+void SceneManager::LoadScene(const char *path, Scene **inScene, bool setCurrent)
+{
+	SceneLoader::LoadScene(path, inScene, setCurrent);
+}
+
+void SceneManager::Close()
+{
+
 }
