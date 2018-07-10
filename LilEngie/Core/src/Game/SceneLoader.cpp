@@ -10,6 +10,7 @@
 #include <Graphics/ShaderHandler.h>
 #include <Graphics/Material.h>
 #include <Graphics/MaterialHandler.h>
+#include <Graphics/Text/TextHandler.h>
 #include <Utilities/ModelLoader.h>
 #include <Entity/Scene.h>
 #include <Entity/SceneManager.h>
@@ -164,6 +165,13 @@ void ReadObjectCmd(std::string &line, Scene *scene)
 	scene->AddObject(splits[1]);
 }
 
+void ReadFontCmd(std::string &line, Scene *scene)
+{
+	sVec params = Split(line, ' ');
+	Erase(params[2], '"');
+	scene->texts.AddFont(params[1].c_str(), params[2].c_str());
+}
+
 void UseMaterialDash(std::string &line, std::string &passed, Scene *scene)
 {
 	//Get material name
@@ -313,6 +321,10 @@ void SceneLoader::LoadScene(const char *path, Scene **inScene, bool setCurrent)
 				std::stof(params[2]),
 				std::stof(params[3])
 			);
+		}
+		else if (line.substr(0, 3) == "fnt")	//Font
+		{
+			ReadFontCmd(line, scene);
 		}
 		else									//Not a valid command type
 		{

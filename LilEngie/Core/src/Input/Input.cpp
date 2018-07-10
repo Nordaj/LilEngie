@@ -3,7 +3,11 @@
 #include "Keys.h"
 #include "Input.h"
 
-GLFWwindow *win;
+namespace Input
+{
+	//Private
+	GLFWwindow *win;
+}
 
 void Input::Init(GLFWwindow *window)
 {

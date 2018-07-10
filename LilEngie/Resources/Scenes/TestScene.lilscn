@@ -6,6 +6,10 @@ amb 0.1f 0.3f 0.6f
 //clr command for clear color
 clr 0.1f 0.5f 1
 
+//fnt command for font
+//(fnt, name, directory)
+fnt Ariel2 "Resources/Fonts/Standard/Ariel.fnt"
+
 //mdl command for model
 //(mdl, name, directory)
 mdl gearsModel "Resources/Models/RustyGearsMatty.fbx"
@@ -64,7 +68,7 @@ obj gearsObject
 -Mesh Model(gearsModel) Material(rustMaterial)
 
 obj textObject
--Text Text(This is Lil Engie. A 3D engine made by Jordan Chapman.) Material(textMaterial) Color(0, 0, 0, 0)
+-Text Text(This is Lil Engie. A 3D engine made by Jordan Chapman.) Material(textMaterial) Color(0, 0, 0, 0) Font(Ariel2)
 
 
 

@@ -9,7 +9,7 @@ Scene *secondScene = nullptr;
 bool space;
 
 //Changes
-///Scene management improvements
+///
 
 int main()
 {

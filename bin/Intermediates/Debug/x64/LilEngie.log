@@ -1,14 +1,7 @@
-﻿  Camera.cpp
-  GameObject.cpp
-  Scene.cpp
-  SceneManager.cpp
-  Game.cpp
-  SceneLoader.cpp
-d:\documents\github\lilengie\lilengie\core\src\game\sceneloader.cpp(33): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-d:\documents\github\lilengie\lilengie\core\src\game\sceneloader.cpp(39): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
-d:\documents\github\lilengie\lilengie\core\src\game\sceneloader.cpp(97): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-d:\documents\github\lilengie\lilengie\core\src\game\sceneloader.cpp(109): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-  Main.cpp
-  Generating Code...
+﻿  SceneLoader.cpp
+d:\documents\github\lilengie\lilengie\core\src\game\sceneloader.cpp(34): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+d:\documents\github\lilengie\lilengie\core\src\game\sceneloader.cpp(40): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+d:\documents\github\lilengie\lilengie\core\src\game\sceneloader.cpp(98): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+d:\documents\github\lilengie\lilengie\core\src\game\sceneloader.cpp(110): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
 d:\documents\github\lilengie\lilengie\componentconstruction.h(219): warning C4715: 'CompConstruct::Create': not all control paths return a value
   LilEngie.vcxproj -> D:\Documents\GitHub\LilEngie\bin\Debug\x64\LilEngie.exe
