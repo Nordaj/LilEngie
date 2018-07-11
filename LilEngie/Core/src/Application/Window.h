@@ -13,6 +13,7 @@ namespace Window
 	bool Open();
 	void SwapBuffers();
 	void PollEvents();
+	void SetFullScreen(bool mode);
 	void Close();
 	void Clean();
 }

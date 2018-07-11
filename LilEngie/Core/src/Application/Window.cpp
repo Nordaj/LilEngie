@@ -16,6 +16,8 @@ namespace Window
 
 	//Private
 	GLFWwindow *window;
+	int widthBeforeFull;
+	int heightBeforeFull;
 }
 
 void Resize(GLFWwindow *win, int width, int height)
@@ -55,6 +57,22 @@ void Window::SwapBuffers()
 void Window::PollEvents()
 {
 	glfwPollEvents();
+}
+
+void Window::SetFullScreen(bool mode)
+{
+	if (mode == true)
+	{
+		widthBeforeFull = width;
+		heightBeforeFull = height;
+
+		const GLFWvidmode *winMode = glfwGetVideoMode(glfwGetPrimaryMonitor());
+		glfwSetWindowMonitor(window, glfwGetPrimaryMonitor(), 0, 0, winMode->width, winMode->height, 0);
+	}
+	else
+	{
+		glfwSetWindowMonitor(window, nullptr, 15, 45, widthBeforeFull, heightBeforeFull, 0);
+	}
 }
 
 void Window::Close()

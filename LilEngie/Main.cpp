@@ -7,6 +7,8 @@ void Update();
 Scene *mainScene = nullptr;
 Scene *secondScene = nullptr;
 bool space;
+bool fKey;
+bool fullScreen;
 
 //Changes
 ///
@@ -38,12 +40,27 @@ void Update()
 				Scenes::UnloadScene(&secondScene);
 				Scenes::LoadScene("Resources/Scenes/TestScene.lilscn", &mainScene);
 			}
-		}
-		else
+
 			space = true;
+		}
 	}
 	else
 		space = false;
+
+	//Fullscreen mode
+	if (Input::GetKey(Key::F))
+	{
+		if (!fKey)
+		{
+			//Toggle
+			Window::SetFullScreen(!fullScreen);
+			fullScreen = !fullScreen;
+
+			fKey = true;
+		}
+	}
+	else
+		fKey = false;
 
 	//Close on C
 	if (Input::GetKey(Key::C))
