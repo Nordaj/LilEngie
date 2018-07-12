@@ -21,7 +21,7 @@ public:
 	void Setup(Model *model, const char *material);
 	MeshRenderer* GetRenderer();
 	glm::mat4* GetTransformation();
-	void Draw(glm::mat4 &v, glm::mat4 &p);
+	void Draw(glm::mat4 &v, glm::mat4 &p, glm::vec3 &camPos);
 
 	COMPONENT_ID("Mesh")
 };

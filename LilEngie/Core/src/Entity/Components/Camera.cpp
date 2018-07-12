@@ -38,6 +38,11 @@ void Camera::Update()
 	projection = glm::perspective(glm::radians(fov), aspect, near, far);
 }
 
+Transform *Camera::GetTransform()
+{
+	return t;
+}
+
 glm::mat4& Camera::GetProjection()
 {
 	return projection;

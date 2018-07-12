@@ -43,13 +43,16 @@ void MeshRenderer::Setup(std::vector<float> &v, std::vector<unsigned int> &i, Ma
 	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 8, (void*)(sizeof(float) * 6));
 }
 
-void MeshRenderer::Draw(glm::mat4 &MVP, glm::mat4 &modelMat)
+void MeshRenderer::Draw(glm::mat4 &MVP, glm::mat4 &modelMat, glm::vec3 &camPos)
 {
 	//Set current shader
 	material->Prepare(MVP, modelMat);
 
 	//Setup lighting
 	LightHandler::Prepare(material->GetShader());
+
+	//Pass campos
+	UniformHandler::PassVec3(material->GetShader()->GetID(), "uCamPos", camPos);
 
 	//Bind VAO
 	glBindVertexArray(VAO);

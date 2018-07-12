@@ -58,9 +58,9 @@ glm::mat4* Mesh::GetTransformation()
 	return &transform->GetModel();
 }
 
-void Mesh::Draw(glm::mat4 &v, glm::mat4 &p)
+void Mesh::Draw(glm::mat4 &v, glm::mat4 &p, glm::vec3 &camPos)
 {
 	glm::mat4 MVP = p * v * transform->GetModel();
 	glm::mat4 model = transform->GetModel();
-	meshRenderer.Draw(MVP, model);
+	meshRenderer.Draw(MVP, model, camPos);
 }

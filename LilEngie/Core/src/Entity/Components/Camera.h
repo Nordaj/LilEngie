@@ -21,6 +21,7 @@ public:
 
 	void SetCurrent();
 	void Update();
+	Transform *GetTransform();
 	glm::mat4& GetProjection();
 	glm::mat4& GetView();
 

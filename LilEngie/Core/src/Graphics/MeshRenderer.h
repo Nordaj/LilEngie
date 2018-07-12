@@ -20,6 +20,6 @@ public:
 	MeshRenderer() {}
 
 	void Setup(std::vector<float> &v, std::vector<unsigned int> &i, Material *mat);
-	void Draw(glm::mat4 &MVP, glm::mat4 &model);
+	void Draw(glm::mat4 &MVP, glm::mat4 &model, glm::vec3 &camPos);
 	void Draw();
 };

@@ -22,4 +22,8 @@ https://steamcommunity.com/profiles/76561198254676201/images/
   <li>Improve scene loading error handling</li>
   <li>Make sure I have no memory issues</li>
   <li>Basic text features (alignment, word wrap, etc)</li>
+  <li>Sky boxes</li>
+  <li>Image effects</li>
+  <li>Graphics folder should be interface for entity</li>
+  <li>Console logging in game window</li>
 </ul>

@@ -47,10 +47,12 @@ struct DirLight
 };
 
 uniform vec4 uColor;
+uniform float uSpecularity;
 uniform PointLight uPointLights[8];
 uniform SpotLight uSpotLights[8];
 uniform DirLight uDirLights[4];
 uniform vec3 uAmbient;
+uniform vec3 uCamPos;
 uniform sampler2D uMainTex;
 
 in vec3 iNormal;
@@ -59,16 +61,17 @@ in vec2 iUv;
 
 out vec4 color;
 
-vec3 CalcPointLights(vec3 norm);
-vec3 CalcSpotLights(vec3 norm);
+vec3 CalcPointLights(vec3 norm, vec3 viewDir);
+vec3 CalcSpotLights(vec3 norm, vec3 viewDir);
 vec3 CalcDirLights(vec3 norm);
 
 void main()
 {
 	//Lighting calculations
 	vec3 norm = normalize(iNormal);
-	vec3 pointLights = CalcPointLights(norm);
-	vec3 spotLights = CalcSpotLights(norm);
+	vec3 viewDir = normalize(uCamPos - iFragPos);
+	vec3 pointLights = CalcPointLights(norm, viewDir);
+	vec3 spotLights = CalcSpotLights(norm, viewDir);
 	vec3 dirLights = CalcDirLights(norm);
 	vec3 lightColor = dirLights + spotLights + pointLights + uAmbient;
 
@@ -91,10 +94,8 @@ float Attenuation(float distance, float constant = 1, float lin = 1, float quadr
 	return 1 / (constant + (lin * distance) + (quadratic * (distance * distance)));
 }
 
-vec3 CalcPointLights(vec3 norm)
+vec3 CalcPointLights(vec3 norm, vec3 viewDir)
 {
-	//I need to get attenuation
-
 	vec3 combined = vec3(0, 0, 0);
 	for (int i = 0; i < 8; i++)
 	{
@@ -111,9 +112,18 @@ vec3 CalcPointLights(vec3 norm)
 		//Get attenuation
 		float attenuation = Attenuation(dist);
 
+		//Calculate specularity
+		vec3 reflectDir = reflect(-lightDir, viewDir);
+		float spec = dot(viewDir, reflectDir);
+		if (spec < 0) spec = 0;
+		spec *= attenuation * uSpecularity;
+
 		//Get the brightness
 		float val = (dot(norm, lightDir) * attenuation * uPointLights[i].intensity) / dist;
 		if (val < 0) val = 0;
+
+		//Add specularity
+		val += spec; //I think this is what i do...
 
 		//Calculate color
 		vec3 c = val * uPointLights[i].color;
@@ -124,7 +134,7 @@ vec3 CalcPointLights(vec3 norm)
 	return combined;
 }
 
-vec3 CalcSpotLights(vec3 norm)
+vec3 CalcSpotLights(vec3 norm, vec3 viewDir)
 {
 	vec3 combined = vec3(0, 0, 0);
 	for (int i = 0; i < 8; i++)
@@ -149,9 +159,16 @@ vec3 CalcSpotLights(vec3 norm)
 			//Get attenuation
 			float attenuation = Attenuation(dist);
 
+			//Calculate specularity
+			vec3 reflectDir = reflect(-lightDir, viewDir);
+			float spec = dot(viewDir, reflectDir);
+			if (spec < 0) spec = 0;
+			spec *= attenuation * uSpecularity;
+
 			//Get the brightness
 			val = (dot(norm, lightDir) * attenuation * uSpotLights[i].intensity) / dist;
 			if (val < 0) val = 0;
+			val += spec;
 		}
 		else
 		{

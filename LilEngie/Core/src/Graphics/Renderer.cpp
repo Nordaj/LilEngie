@@ -82,13 +82,14 @@ void Renderer::Render()
 		{
 			glm::mat4 &V = scene->GetCam()->GetView();
 			glm::mat4 &P = scene->GetCam()->GetProjection();
-			(*scene->GetQueue())[i]->Draw(V, P);
+			(*scene->GetQueue())[i]->Draw(V, P, scene->GetCam()->GetTransform()->position);
 		}
 		else
 		{
 			glm::mat4 v = glm::mat4(1);
 			glm::mat4 p = glm::mat4(1);
-			(*scene->GetQueue())[i]->Draw(v, p);
+			glm::vec3 origin;
+			(*scene->GetQueue())[i]->Draw(v, p, origin);
 		}
 	}
 
