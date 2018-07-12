@@ -27,7 +27,7 @@ void Material::Prepare(glm::mat4 &mvp, glm::mat4 &model)
 
 	//Pass all textures (a bit more complex than the rest)
 	std::map<std::string, Texture>::iterator texIt;
-	int i = 0;
+	int i = 1; //Start at 1 to reserve 0(default sampler) to white pixel
 	for (texIt = textures.begin(); texIt != textures.end(); texIt++)
 	{
 		UniformHandler::PassTexture(s->GetID(), texIt->first.c_str(), i, texIt->second.GetID());

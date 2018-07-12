@@ -54,6 +54,7 @@ uniform DirLight uDirLights[4];
 uniform vec3 uAmbient;
 uniform vec3 uCamPos;
 uniform sampler2D uMainTex;
+uniform sampler2D uSpecularityTex;
 
 in vec3 iNormal;
 in vec3 iFragPos;
@@ -116,7 +117,7 @@ vec3 CalcPointLights(vec3 norm, vec3 viewDir)
 		vec3 reflectDir = reflect(-lightDir, viewDir);
 		float spec = dot(viewDir, reflectDir);
 		if (spec < 0) spec = 0;
-		spec *= attenuation * uSpecularity;
+		spec *= attenuation * uSpecularity * texture(uSpecularityTex, iUv).r;
 
 		//Get the brightness
 		float val = (dot(norm, lightDir) * attenuation * uPointLights[i].intensity) / dist;
@@ -163,7 +164,7 @@ vec3 CalcSpotLights(vec3 norm, vec3 viewDir)
 			vec3 reflectDir = reflect(-lightDir, viewDir);
 			float spec = dot(viewDir, reflectDir);
 			if (spec < 0) spec = 0;
-			spec *= attenuation * uSpecularity;
+			spec *= attenuation * uSpecularity * texture(uSpecularityTex, iUv).r;
 
 			//Get the brightness
 			val = (dot(norm, lightDir) * attenuation * uSpotLights[i].intensity) / dist;

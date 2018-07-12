@@ -16,7 +16,7 @@ https://steamcommunity.com/profiles/76561198254676201/images/
 
 <h2>Plans</h2>
 <ul>
-  <li>Specular lighting (with specular maps)</li>
+  <li>Test specularity maps</li>
   <li>Normal maps</li>
   <li>Better input system</li>
   <li>Improve scene loading error handling</li>

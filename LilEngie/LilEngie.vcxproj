@@ -152,6 +152,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Core\src\Application\Debug.cpp" />
+    <ClCompile Include="Core\src\Application\Time.cpp" />
     <ClCompile Include="Core\src\Application\Window.cpp" />
     <ClCompile Include="Core\src\Entity\Component.cpp" />
     <ClCompile Include="Core\src\Entity\Components\Camera.cpp" />
@@ -191,6 +192,7 @@
   <ItemGroup>
     <ClInclude Include="ComponentConstruction.h" />
     <ClInclude Include="Core\src\Application\Debug.h" />
+    <ClInclude Include="Core\src\Application\Time.h" />
     <ClInclude Include="Core\src\Application\Window.h" />
     <ClInclude Include="Core\src\Entity\Component.h" />
     <ClInclude Include="Core\src\Entity\Components\Camera.h" />

@@ -7,6 +7,7 @@
 
 #include "src/Application/Window.h"
 #include "src/Application/Debug.h"
+#include "src/Application/Time.h"
 
 #include "src/Graphics/Renderer.h"
 #include "src/Graphics/BaseMeshes.h"

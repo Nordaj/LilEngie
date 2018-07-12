@@ -11,7 +11,8 @@ bool fKey;
 bool fullScreen;
 
 //Changes
-///
+///Specularity map
+///Time
 
 int main()
 {
@@ -66,13 +67,13 @@ void Update()
 	if (Input::GetKey(Key::C))
 		Game::Close();
 
-	//Spin if im in main scene
+	//Move camera if im in scene
 	if (SceneManager::GetCurrent() == mainScene)
 	{
-		//Get pointer to transform
-		GameObject *g = mainScene->GetObject("gearsObject");
-		Transform *t = (Transform*)g->GetComponent("Transform");
-
-		t->rotation = glm::rotate(t->rotation, glm::radians(0.1f), glm::vec3(0, 1, 0));
+		mainScene->GetCam()->GetTransform()->position = glm::vec3(
+			mainScene->GetCam()->GetTransform()->position.x,
+			(glm::sin(Time::Get(Time::Unit::Seconds) * 3) - 0.5f) * 0.2f,
+			mainScene->GetCam()->GetTransform()->position.z
+		);
 	}
 }
