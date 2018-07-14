@@ -11,8 +11,7 @@ bool fKey;
 bool fullScreen;
 
 //Changes
-///Specularity map
-///Time
+///Small changes on time
 
 int main()
 {
@@ -68,12 +67,19 @@ void Update()
 		Game::Close();
 
 	//Move camera if im in scene
-	if (SceneManager::GetCurrent() == mainScene)
+	if (Scenes::GetCurrent() == mainScene)
 	{
 		mainScene->GetCam()->GetTransform()->position = glm::vec3(
 			mainScene->GetCam()->GetTransform()->position.x,
-			(glm::sin(Time::Get(Time::Unit::Seconds) * 3) - 0.5f) * 0.2f,
+			(glm::sin(Time::Get(Unit::Seconds) * 3) - 0.5f) * 0.2f,
 			mainScene->GetCam()->GetTransform()->position.z
 		);
+	}
+	
+	//Rotate cube if im in second scene
+	if (Scenes::GetCurrent() == secondScene)
+	{
+		Transform *cube = (Transform*)secondScene->GetObject("cubeObj")->GetComponent("Transform");
+		cube->rotation = glm::rotate(cube->rotation, glm::radians(1.0f), glm::vec3(1, 1, 1));
 	}
 }

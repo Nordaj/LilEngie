@@ -114,13 +114,13 @@ vec3 CalcPointLights(vec3 norm, vec3 viewDir)
 		float attenuation = Attenuation(dist);
 
 		//Calculate specularity
-		vec3 reflectDir = reflect(-lightDir, viewDir);
+		vec3 reflectDir = reflect(-lightDir, norm);
 		float spec = dot(viewDir, reflectDir);
 		if (spec < 0) spec = 0;
 		spec *= attenuation * uSpecularity * texture(uSpecularityTex, iUv).r;
 
 		//Get the brightness
-		float val = (dot(norm, lightDir) * attenuation * uPointLights[i].intensity) / dist;
+		float val = dot(lightDir, norm) * attenuation * uPointLights[i].intensity;
 		if (val < 0) val = 0;
 
 		//Add specularity
@@ -161,7 +161,7 @@ vec3 CalcSpotLights(vec3 norm, vec3 viewDir)
 			float attenuation = Attenuation(dist);
 
 			//Calculate specularity
-			vec3 reflectDir = reflect(-lightDir, viewDir);
+			vec3 reflectDir = reflect(-lightDir, norm);
 			float spec = dot(viewDir, reflectDir);
 			if (spec < 0) spec = 0;
 			spec *= attenuation * uSpecularity * texture(uSpecularityTex, iUv).r;

@@ -1,10 +1,40 @@
 mdl gunModel "Resources/Models/MattyGun.obj"
 
-shd unlit "Resources/Shaders/Standard/Unlit.shader"
+tex specTex "Resources/Textures/SpecTest.png"
 
-mat unlitRed unlit
--col "uColor" 1 0 0 1
+shd unlitShader "Resources/Shaders/Standard/Unlit.shader"
+shd diffuseShader "Resources/Shaders/Standard/Diffuse.shader"
+
+mat diffuseMat diffuseShader
+-col "uColor" 1 1 1 1
+-flt "uSpecularity" 0.2
+-tex "uSpecularityTex" specTex
+mat unlitMat unlitShader
+-col "uColor" 1 1 1 1
+
+obj camObj
+-Transform Position(0, 0, 1)
+-Camera
 
 obj cubeObj
 -Transform Rotation(45, 45, 0) Scale(0.4, 0.4, 0.4)
--Mesh Model(BaseCube) Material(unlitRed)
+-Mesh Model(BaseCube) Material(diffuseMat)
+
+obj lightObj
+-Transform Position(0.5f, 0, 0) Scale(0.05f, 0.05f, 0.05f)
+-PointLight Position(0.5f, 0, 0) Intensity(2)
+-Mesh Model(BaseCube) Material(unlitMat)
+
+
+
+
+
+
+
+
+
+
+
+
+
+

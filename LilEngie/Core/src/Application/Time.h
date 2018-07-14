@@ -6,3 +6,6 @@ namespace Time
 
 	float Get(Unit unit = Milliseconds);
 }
+
+//Maybe change to TUnit if needed
+typedef Time::Unit Unit;
