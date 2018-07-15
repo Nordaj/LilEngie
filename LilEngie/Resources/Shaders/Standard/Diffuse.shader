@@ -2,8 +2,10 @@
 #version 330 core
 
 layout(location = 0) in vec4 position;
-layout(location = 1) in vec3 normal;
-layout(location = 2) in vec2 uv;
+layout(location = 1) in vec2 uv;
+layout(location = 2) in vec3 normal;
+//layout(location = 3) in vec3 tangent;
+//layout(location = 4) in vec3 bitangent;
 
 out vec3 iNormal;
 out vec3 iFragPos;
@@ -48,6 +50,7 @@ struct DirLight
 
 uniform vec4 uColor;
 uniform float uSpecularity;
+uniform float uNormal;
 uniform PointLight uPointLights[8];
 uniform SpotLight uSpotLights[8];
 uniform DirLight uDirLights[4];
@@ -55,6 +58,7 @@ uniform vec3 uAmbient;
 uniform vec3 uCamPos;
 uniform sampler2D uMainTex;
 uniform sampler2D uSpecularityTex;
+uniform sampler2D uNormalTex;
 
 in vec3 iNormal;
 in vec3 iFragPos;

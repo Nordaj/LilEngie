@@ -10,9 +10,6 @@ bool space;
 bool fKey;
 bool fullScreen;
 
-//Changes
-///Small changes on time
-
 int main()
 {
 	Game::Init();

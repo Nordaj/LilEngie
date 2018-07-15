@@ -25,4 +25,5 @@ https://steamcommunity.com/profiles/76561198254676201/images/
   <li>Graphics folder should be interface for entity</li>
   <li>Console logging in game window</li>
   <li>Improve scene loading error handling</li>
+  <li>Abstract component construction to use components to setup</li>
 </ul>

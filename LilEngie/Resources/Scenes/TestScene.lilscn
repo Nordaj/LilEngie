@@ -34,7 +34,7 @@ mat tanMaterial diffuseShader
 mat rustMaterial diffuseShader
 -col "uColor" 1 1 1 1
 -tex "uMainTex" rustTexture
--flt "uSpecularity" 2
+-flt "uSpecularity" 0
 mat unlitMaterial unlitShader
 -col "uColor" 1 1 1 1
 mat textMaterial textShader

@@ -106,14 +106,13 @@ Model *ModelLoader::Load(const char* path)
 	//Get verts
 	for (int i = 0; i < mesh->mNumVertices; i++)
 	{
+		//Positions
 		model->vertices.push_back(mesh->mVertices[i].x);
 		model->vertices.push_back(mesh->mVertices[i].y);
 		model->vertices.push_back(mesh->mVertices[i].z);
-		model->vertices.push_back(mesh->mNormals[i].x);
-		model->vertices.push_back(mesh->mNormals[i].y);
-		model->vertices.push_back(mesh->mNormals[i].z);
 
-		//If model has tex coords, use them, else, use 0
+
+		//Tex coords
 		if (mesh->mTextureCoords[0]) 
 		{
 			model->vertices.push_back(mesh->mTextureCoords[0][i].x);
@@ -124,6 +123,11 @@ Model *ModelLoader::Load(const char* path)
 			model->vertices.push_back(0);
 			model->vertices.push_back(0);
 		}
+
+		//Normals
+		model->vertices.push_back(mesh->mNormals[i].x);
+		model->vertices.push_back(mesh->mNormals[i].y);
+		model->vertices.push_back(mesh->mNormals[i].z);
 	}
 
 	//Get inds

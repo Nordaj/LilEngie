@@ -1,14 +1,15 @@
-mdl gunModel "Resources/Models/MattyGun.obj"
-
-tex specTex "Resources/Textures/SpecTest.png"
+tex paperTex "Resources/Textures/Paper.png"
+tex paperNorm "Resources/Textures/PaperNormal.png"
 
 shd unlitShader "Resources/Shaders/Standard/Unlit.shader"
 shd diffuseShader "Resources/Shaders/Standard/Diffuse.shader"
 
 mat diffuseMat diffuseShader
 -col "uColor" 1 1 1 1
--flt "uSpecularity" 0.2
--tex "uSpecularityTex" specTex
+-flt "uSpecularity" 1
+-flt "uNormal" 1
+-tex "uMainTex" paperTex
+-tex "uNormalTex" paperNorm
 mat unlitMat unlitShader
 -col "uColor" 1 1 1 1
 
