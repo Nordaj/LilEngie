@@ -1,4 +1,13 @@
 ﻿  MeshRenderer.cpp
-d:\documents\github\lilengie\lilengie\core\src\graphics\meshrenderer.cpp(61): warning C4267: 'argument': conversion from 'size_t' to 'GLsizei', possible loss of data
-d:\documents\github\lilengie\lilengie\core\src\graphics\meshrenderer.cpp(76): warning C4267: 'argument': conversion from 'size_t' to 'GLsizei', possible loss of data
+d:\documents\github\lilengie\lilengie\core\src\graphics\meshrenderer.cpp(64): warning C4267: 'argument': conversion from 'size_t' to 'GLsizei', possible loss of data
+d:\documents\github\lilengie\lilengie\core\src\graphics\meshrenderer.cpp(79): warning C4267: 'argument': conversion from 'size_t' to 'GLsizei', possible loss of data
+  ModelLoader.cpp
+d:\documents\github\lilengie\lilengie\core\src\utilities\modelloader.cpp(35): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+d:\documents\github\lilengie\lilengie\core\src\utilities\modelloader.cpp(39): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+d:\documents\github\lilengie\lilengie\core\src\utilities\modelloader.cpp(65): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+d:\documents\github\lilengie\lilengie\core\src\utilities\modelloader.cpp(69): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+d:\documents\github\lilengie\lilengie\core\src\utilities\modelloader.cpp(107): warning C4018: '<': signed/unsigned mismatch
+d:\documents\github\lilengie\lilengie\core\src\utilities\modelloader.cpp(139): warning C4018: '<': signed/unsigned mismatch
+  Generating Code...
+d:\documents\github\lilengie\lilengie\core\src\utilities\modelloader.cpp(88): warning C4715: 'ModelLoader::LoadOBJManual': not all control paths return a value
   LilEngie.vcxproj -> D:\Documents\GitHub\LilEngie\bin\Debug\x64\LilEngie.exe

@@ -91,7 +91,7 @@ Model *ModelLoader::Load(const char* path)
 {
 	//Load into importer
 	Assimp::Importer importer;
-	const aiScene *scene = importer.ReadFile(path, aiProcess_Triangulate | aiProcess_GenNormals);
+	const aiScene *scene = importer.ReadFile(path, aiProcess_Triangulate | aiProcess_GenNormals | aiProcess_CalcTangentSpace);
 
 	//Check for problems
 	if (!scene || scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode)
@@ -111,7 +111,6 @@ Model *ModelLoader::Load(const char* path)
 		model->vertices.push_back(mesh->mVertices[i].y);
 		model->vertices.push_back(mesh->mVertices[i].z);
 
-
 		//Tex coords
 		if (mesh->mTextureCoords[0]) 
 		{
@@ -120,14 +119,20 @@ Model *ModelLoader::Load(const char* path)
 		}
 		else
 		{
+			//Push emties
 			model->vertices.push_back(0);
 			model->vertices.push_back(0);
 		}
 
-		//Normals
+		//Normals (Should always exist)
 		model->vertices.push_back(mesh->mNormals[i].x);
 		model->vertices.push_back(mesh->mNormals[i].y);
 		model->vertices.push_back(mesh->mNormals[i].z);
+
+		//Tangents (Should always exist)
+		model->vertices.push_back(mesh->mTangents[i].x);
+		model->vertices.push_back(mesh->mTangents[i].y);
+		model->vertices.push_back(mesh->mTangents[i].z);
 	}
 
 	//Get inds
