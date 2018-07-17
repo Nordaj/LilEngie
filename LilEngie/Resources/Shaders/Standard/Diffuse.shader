@@ -9,6 +9,7 @@ layout(location = 3) in vec3 tangent;
 out vec3 iNormal;
 out vec3 iFragPos;
 out vec2 iUv;
+out mat3 iTBN;
 
 uniform mat4 uMVPMat;
 uniform mat4 uModelMat;
@@ -19,6 +20,13 @@ void main()
 	iUv = uv;
 	iNormal = mat3(transpose(inverse(uModelMat))) * normal;
 	iFragPos = vec3(uModelMat * position);
+
+	//Try out different orders???
+	iTBN = glm::mat3(
+		normalize(vec3(uModelMat * vec4(tangent, 0))),
+		normalize(vec3(uModelMat * vec4(cross(normal, tangent), 0))),
+		normalize(vec3(uModelMat * vec4(normal, 0)))
+	);
 }
 
 #surf
@@ -62,6 +70,7 @@ uniform sampler2D uNormalTex;
 in vec3 iNormal;
 in vec3 iFragPos;
 in vec2 iUv;
+in mat3 iTBN;
 
 out vec4 color;
 
@@ -71,8 +80,25 @@ vec3 CalcDirLights(vec3 norm);
 
 void main()
 {
+	//Normal vec in tangent space
+	vec3 tNormal = texture(uNormalTex, iUv).rgb;
+
+	//If im empty, use blue
+	if (textureSize(uNormalTex, 0).x == 1)
+		tNormal = vec3(0.5, 0.5, 1);
+
+	//Use correct scale (-1 - 1)
+	tNormal = (tNormal * 2) - 1;
+
+	//Multiply r and g by normal scale (not all 3 otherwise itll go back after normalized)
+	tNormal.r *= uNormal;
+	tNormal.g *= uNormal;
+
+	//Transform normal map vec to world space
+	vec3 norm = normalize(iTBN * tNormal);
+
 	//Lighting calculations
-	vec3 norm = normalize(iNormal);
+	//vec3 norm = normalize(iNormal);
 	vec3 viewDir = normalize(uCamPos - iFragPos);
 	vec3 pointLights = CalcPointLights(norm, viewDir);
 	vec3 spotLights = CalcSpotLights(norm, viewDir);

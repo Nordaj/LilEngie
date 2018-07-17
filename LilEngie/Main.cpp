@@ -68,7 +68,7 @@ void Update()
 	{
 		mainScene->GetCam()->GetTransform()->position = glm::vec3(
 			mainScene->GetCam()->GetTransform()->position.x,
-			(glm::sin(Time::Get(Unit::Seconds) * 3) - 0.5f) * 0.2f,
+			(glm::sin(Time::Get(Unit::Seconds) * 0.5f) - 0.5f) * 1,
 			mainScene->GetCam()->GetTransform()->position.z
 		);
 	}

@@ -16,7 +16,8 @@ https://steamcommunity.com/profiles/76561198254676201/images/
 
 <h2>Plans</h2>
 <ul>
-  <li>Normal maps</li>
+  <li>Get normal float to affect the intensity of the normal map</li>
+  <li>Need to do lots of graphics testing</li>
   <li>Organize vertices into vertex class</li>
   <li>Better input system</li>
   <li>Make sure I have no memory issues</li>

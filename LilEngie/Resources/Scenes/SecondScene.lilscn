@@ -6,8 +6,8 @@ shd diffuseShader "Resources/Shaders/Standard/Diffuse.shader"
 
 mat diffuseMat diffuseShader
 -col "uColor" 1 1 1 1
--flt "uSpecularity" 1
--flt "uNormal" 1
+-flt "uSpecularity" 0.5
+-flt "uNormal" 0.1
 -tex "uMainTex" paperTex
 -tex "uNormalTex" paperNorm
 mat unlitMat unlitShader

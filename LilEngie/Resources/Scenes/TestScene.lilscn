@@ -4,7 +4,7 @@
 amb 0.1f 0.3f 0.6f
 
 //clr command for clear color
-clr 0.1f 0.5f 1
+clr 0.05f 0.1f 0.2f
 
 //fnt command for font
 //(fnt, name, directory)
@@ -17,6 +17,8 @@ mdl gearsModel "Resources/Models/RustyGearsMatty.fbx"
 //tex command for texture
 //(tex, name, directory)
 tex rustTexture "Resources/Textures/Rusty.png"
+tex normTexture "Resources/Textures/PaperNormal.png"
+//tex specTexture "Resources/Textures/SpecTest.png"
 
 //shd command for shader
 //(shd, name, directory)
@@ -34,7 +36,9 @@ mat tanMaterial diffuseShader
 mat rustMaterial diffuseShader
 -col "uColor" 1 1 1 1
 -tex "uMainTex" rustTexture
--flt "uSpecularity" 0
+-tex "uNormalTex" normTexture
+-flt "uNormal" 0.5
+-flt "uSpecularity" 2
 mat unlitMaterial unlitShader
 -col "uColor" 1 1 1 1
 mat textMaterial textShader
