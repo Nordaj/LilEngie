@@ -6,7 +6,6 @@ layout(location = 1) in vec2 uv;
 layout(location = 2) in vec3 normal;
 layout(location = 3) in vec3 tangent;
 
-out vec3 iNormal;
 out vec3 iFragPos;
 out vec2 iUv;
 out mat3 iTBN;
@@ -18,10 +17,8 @@ void main()
 {
 	gl_Position = uMVPMat * position;
 	iUv = uv;
-	iNormal = mat3(transpose(inverse(uModelMat))) * normal;
 	iFragPos = vec3(uModelMat * position);
 
-	//Try out different orders???
 	iTBN = glm::mat3(
 		normalize(vec3(uModelMat * vec4(tangent, 0))),
 		normalize(vec3(uModelMat * vec4(cross(normal, tangent), 0))),
@@ -31,6 +28,10 @@ void main()
 
 #surf
 #version 330 core
+
+//TODO
+//I need to somehow split diffuse and specular combined lights. Diffuse is multiplied by unlit color. Specular is added. 
+//Then I need to clean everything. all light types should correctly have specular lighting and clean up any messieness
 
 struct PointLight
 {
@@ -67,7 +68,6 @@ uniform sampler2D uMainTex;
 uniform sampler2D uSpecularityTex;
 uniform sampler2D uNormalTex;
 
-in vec3 iNormal;
 in vec3 iFragPos;
 in vec2 iUv;
 in mat3 iTBN;
@@ -77,6 +77,8 @@ out vec4 color;
 vec3 CalcPointLights(vec3 norm, vec3 viewDir);
 vec3 CalcSpotLights(vec3 norm, vec3 viewDir);
 vec3 CalcDirLights(vec3 norm);
+vec3 CalcPointLightsSpec(vec3 norm, vec3 viewDir);
+//TODO: spec for rest of light types
 
 void main()
 {
@@ -97,16 +99,21 @@ void main()
 	//Transform normal map vec to world space
 	vec3 norm = normalize(iTBN * tNormal);
 
-	//Lighting calculations
-	//vec3 norm = normalize(iNormal);
+	//Get view direction for lighting stuff
 	vec3 viewDir = normalize(uCamPos - iFragPos);
+
+	//Diffuse lighting calculations
 	vec3 pointLights = CalcPointLights(norm, viewDir);
 	vec3 spotLights = CalcSpotLights(norm, viewDir);
 	vec3 dirLights = CalcDirLights(norm);
 	vec3 lightColor = dirLights + spotLights + pointLights + uAmbient;
 
+	//Specular lighting calculations
+	vec3 specLight = vec3(0, 0, 0);
+	specLight += CalcPointLightsSpec(norm, viewDir);
+
 	//Multiply color
-	vec3 c = uColor.rgb * lightColor * texture(uMainTex, iUv).rgb;
+	vec3 c = (uColor.rgb * lightColor * texture(uMainTex, iUv).rgb) + specLight;
 
 	//Output
 	color = vec4(c, uColor.a);
@@ -142,18 +149,9 @@ vec3 CalcPointLights(vec3 norm, vec3 viewDir)
 		//Get attenuation
 		float attenuation = Attenuation(dist);
 
-		//Calculate specularity
-		vec3 reflectDir = reflect(-lightDir, norm);
-		float spec = dot(viewDir, reflectDir);
-		if (spec < 0) spec = 0;
-		spec *= attenuation * uSpecularity * texture(uSpecularityTex, iUv).r;
-
 		//Get the brightness
 		float val = dot(lightDir, norm) * attenuation * uPointLights[i].intensity;
 		if (val < 0) val = 0;
-
-		//Add specularity
-		val += spec; //I think this is what i do...
 
 		//Calculate color
 		vec3 c = val * uPointLights[i].color;
@@ -233,6 +231,43 @@ vec3 CalcDirLights(vec3 norm)
 
 		//Add to combined lights
 		combined += c;
+	}
+	return combined;
+}
+
+vec3 CalcPointLightsSpec(vec3 norm, vec3 viewDir)
+{
+	vec3 combined = vec3(0, 0, 0);
+	for (int i = 0; i < 8; i++)
+	{
+		//Continue if i am not an active light
+		if (uPointLights[i].intensity == 0)
+			continue;
+
+		//Get direction from light to frag position
+		vec3 lightDir = normalize(iFragPos - uPointLights[i].position);
+
+		//Get distance
+		float dist = distance(uPointLights[i].position, iFragPos);
+
+		//Get attenuation
+		float attenuation = Attenuation(dist);
+
+		//Reflect off of the surface
+		vec3 reflectDir = reflect(lightDir, norm);
+
+		//Get dot product of dir from eye to frag and reflected dir
+		float spec = dot(viewDir, reflectDir);
+		if (spec < 0) spec = 0;
+
+		//Process to consider any factors that needs to affect it
+		spec *= attenuation * uSpecularity * texture(uSpecularityTex, iUv).r * uPointLights[i].intensity;
+
+		//Get into color based on light color
+		vec3 specColor = uPointLights[i].color * spec;
+
+		//Add to combined
+		combined += specColor;
 	}
 	return combined;
 }

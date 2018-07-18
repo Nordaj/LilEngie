@@ -38,7 +38,7 @@ mat rustMaterial diffuseShader
 -tex "uMainTex" rustTexture
 -tex "uNormalTex" normTexture
 -flt "uNormal" 0.5
--flt "uSpecularity" 2
+-flt "uSpecularity" 1
 mat unlitMaterial unlitShader
 -col "uColor" 1 1 1 1
 mat textMaterial textShader
