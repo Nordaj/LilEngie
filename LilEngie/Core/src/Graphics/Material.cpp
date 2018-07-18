@@ -105,5 +105,5 @@ void Material::AddFloat(const char* uniform, float val)
 
 void Material::AddInt(const char* uniform, int val)
 {
-	floats.insert(std::make_pair(uniform, val));
+	integers.insert(std::make_pair(uniform, val));
 }

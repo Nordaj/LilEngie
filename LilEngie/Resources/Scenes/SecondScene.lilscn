@@ -1,4 +1,4 @@
-mdl testModel "Resources/Models/TestLightingObject.obj"
+mdl testModel "Resources/Models/Sphere.obj"
 
 tex paperTex "Resources/Textures/Paper.png"
 tex paperNorm "Resources/Textures/PaperNormal.png"
@@ -7,25 +7,26 @@ shd unlitShader "Resources/Shaders/Standard/Unlit.shader"
 shd diffuseShader "Resources/Shaders/Standard/Diffuse.shader"
 
 mat diffuseMat diffuseShader
--col "uColor" 0 1 0 1
--flt "uSpecularity" 0.5
-//-flt "uNormal" 0.3f
+-col "uColor" 1 0 0 1
+-flt "uSpecularity" 1
+-int "uSmoothness" 32
+//-flt "uNormal" 1
 //-tex "uMainTex" paperTex
--tex "uNormalTex" paperNorm
+//-tex "uNormalTex" paperNorm
 mat unlitMat unlitShader
--col "uColor" 1 0.3 0 1
+-col "uColor" 1 1 1 1
 
 obj camObj
 -Transform Position(0, 0, 1)
 -Camera
 
 obj testObject
--Transform Scale(0.5, 0.5, 0.5)
+-Transform Scale(0.3, 0.3, 0.3)
 -Mesh Model(testModel) Material(diffuseMat)
 
 obj lightObj
 -Transform Position(0.5, 0.3, 0.2) Scale(0.05f, 0.05f, 0.05f)
--PointLight Position(0.5, 0.3, 0.2) Intensity(1) Color(1, 0.3, 0)
+-PointLight Position(0.5, 0.3, 0.2) Intensity(1) Color(1, 1, 1)
 -Mesh Model(BaseCube) Material(unlitMat)
 
 

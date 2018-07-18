@@ -29,10 +29,6 @@ void main()
 #surf
 #version 330 core
 
-//TODO
-//I need to somehow split diffuse and specular combined lights. Diffuse is multiplied by unlit color. Specular is added. 
-//Then I need to clean everything. all light types should correctly have specular lighting and clean up any messieness
-
 struct PointLight
 {
 	vec3 position;
@@ -58,6 +54,7 @@ struct DirLight
 
 uniform vec4 uColor;
 uniform float uSpecularity;
+uniform int uSmoothness;
 uniform float uNormal;
 uniform PointLight uPointLights[8];
 uniform SpotLight uSpotLights[8];
@@ -74,13 +71,50 @@ in mat3 iTBN;
 
 out vec4 color;
 
-vec3 CalcPointLights(vec3 norm, vec3 viewDir);
-vec3 CalcSpotLights(vec3 norm, vec3 viewDir);
+vec3 GetNormal();
+vec3 CalcPointLights(vec3 norm);
+vec3 CalcSpotLights(vec3 norm);
 vec3 CalcDirLights(vec3 norm);
 vec3 CalcPointLightsSpec(vec3 norm, vec3 viewDir);
-//TODO: spec for rest of light types
+vec3 CalcSpotLightsSpec(vec3 norm, vec3 viewDir);
+vec3 CalcDirLightsSpec(vec3 norm, vec3 viewDir);
 
 void main()
+{
+	//Get params
+	vec3 norm = GetNormal();
+	vec3 viewDir = normalize(uCamPos - iFragPos); //(to - from)
+
+	//Diffuse lighting calculations
+	vec3 diffuseLight = vec3(0, 0, 0);
+	diffuseLight += CalcPointLights(norm);
+	diffuseLight += CalcSpotLights(norm);
+	diffuseLight += CalcDirLights(norm);
+
+	//Specular lighting calculations
+	vec3 specLight = vec3(0, 0, 0);
+	specLight += CalcPointLightsSpec(norm, viewDir);
+	specLight += CalcSpotLightsSpec(norm, viewDir);
+	specLight += CalcDirLightsSpec(norm, viewDir);
+
+	//Combine colors and output
+	vec3 c = (uAmbient + diffuseLight + specLight) * (texture(uMainTex, iUv).rgb * uColor.rgb);
+	color = vec4(c, uColor.a);
+}
+
+float Attenuation(float distance, float constant = 1, float lin = 1, float quadratic = 2)
+{
+	//Light attenuation formula: 1 / Kc + KlD + KqD^2
+	///Kc = constant
+	///Kl = linear
+	///Kq = quadratic
+	///D  = distance
+	//Source: http://politecnicacuenca.com/light-attenuation/
+
+	return 1 / (constant + (lin * distance) + (quadratic * (distance * distance)));
+}
+
+vec3 GetNormal()
 {
 	//Normal vec in tangent space
 	vec3 tNormal = texture(uNormalTex, iUv).rgb;
@@ -97,41 +131,10 @@ void main()
 	tNormal.g *= uNormal;
 
 	//Transform normal map vec to world space
-	vec3 norm = normalize(iTBN * tNormal);
-
-	//Get view direction for lighting stuff
-	vec3 viewDir = normalize(uCamPos - iFragPos);
-
-	//Diffuse lighting calculations
-	vec3 pointLights = CalcPointLights(norm, viewDir);
-	vec3 spotLights = CalcSpotLights(norm, viewDir);
-	vec3 dirLights = CalcDirLights(norm);
-	vec3 lightColor = dirLights + spotLights + pointLights + uAmbient;
-
-	//Specular lighting calculations
-	vec3 specLight = vec3(0, 0, 0);
-	specLight += CalcPointLightsSpec(norm, viewDir);
-
-	//Multiply color
-	vec3 c = (uColor.rgb * lightColor * texture(uMainTex, iUv).rgb) + specLight;
-
-	//Output
-	color = vec4(c, uColor.a);
+	return normalize(iTBN * tNormal);
 }
 
-float Attenuation(float distance, float constant = 1, float lin = 1, float quadratic = 2)
-{
-	//Light attenuation formula: 1 / Kc + KlD + KqD^2
-	///Kc = constant
-	///Kl = linear
-	///Kq = quadratic
-	///D  = distance
-	//Source: http://politecnicacuenca.com/light-attenuation/
-
-	return 1 / (constant + (lin * distance) + (quadratic * (distance * distance)));
-}
-
-vec3 CalcPointLights(vec3 norm, vec3 viewDir)
+vec3 CalcPointLights(vec3 norm)
 {
 	vec3 combined = vec3(0, 0, 0);
 	for (int i = 0; i < 8; i++)
@@ -162,7 +165,7 @@ vec3 CalcPointLights(vec3 norm, vec3 viewDir)
 	return combined;
 }
 
-vec3 CalcSpotLights(vec3 norm, vec3 viewDir)
+vec3 CalcSpotLights(vec3 norm)
 {
 	vec3 combined = vec3(0, 0, 0);
 	for (int i = 0; i < 8; i++)
@@ -177,31 +180,19 @@ vec3 CalcSpotLights(vec3 norm, vec3 viewDir)
 		//Calculate angle
 		float angle = dot(lightDir, normalize(-uSpotLights[i].direction));
 
+		//Check if im in the zone
 		float val = 0;
 		if (angle > uSpotLights[i].angle)
 		{
-			//In the zone
 			//Get distance
 			float dist = distance(uSpotLights[i].position, iFragPos);
 
 			//Get attenuation
 			float attenuation = Attenuation(dist);
 
-			//Calculate specularity
-			vec3 reflectDir = reflect(-lightDir, norm);
-			float spec = dot(viewDir, reflectDir);
-			if (spec < 0) spec = 0;
-			spec *= attenuation * uSpecularity * texture(uSpecularityTex, iUv).r;
-
 			//Get the brightness
 			val = (dot(norm, lightDir) * attenuation * uSpotLights[i].intensity) / dist;
 			if (val < 0) val = 0;
-			val += spec;
-		}
-		else
-		{
-			//Out of the zone
-			val = 0;
 		}
 
 		//Calculate color
@@ -258,13 +249,90 @@ vec3 CalcPointLightsSpec(vec3 norm, vec3 viewDir)
 
 		//Get dot product of dir from eye to frag and reflected dir
 		float spec = dot(viewDir, reflectDir);
-		if (spec < 0) spec = 0;
+		spec = max(spec, 0.0);
+		spec = pow(spec, uSmoothness);
 
 		//Process to consider any factors that needs to affect it
 		spec *= attenuation * uSpecularity * texture(uSpecularityTex, iUv).r * uPointLights[i].intensity;
 
 		//Get into color based on light color
 		vec3 specColor = uPointLights[i].color * spec;
+
+		//Add to combined
+		combined += specColor;
+	}
+	return combined;
+}
+
+//Not tested
+vec3 CalcSpotLightsSpec(vec3 norm, vec3 viewDir)
+{
+	vec3 combined = vec3(0, 0, 0);
+	for (int i = 0; i < 8; i++)
+	{
+		//Dont use if i am empty
+		if (uSpotLights[i].intensity == 0)
+			continue;
+
+		//Calculate light dir
+		vec3 lightDir = normalize(uSpotLights[i].position - iFragPos);
+
+		//Calculate angle
+		float angle = dot(lightDir, normalize(-uSpotLights[i].direction));
+
+		float val = 0;
+		if (angle > uSpotLights[i].angle)
+		{
+			//Get distance
+			float dist = distance(uSpotLights[i].position, iFragPos);
+
+			//Get attenuation
+			float attenuation = Attenuation(dist);
+
+			//Reflect off of the surface
+			vec3 reflectDir = reflect(lightDir, norm);
+
+			//Get dot product of dir from eye to frag and reflected dir
+			float spec = dot(viewDir, reflectDir);
+			spec = max(spec, 0.0);
+			spec = pow(spec, uSmoothness);
+
+			//Process to consider any factors that needs to affect it
+			spec *= attenuation * uSpecularity * texture(uSpecularityTex, iUv).r * uSpotLights[i].intensity;
+
+			//Get into color based on light color
+			vec3 specColor = uSpotLights[i].color * spec;
+
+			//Add to combined
+			combined += specColor;
+		}
+	}
+	return combined;
+}
+
+//Not tested
+vec3 CalcDirLightsSpec(vec3 norm, vec3 viewDir)
+{
+	vec3 combined = vec3(0, 0, 0);
+	for (int i = 0; i < 4; i++)
+	{
+		//Skip if im empty
+		if (uDirLights[i].intensity == 0)
+			continue;
+
+		//Reflect off of the surface
+		vec3 reflectDir = reflect(uDirLights[i].direction, norm);
+
+		//Get dot product of dir from eye to frag and reflected dir
+		float spec = dot(viewDir, reflectDir);
+		spec = max(spec, 0.0);
+		spec = pow(spec, uSmoothness);
+
+		//Process to consider any factors that needs to affect it
+		spec *= uSpecularity * texture(uSpecularityTex, iUv).r * uDirLights[i].intensity;
+
+		//Get into color based on light color
+		vec3 specColor = uDirLights[i].color * spec;
 
 		//Add to combined
 		combined += specColor;

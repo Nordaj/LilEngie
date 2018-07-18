@@ -38,7 +38,8 @@ mat rustMaterial diffuseShader
 -tex "uMainTex" rustTexture
 -tex "uNormalTex" normTexture
 -flt "uNormal" 0.5
--flt "uSpecularity" 1
+-flt "uSpecularity" 2
+-int "uSmoothness" 32
 mat unlitMaterial unlitShader
 -col "uColor" 1 1 1 1
 mat textMaterial textShader
@@ -64,9 +65,9 @@ obj camObject
 -Camera
 
 obj lightObject
--Transform Position(0.1f, 0.1f, 0.8f) Rotation(45, 45, 45) Scale(0.05f, 0.05f, 0.05f)
+-Transform Position(0.5f, 0.1f, 0.8f) Rotation(45, 45, 45) Scale(0.05f, 0.05f, 0.05f)
 -Mesh Model(BaseCube) Material(unlitMaterial)
--PointLight Position(0.1f, 0.1f, 0.8f) Color(1, 1, 1, 0.5)
+-PointLight Position(0.5f, 0.1f, 0.8f) Color(1, 1, 1, 0.5)
 
 obj gearsObject
 -Transform Rotation(30, 30, 0) Scale(0.5, 0.5, 0.5)
