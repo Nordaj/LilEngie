@@ -72,11 +72,4 @@ void Update()
 			mainScene->GetCam()->GetTransform()->position.z
 		);
 	}
-	
-	//Rotate cube if im in second scene
-	if (Scenes::GetCurrent() == secondScene)
-	{
-		//Transform *cube = (Transform*)secondScene->GetObject("testObject")->GetComponent("Transform");
-		//cube->rotation = glm::rotate(cube->rotation, glm::radians(1.0f), glm::vec3(1, 1, 1));
-	}
 }

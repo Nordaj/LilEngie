@@ -1,2 +1,4 @@
-﻿  Material.cpp
+﻿  Time.cpp
+d:\documents\github\lilengie\lilengie\core\src\application\time.cpp(28): warning C4244: 'return': conversion from '__int64' to 'float', possible loss of data
+d:\documents\github\lilengie\lilengie\core\src\application\time.cpp(40): warning C4715: 'Time::Get': not all control paths return a value
   LilEngie.vcxproj -> D:\Documents\GitHub\LilEngie\bin\Debug\x64\LilEngie.exe

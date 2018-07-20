@@ -16,7 +16,6 @@ https://steamcommunity.com/profiles/76561198254676201/images/
 
 <h2>Plans</h2>
 <ul>
-  <li>Fix specularity problems</li>
   <li>Need to do lots of graphics testing</li>
   <li>Make all lights use transform component</li>
   <li>Organize vertices into vertex class</li>

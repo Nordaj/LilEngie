@@ -3,6 +3,7 @@
 #include <GL/glew.h>
 
 #include <Application/Window.h>
+#include <Application/Time.h>
 #include <Graphics/Renderer.h>
 #include <Graphics/ModelHandler.h>
 #include <Entity/SceneManager.h>
@@ -25,6 +26,8 @@ void Game::Run(vFunction callback)
 {
 	while (Window::Open() && !closing)
 	{
+		Time::StartFrame();
+
 		SceneManager::Update();
 
 		if (callback != nullptr)
@@ -33,6 +36,8 @@ void Game::Run(vFunction callback)
 		Renderer::Render();
 		Window::SwapBuffers();
 		Window::PollEvents();
+
+		Time::EndFrame();
 	}
 
 	Scenes::Close();
