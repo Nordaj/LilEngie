@@ -1,4 +1,46 @@
-﻿  Time.cpp
-d:\documents\github\lilengie\lilengie\core\src\application\time.cpp(28): warning C4244: 'return': conversion from '__int64' to 'float', possible loss of data
-d:\documents\github\lilengie\lilengie\core\src\application\time.cpp(40): warning C4715: 'Time::Get': not all control paths return a value
+﻿  Window.cpp
+  Camera.cpp
+  Mesh.cpp
+  Text.cpp
+  GameObject.cpp
+  Scene.cpp
+  SceneManager.cpp
+  Game.cpp
+  SceneLoader.cpp
+d:\documents\github\lilengie\lilengie\core\src\game\sceneloader.cpp(34): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+d:\documents\github\lilengie\lilengie\core\src\game\sceneloader.cpp(40): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+d:\documents\github\lilengie\lilengie\core\src\game\sceneloader.cpp(98): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+d:\documents\github\lilengie\lilengie\core\src\game\sceneloader.cpp(110): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  MeshRenderer.cpp
+d:\documents\github\lilengie\lilengie\core\src\graphics\meshrenderer.cpp(64): warning C4267: 'argument': conversion from 'size_t' to 'GLsizei', possible loss of data
+d:\documents\github\lilengie\lilengie\core\src\graphics\meshrenderer.cpp(79): warning C4267: 'argument': conversion from 'size_t' to 'GLsizei', possible loss of data
+  Model.cpp
+  ModelHandler.cpp
+  Renderer.cpp
+d:\documents\github\lilengie\lilengie\core\src\graphics\renderer.cpp(55): warning C4838: conversion from 'int' to 'char' requires a narrowing conversion
+d:\documents\github\lilengie\lilengie\core\src\graphics\renderer.cpp(55): warning C4309: 'initializing': truncation of constant value
+  TextHandler.cpp
+  TextRenderer.cpp
+d:\documents\github\lilengie\lilengie\core\src\graphics\text\textrenderer.cpp(41): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+d:\documents\github\lilengie\lilengie\core\src\graphics\text\textrenderer.cpp(42): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+d:\documents\github\lilengie\lilengie\core\src\graphics\text\textrenderer.cpp(43): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+d:\documents\github\lilengie\lilengie\core\src\graphics\text\textrenderer.cpp(44): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+d:\documents\github\lilengie\lilengie\core\src\graphics\text\textrenderer.cpp(48): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+d:\documents\github\lilengie\lilengie\core\src\graphics\text\textrenderer.cpp(68): warning C4267: 'argument': conversion from 'size_t' to 'GLsizei', possible loss of data
+  ModelLoader.cpp
+d:\documents\github\lilengie\lilengie\core\src\utilities\modelloader.cpp(35): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+d:\documents\github\lilengie\lilengie\core\src\utilities\modelloader.cpp(39): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+d:\documents\github\lilengie\lilengie\core\src\utilities\modelloader.cpp(65): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+d:\documents\github\lilengie\lilengie\core\src\utilities\modelloader.cpp(69): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+d:\documents\github\lilengie\lilengie\core\src\utilities\modelloader.cpp(107): warning C4018: '<': signed/unsigned mismatch
+d:\documents\github\lilengie\lilengie\core\src\utilities\modelloader.cpp(139): warning C4018: '<': signed/unsigned mismatch
+  Main.cpp
+  Generating Code...
+d:\documents\github\lilengie\lilengie\core\src\utilities\modelloader.cpp(88): warning C4715: 'ModelLoader::LoadOBJManual': not all control paths return a value
+d:\documents\github\lilengie\lilengie\core\src\graphics\text\textrenderer.cpp(104): warning C4715: 'TextRenderer::ConvertFontSizes': not all control paths return a value
+d:\documents\github\lilengie\lilengie\componentconstruction.h(219): warning C4715: 'CompConstruct::Create': not all control paths return a value
+d:\documents\github\lilengie\lilengie\core\src\entity\components\mesh.cpp(58): warning C4172: returning address of local variable or temporary
+LINK : warning LNK4098: defaultlib 'LIBCMT' conflicts with use of other libs; use /NODEFAULTLIB:library
+LINK : warning LNK4098: defaultlib 'MSVCRT' conflicts with use of other libs; use /NODEFAULTLIB:library
+glew32s.lib(glew.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'glew32s.lib(glew.obj)' or at 'D:\Documents\GitHub\LilEngie\bin\Debug\x64\vc120.pdb'; linking object as if no debug info
   LilEngie.vcxproj -> D:\Documents\GitHub\LilEngie\bin\Debug\x64\LilEngie.exe
