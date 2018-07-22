@@ -62,11 +62,11 @@ void TextHandler::SetupCharQuad()
 
 	//Bind and give data to VBO
 	glBindBuffer(GL_ARRAY_BUFFER, VBO);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(float) * BaseMeshes::charQuad.vertices.size(), &BaseMeshes::charQuad.vertices[0], GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(float) * BaseMeshes::charQuadVerts.size(), &BaseMeshes::charQuadVerts[0], GL_STATIC_DRAW);
 
 	//Bind and give data to IBO
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, IBO);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(unsigned int) * BaseMeshes::charQuad.indices.size(), &BaseMeshes::charQuad.indices[0], GL_STATIC_DRAW);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(unsigned int) * BaseMeshes::charQuadInds.size(), &BaseMeshes::charQuadInds[0], GL_STATIC_DRAW);
 
 	//Vertex attributes (Position(v3), UV(v2))
 	glEnableVertexAttribArray(0);

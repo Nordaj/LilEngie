@@ -7,9 +7,10 @@
 #include "UniformHandler.h"
 #include "Renderer.h"
 #include "Shader.h"
+#include "Vertex.h"
 #include "MeshRenderer.h"
 
-void MeshRenderer::Setup(std::vector<float> &v, std::vector<unsigned int> &i, Material *mat)
+void MeshRenderer::Setup(std::vector<Vertex> &v, std::vector<unsigned int> &i, Material *mat)
 {
 	//Assign values
 	material = mat;
@@ -26,7 +27,7 @@ void MeshRenderer::Setup(std::vector<float> &v, std::vector<unsigned int> &i, Ma
 
 	//Bind and give data to VBO
 	glBindBuffer(GL_ARRAY_BUFFER, VBO);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(float) * model.vertices.size(), &model.vertices[0], GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(Vertex) * v.size(), &model.vertices[0], GL_STATIC_DRAW);
 
 	//Bind and give data to IBO
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, IBO);

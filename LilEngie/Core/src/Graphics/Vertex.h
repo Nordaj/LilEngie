@@ -1,5 +1,6 @@
 #pragma once
 
+#include <vector>
 #include <glm/common.hpp>
 
 class Vertex
@@ -26,4 +27,7 @@ public:
 				xTan, yTan, zTan;
 		};
 	};
+
+	static std::vector<float> ToFloatVec(std::vector<Vertex> &verts);
+	static std::vector<Vertex> ToVertVec(std::vector<float> &verts);
 };

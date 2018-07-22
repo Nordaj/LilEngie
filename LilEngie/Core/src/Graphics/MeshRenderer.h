@@ -4,6 +4,7 @@
 #include <vector>
 #include <glm/glm.hpp>
 #include "Model.h"
+#include "Vertex.h"
 #include "Material.h"
 
 class MeshRenderer
@@ -19,7 +20,7 @@ private:
 public:
 	MeshRenderer() {}
 
-	void Setup(std::vector<float> &v, std::vector<unsigned int> &i, Material *mat);
+	void Setup(std::vector<Vertex> &v, std::vector<unsigned int> &i, Material *mat);
 	void Draw(glm::mat4 &MVP, glm::mat4 &model, glm::vec3 &camPos);
 	void Draw();
 };

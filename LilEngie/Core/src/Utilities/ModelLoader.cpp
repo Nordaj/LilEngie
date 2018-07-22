@@ -6,6 +6,7 @@
 #include <assimp/scene.h>
 #include <assimp/postprocess.h>
 #include <Application/Debug.h>
+#include <Graphics/Vertex.h>
 #include "ModelLoader.h"
 
 //DO NOT USE, UNDER WORK
@@ -106,33 +107,32 @@ Model *ModelLoader::Load(const char* path)
 	//Get verts
 	for (int i = 0; i < mesh->mNumVertices; i++)
 	{
+		Vertex v;
+
 		//Positions
-		model->vertices.push_back(mesh->mVertices[i].x);
-		model->vertices.push_back(mesh->mVertices[i].y);
-		model->vertices.push_back(mesh->mVertices[i].z);
+		v.xPos = mesh->mVertices[i].x;
+		v.yPos = mesh->mVertices[i].y;
+		v.zPos = mesh->mVertices[i].z;
 
 		//Tex coords
 		if (mesh->mTextureCoords[0]) 
 		{
-			model->vertices.push_back(mesh->mTextureCoords[0][i].x);
-			model->vertices.push_back(mesh->mTextureCoords[0][i].y);
-		}
-		else
-		{
-			//Push emties
-			model->vertices.push_back(0);
-			model->vertices.push_back(0);
+			v.uTex = mesh->mTextureCoords[0][i].x;
+			v.vTex = mesh->mTextureCoords[0][i].y;
 		}
 
 		//Normals (Should always exist)
-		model->vertices.push_back(mesh->mNormals[i].x);
-		model->vertices.push_back(mesh->mNormals[i].y);
-		model->vertices.push_back(mesh->mNormals[i].z);
+		v.xNorm = mesh->mNormals[i].z;
+		v.yNorm = mesh->mNormals[i].x;
+		v.zNorm = mesh->mNormals[i].y;
 
 		//Tangents (Should always exist)
-		model->vertices.push_back(mesh->mTangents[i].x);
-		model->vertices.push_back(mesh->mTangents[i].y);
-		model->vertices.push_back(mesh->mTangents[i].z);
+		v.xTan = mesh->mTangents[i].x;
+		v.yTan = mesh->mTangents[i].y;
+		v.zTan = mesh->mTangents[i].z;
+
+		//Push vert
+		model->vertices.push_back(v);
 	}
 
 	//Get inds

@@ -65,7 +65,7 @@ void TextRenderer::Render(Font *font)
 		glBindVertexArray(TextHandler::VAO);
 
 		//Draw
-		glDrawElements(GL_TRIANGLES, BaseMeshes::charQuad.indices.size(), GL_UNSIGNED_INT, nullptr);
+		glDrawElements(GL_TRIANGLES, BaseMeshes::charQuadInds.size(), GL_UNSIGNED_INT, nullptr);
 	}
 
 	glEnable(GL_DEPTH_TEST);

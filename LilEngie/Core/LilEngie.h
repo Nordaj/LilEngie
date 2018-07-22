@@ -17,11 +17,12 @@
 #include "src/Graphics/Model.h"
 #include "src/Graphics/ModelHandler.h"
 #include "src/Graphics/TextureHandler.h"
-#include "Graphics/Text/Character.h"
-#include "Graphics/Text/Font.h"
-#include "Graphics/Text/FontLoader.h"
-#include "Graphics/Text/TextHandler.h"
-#include "Graphics/Text/TextRenderer.h"
+#include "src/Graphics/Vertex.h"
+#include "src/Graphics/Text/Character.h"
+#include "src/Graphics/Text/Font.h"
+#include "src/Graphics/Text/FontLoader.h"
+#include "src/Graphics/Text/TextHandler.h"
+#include "src/Graphics/Text/TextRenderer.h"
 
 #include "src/Utilities/ModelLoader.h"
 

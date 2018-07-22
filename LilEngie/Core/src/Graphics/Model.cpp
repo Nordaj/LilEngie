@@ -4,19 +4,19 @@
 Model::Model()
 { }
 
-Model::Model(std::vector<float> &verts, std::vector<unsigned int> &inds)
+Model::Model(std::vector<Vertex> &verts, std::vector<unsigned int> &inds)
 {
 	vertices = verts;
 	indices = inds;
 }
 
-Model::Model(std::vector<float> verts, std::vector<unsigned int> inds)
+Model::Model(std::vector<Vertex> verts, std::vector<unsigned int> inds)
 {
 	vertices = verts;
 	indices = inds;
 }
 
-void Model::Setup(std::vector<float> &verts, std::vector<unsigned int> &inds)
+void Model::Setup(std::vector<Vertex> &verts, std::vector<unsigned int> &inds)
 {
 	vertices = verts;
 	indices = inds;
