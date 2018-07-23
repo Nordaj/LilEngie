@@ -110,26 +110,26 @@ Model *ModelLoader::Load(const char* path)
 		Vertex v;
 
 		//Positions
-		v.xPos = mesh->mVertices[i].x;
-		v.yPos = mesh->mVertices[i].y;
-		v.zPos = mesh->mVertices[i].z;
+		v.position.x = mesh->mVertices[i].x;
+		v.position.y = mesh->mVertices[i].y;
+		v.position.z = mesh->mVertices[i].z;
 
 		//Tex coords
 		if (mesh->mTextureCoords[0]) 
 		{
-			v.uTex = mesh->mTextureCoords[0][i].x;
-			v.vTex = mesh->mTextureCoords[0][i].y;
+			v.uv.x = mesh->mTextureCoords[0][i].x;
+			v.uv.y = mesh->mTextureCoords[0][i].y;
 		}
 
 		//Normals (Should always exist)
-		v.xNorm = mesh->mNormals[i].z;
-		v.yNorm = mesh->mNormals[i].x;
-		v.zNorm = mesh->mNormals[i].y;
+		v.normal.x = mesh->mNormals[i].x;
+		v.normal.y = mesh->mNormals[i].y;
+		v.normal.z = mesh->mNormals[i].z;
 
 		//Tangents (Should always exist)
-		v.xTan = mesh->mTangents[i].x;
-		v.yTan = mesh->mTangents[i].y;
-		v.zTan = mesh->mTangents[i].z;
+		v.tangent.x = mesh->mTangents[i].x;
+		v.tangent.y = mesh->mTangents[i].y;
+		v.tangent.z = mesh->mTangents[i].z;
 
 		//Push vert
 		model->vertices.push_back(v);

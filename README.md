@@ -18,7 +18,6 @@ https://steamcommunity.com/profiles/76561198254676201/images/
 <ul>
   <li>Need to do lots of graphics testing</li>
   <li>Make all lights use transform component</li>
-  <li>Organize vertices into vertex class</li>
   <li>Better input system</li>
   <li>Make sure I have no memory issues</li>
   <li>Basic text features (alignment, word wrap, etc)</li>
