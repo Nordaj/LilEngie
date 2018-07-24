@@ -1,9 +1,2 @@
-﻿  ModelLoader.cpp
-d:\documents\github\lilengie\lilengie\core\src\utilities\modelloader.cpp(36): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-d:\documents\github\lilengie\lilengie\core\src\utilities\modelloader.cpp(40): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
-d:\documents\github\lilengie\lilengie\core\src\utilities\modelloader.cpp(66): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-d:\documents\github\lilengie\lilengie\core\src\utilities\modelloader.cpp(70): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
-d:\documents\github\lilengie\lilengie\core\src\utilities\modelloader.cpp(108): warning C4018: '<': signed/unsigned mismatch
-d:\documents\github\lilengie\lilengie\core\src\utilities\modelloader.cpp(139): warning C4018: '<': signed/unsigned mismatch
-d:\documents\github\lilengie\lilengie\core\src\utilities\modelloader.cpp(89): warning C4715: 'ModelLoader::LoadOBJManual': not all control paths return a value
+﻿  Main.cpp
   LilEngie.vcxproj -> D:\Documents\GitHub\LilEngie\bin\Debug\x64\LilEngie.exe

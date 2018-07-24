@@ -2,7 +2,11 @@
 #include <string>
 #include "Core/LilEngie.h"
 
+///Changes:
+//Start game callback for main -
+
 void Update();
+void Start();
 
 Scene *mainScene = nullptr;
 Scene *secondScene = nullptr;
@@ -12,13 +16,16 @@ bool fullScreen;
 
 int main()
 {
-	Game::Init();
+	Game::Init(Start);
 	Scenes::LoadScene("Resources/Scenes/TestScene.lilscn", &mainScene);
 	Game::Run(Update);
 	Game::Close();
 
 	return 0;
 }
+
+void Start()
+{ }
 
 void Update()
 {

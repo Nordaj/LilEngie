@@ -16,10 +16,13 @@ namespace Game
 	bool closing;
 }
 
-void Game::Init()
+void Game::Init(vFunction callback)
 {
 	Window::Init();
 	Renderer::Init();
+
+	if (callback != nullptr)
+		callback();
 }
 
 void Game::Run(vFunction callback)
