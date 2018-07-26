@@ -79,4 +79,11 @@ void Update()
 			mainScene->GetCam()->GetTransform()->position.z
 		);
 	}
+
+	//Rotate shield if in second scene
+	if (Scenes::GetCurrent() == secondScene)
+	{
+		Transform *t = (Transform*)secondScene->GetObject("shieldObj")->GetComponent("Transform");
+		t->rotation = glm::rotate(t->rotation, glm::radians(20 * Time::deltaTime), glm::vec3(0, 1, 0));
+	}
 }
