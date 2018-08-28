@@ -4,6 +4,7 @@
 #include <Application/Debug.h>
 #include <Input/Input.h>
 #include <Graphics/Renderer.h>
+#include <Platform/Windows/WinWindow.h>
 #include "Window.h"
 
 //Properites
@@ -15,48 +16,28 @@ namespace Window
 	char title[] = "Lil Engie";
 
 	//Private
-	GLFWwindow *window;
 	int widthBeforeFull;
 	int heightBeforeFull;
 }
 
-void Resize(GLFWwindow *win, int width, int height)
-{
-	Renderer::Resize(width, height);
-	Window::width = width;
-	Window::height = height;
-}
-
 void Window::Init()
 {
-	//Init glfw
-	if (!glfwInit())
-		ERROR("Could not init glfw");
-
-	//Create window
-	window = glfwCreateWindow(width, height, title, NULL, NULL);
-	glfwMakeContextCurrent(window);
-
-	//Setup resize callback
-	glfwSetFramebufferSizeCallback(window, Resize);
-
-	//Init input
-	Input::Init(window);
+	WinWindow::Init(width, height, title);
 }
 
 bool Window::Open()
 {
-	return !glfwWindowShouldClose(window);
+	return WinWindow::Open();
 }
 
 void Window::SwapBuffers()
 {
-	glfwSwapBuffers(window);
+	WinWindow::SwapBuffers();
 }
 
 void Window::PollEvents()
 {
-	glfwPollEvents();
+	WinWindow::PollEvents();
 }
 
 void Window::SetFullScreen(bool mode)
@@ -65,22 +46,17 @@ void Window::SetFullScreen(bool mode)
 	{
 		widthBeforeFull = width;
 		heightBeforeFull = height;
+	}
 
-		const GLFWvidmode *winMode = glfwGetVideoMode(glfwGetPrimaryMonitor());
-		glfwSetWindowMonitor(window, glfwGetPrimaryMonitor(), 0, 0, winMode->width, winMode->height, 0);
-	}
-	else
-	{
-		glfwSetWindowMonitor(window, nullptr, 15, 45, widthBeforeFull, heightBeforeFull, 0);
-	}
+	WinWindow::SetFullScreen(mode, widthBeforeFull, heightBeforeFull);
 }
 
 void Window::Close()
 {
-	glfwDestroyWindow(window);
+	WinWindow::Close();
 }
 
 void Window::Clean()
 {
-	glfwTerminate();
+	WinWindow::Clean();
 }

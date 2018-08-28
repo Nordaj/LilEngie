@@ -7,6 +7,7 @@
 #include <Graphics/Renderer.h>
 #include <Graphics/ModelHandler.h>
 #include <Entity/SceneManager.h>
+#include <Input/Input.h>
 #include "Game.h"
 
 //Properties
@@ -20,6 +21,7 @@ void Game::Init(vFunction callback)
 {
 	Window::Init();
 	Renderer::Init();
+	Input::Init();
 
 	if (callback != nullptr)
 		callback();
@@ -27,11 +29,14 @@ void Game::Init(vFunction callback)
 
 void Game::Run(vFunction callback)
 {
+	//Change to update input, poll events, then update scene
+
 	while (Window::Open() && !closing)
 	{
 		Time::StartFrame();
 
 		SceneManager::Update();
+		Input::Update();
 
 		if (callback != nullptr)
 			callback();

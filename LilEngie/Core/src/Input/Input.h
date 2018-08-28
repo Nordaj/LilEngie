@@ -6,15 +6,15 @@
 
 namespace Input
 {
-	enum MouseBtn { Left = GLFW_MOUSE_BUTTON_LEFT, Right = GLFW_MOUSE_BUTTON_RIGHT, Middle = GLFW_MOUSE_BUTTON_MIDDLE };
+	void Init();
+	void Update();
+	void KeyEvent(Event event, Key key);
 
-	void Init(GLFWwindow *window);
 	bool GetKey(Key key);
+	bool GetKeyPress(Key key);
 	bool GetKeyUp(Key key);
-	bool GetMouse(MouseBtn btn);
 	glm::vec2 GetPointerPos();
+	bool GetMouse(MouseBtn btn);
+	bool GetMousePress(MouseBtn btn);
 	bool GetMouseUp(MouseBtn btn);
-	void PrepInput();
-	//Would like to add GetKeyDown and GetKeyUp but not sure how
-	//Definitely TODO later
 }

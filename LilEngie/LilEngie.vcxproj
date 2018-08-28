@@ -187,6 +187,8 @@
     <ClCompile Include="Core\src\Game\SceneLoader.cpp" />
     <ClCompile Include="Core\src\Graphics\Vertex.cpp" />
     <ClCompile Include="Core\src\Input\Input.cpp" />
+    <ClCompile Include="Core\src\Platform\Windows\WinInput.cpp" />
+    <ClCompile Include="Core\src\Platform\Windows\WinWindow.cpp" />
     <ClCompile Include="Core\src\Utilities\ModelLoader.cpp" />
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
@@ -231,6 +233,8 @@
     <ClInclude Include="Core\src\Graphics\Vertex.h" />
     <ClInclude Include="Core\src\Input\Input.h" />
     <ClInclude Include="Core\src\Input\Keys.h" />
+    <ClInclude Include="Core\src\Platform\Windows\WinInput.h" />
+    <ClInclude Include="Core\src\Platform\Windows\WinWindow.h" />
     <ClInclude Include="Core\src\Utilities\ModelLoader.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

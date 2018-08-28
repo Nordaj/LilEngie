@@ -1,49 +1,65 @@
-#include <GLFW/glfw3.h>
+#include <unordered_map>
+#include <string>
 #include <glm/common.hpp>
+#include "Platform/Windows/WinInput.h"
 #include "Keys.h"
 #include "Input.h"
+
+#define KEY_COUNT 255
 
 namespace Input
 {
 	//Private
-	GLFWwindow *win;
+	bool currentKeys[KEY_COUNT];
+	bool pastKeys[KEY_COUNT];
 }
 
-void Input::Init(GLFWwindow *window)
+void Input::Init()
 {
-	win = window;
+	WinInput::Init(KeyEvent);
+}
+
+void Input::Update()
+{
+	memcpy(&pastKeys[0], &currentKeys[0], KEY_COUNT);
+}
+
+void Input::KeyEvent(Event event, Key key)
+{
+	currentKeys[(int)key] = (bool)event;
 }
 
 bool Input::GetKey(Key key)
 {
-	return glfwGetKey(win, key) == GLFW_PRESS;
+	return false;
+}
+
+bool Input::GetKeyPress(Key key)
+{
+	return false;
 }
 
 bool Input::GetKeyUp(Key key)
 {
-	//TODO
 	return false;
-}
-
-bool Input::GetMouse(MouseBtn btn)
-{
-	return glfwGetMouseButton(win, btn) == GLFW_PRESS;
 }
 
 glm::vec2 Input::GetPointerPos()
 {
-	double x, y;
-	glfwGetCursorPos(win, &x, &y);
-	return glm::vec2((float)x, (float)y);
+	return glm::vec2(0, 0);
+}
+
+bool Input::GetMouse(MouseBtn btn)
+{
+	return false;
+}
+
+bool Input::GetMousePress(MouseBtn btn)
+{
+	return false;
 }
 
 bool Input::GetMouseUp(MouseBtn btn)
 {
-	//TODO
 	return false;
-}
-
-void Input::PrepInput()
-{
-	//TODO
 }
