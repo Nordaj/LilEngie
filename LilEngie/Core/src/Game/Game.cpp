@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include <GL/glew.h>
+//#include <GL/glew.h>
 
 #include <Application/Window.h>
 #include <Application/Time.h>
@@ -42,8 +42,8 @@ void Game::Run(vFunction callback)
 			callback();
 
 		Renderer::Render();
-		Window::SwapBuffers();
 		Window::PollEvents();
+		Window::SwapBuffer();
 
 		Time::EndFrame();
 	}

@@ -38,11 +38,12 @@ void Renderer::SetClearColor(float r, float g, float b, float a)
 
 void Renderer::Init()
 {
+	unsigned int result = glewInit();
+
 	//Init glew
 	if (glewInit() != GLEW_OK)
 	{
 		ERROR("Failed to init glew");
-		std::cin.get();
 		Game::Close();
 	}
 

@@ -1,7 +1,5 @@
 #pragma once
 
-#include <GLFW/glfw3.h>
-
 namespace Window
 {
 	//Public
@@ -11,9 +9,10 @@ namespace Window
 
 	void Init();
 	bool Open();
-	void SwapBuffers();
 	void PollEvents();
+	void SwapBuffer();
 	void SetFullScreen(bool mode);
+	void Resize(int width, int height);
 	void Close();
 	void Clean();
 }

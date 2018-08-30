@@ -1,5 +1,4 @@
 #include <iostream>
-#include <GLFW/glfw3.h>
 #include <Game/Game.h>
 #include <Application/Debug.h>
 #include <Input/Input.h>
@@ -30,14 +29,14 @@ bool Window::Open()
 	return WinWindow::Open();
 }
 
-void Window::SwapBuffers()
-{
-	WinWindow::SwapBuffers();
-}
-
 void Window::PollEvents()
 {
 	WinWindow::PollEvents();
+}
+
+void Window::SwapBuffer()
+{
+	WinWindow::SwapBuffer();
 }
 
 void Window::SetFullScreen(bool mode)
@@ -49,6 +48,13 @@ void Window::SetFullScreen(bool mode)
 	}
 
 	WinWindow::SetFullScreen(mode, widthBeforeFull, heightBeforeFull);
+}
+
+void Window::Resize(int width, int height)
+{
+	Renderer::Resize(width, height);
+	Window::width = width;
+	Window::height = height;
 }
 
 void Window::Close()

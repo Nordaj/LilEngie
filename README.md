@@ -17,6 +17,7 @@ https://steamcommunity.com/profiles/76561198254676201/images/
 <h2>Plans</h2>
 <ul>
   <li>Better input system</li>
+  <li>Double buffering</li>
   <li>Object hierarchies</li>
   <li>Start using .lilgam to handle all game details such as resources</li>
   <li>Make scene manager store hashmap of scene pointers with names(key)</li>
