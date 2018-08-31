@@ -1,7 +1,9 @@
 #include <unordered_map>
 #include <string>
 #include <glm/common.hpp>
-#include "Platform/Windows/WinInput.h"
+#include <Application/Debug.h>
+#include <Application/Window.h>
+#include <Platform/Windows/WinInput.h>
 #include "Keys.h"
 #include "Input.h"
 
@@ -12,16 +14,21 @@ namespace Input
 	//Private
 	bool currentKeys[KEY_COUNT];
 	bool pastKeys[KEY_COUNT];
+	int currentMousePosX, currentMousePosY;
+	int pastMousePosX, pastMousePosY;
 }
 
 void Input::Init()
 {
-	WinInput::Init(KeyEvent);
+	WinInput::Init(KeyEvent, Input::CursorEvent);
 }
 
 void Input::Update()
 {
 	memcpy(&pastKeys[0], &currentKeys[0], KEY_COUNT);
+
+	pastMousePosX = currentMousePosX;
+	pastMousePosY = currentMousePosY;
 }
 
 void Input::KeyEvent(Event event, Key key)
@@ -29,37 +36,73 @@ void Input::KeyEvent(Event event, Key key)
 	currentKeys[(int)key] = (bool)event;
 }
 
-bool Input::GetKey(Key key)
+void Input::CursorEvent(int xPos, int yPos)
 {
-	return false;
+	currentMousePosX = xPos;
+	currentMousePosY = yPos;
 }
 
-bool Input::GetKeyPress(Key key)
+bool Input::GetKey(Key key)
 {
-	return false;
+	return currentKeys[(int)key];
+}
+
+bool Input::GetKeyDown(Key key)
+{
+	if (!pastKeys[(int)key])
+		return currentKeys[(int)key];
+	else return false;
 }
 
 bool Input::GetKeyUp(Key key)
 {
-	return false;
-}
-
-glm::vec2 Input::GetPointerPos()
-{
-	return glm::vec2(0, 0);
+	if (pastKeys[(int)key])
+		return !currentKeys[(int)key];
+	else return false;
 }
 
 bool Input::GetMouse(MouseBtn btn)
 {
-	return false;
+	return GetKey((Key)btn);
 }
 
-bool Input::GetMousePress(MouseBtn btn)
+bool Input::GetMouseDown(MouseBtn btn)
 {
-	return false;
+	return GetKeyDown((Key)btn);
 }
 
 bool Input::GetMouseUp(MouseBtn btn)
 {
-	return false;
+	return GetKeyUp((Key)btn);
+}
+
+glm::vec2 Input::GetCursor(bool pixels)
+{
+	if (pixels)
+		return glm::vec2(currentMousePosX, currentMousePosY);
+	else
+	{
+		return glm::vec2(
+			(float)currentMousePosX / Window::width,
+			(float)currentMousePosY / Window::height
+		);
+	}
+}
+
+glm::vec2 Input::GetMouseAxis(bool pixels)
+{
+	if (pixels)
+	{
+		return glm::vec2(
+			(float)(currentMousePosX - pastMousePosX),
+			(float)(currentMousePosY - pastMousePosY)
+		);
+	}
+	else
+	{
+		return glm::vec2(
+			(float)(currentMousePosX - pastMousePosX) / Window::width,
+			(float)(currentMousePosY - pastMousePosY) / Window::height
+		);
+	}
 }

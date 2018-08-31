@@ -4,9 +4,6 @@ struct GLFWwindow;
 
 namespace WinWindow
 {
-	//Public
-
-
 	void Init(int width, int height, char *title);
 	bool Open();
 	void PollEvents();

@@ -3,15 +3,13 @@
 #include "Core/LilEngie.h"
 
 ///Changes:
-//Start game callback for main -
+//Almost all of input works now
 
 void Update();
 void Start();
 
 Scene *mainScene = nullptr;
 Scene *secondScene = nullptr;
-bool space;
-bool fKey;
 bool fullScreen;
 
 int main()
@@ -30,44 +28,30 @@ void Start()
 void Update()
 {
 	//Scene toggling
-	if (Input::GetKey(Key::Space))
+	if (Input::GetKeyUp(Key::Space))
 	{
-		if (!space)
+		if (Scenes::GetCurrent() == mainScene)
 		{
-			if (Scenes::GetCurrent() == mainScene)
-			{
-				Scenes::UnloadScene(&mainScene);
-				Scenes::LoadScene("Resources/Scenes/SecondScene.lilscn", &secondScene);
-			}
-			else if (SceneManager::GetCurrent() == secondScene)
-			{
-				Scenes::UnloadScene(&secondScene);
-				Scenes::LoadScene("Resources/Scenes/TestScene.lilscn", &mainScene);
-			}
-
-			space = true;
+			Scenes::UnloadScene(&mainScene);
+			Scenes::LoadScene("Resources/Scenes/SecondScene.lilscn", &secondScene);
+		}
+		else if (SceneManager::GetCurrent() == secondScene)
+		{
+			Scenes::UnloadScene(&secondScene);
+			Scenes::LoadScene("Resources/Scenes/TestScene.lilscn", &mainScene);
 		}
 	}
-	else
-		space = false;
 
 	//Fullscreen mode
-	if (Input::GetKey(Key::F))
+	if (Input::GetKeyUp(Key::F))
 	{
-		if (!fKey)
-		{
-			//Toggle
-			Window::SetFullScreen(!fullScreen);
-			fullScreen = !fullScreen;
-
-			fKey = true;
-		}
+		//Toggle
+		Window::SetFullScreen(!fullScreen);
+		fullScreen = !fullScreen;
 	}
-	else
-		fKey = false;
 
 	//Close on C
-	if (Input::GetKey(Key::C))
+	if (Input::GetKeyUp(Key::C))
 		Game::Close();
 
 	//Move camera if im in scene

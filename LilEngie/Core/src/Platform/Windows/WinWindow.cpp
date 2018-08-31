@@ -1,10 +1,12 @@
 #include <Application/Window.h>
 #include <Application/Debug.h>
 #include <Graphics/Renderer.h>
+#include "WinInput.h"
 #include "WinWindow.h"
 
 //Save from Windows.h intrusive defines
 #include <Windows.h>
+#include <windowsx.h>
 
 namespace WinWindow
 {
@@ -137,6 +139,23 @@ LRESULT CALLBACK WinWindow::WindowProc(HWND hwnd, UINT msg, WPARAM wParam, LPARA
 			break;
 		case WM_SIZE:
 			Window::Resize(LOWORD(lParam), HIWORD(lParam));
+			break;
+		case WM_KEYDOWN:
+		case WM_SYSKEYDOWN:
+		case WM_KEYUP:
+		case WM_SYSKEYUP:
+		case WM_LBUTTONDOWN:
+		case WM_MBUTTONDOWN:
+		case WM_RBUTTONDOWN:
+		case WM_XBUTTONDOWN:
+		case WM_LBUTTONUP:
+		case WM_MBUTTONUP:
+		case WM_RBUTTONUP:
+		case WM_XBUTTONUP:
+			WinInput::KeyCallback(msg, wParam, lParam);
+			break;
+		case WM_MOUSEMOVE:
+			WinInput::MouseMove(GET_X_LPARAM(lParam), GET_Y_LPARAM(lParam));
 			break;
 		default:
 			return DefWindowProc(hwnd, msg, wParam, lParam);

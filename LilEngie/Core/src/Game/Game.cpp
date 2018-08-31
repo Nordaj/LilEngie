@@ -35,13 +35,15 @@ void Game::Run(vFunction callback)
 	{
 		Time::StartFrame();
 
+		//Update all behaviour
 		SceneManager::Update();
-		Input::Update();
-
 		if (callback != nullptr)
 			callback();
 
+		Input::Update();
+
 		Renderer::Render();
+
 		Window::PollEvents();
 		Window::SwapBuffer();
 

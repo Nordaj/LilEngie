@@ -3,6 +3,8 @@
 #include <Game/Game.h>
 #include "Debug.h"
 
+//TODO Use platform folder for this. its windows specific
+
 void Debug::Popup(const char *message, DebugType type, bool exitGame)
 {
 	switch (type)

@@ -302,3 +302,4 @@ namespace Input
 }
 
 typedef Input::Key Key;
+typedef Input::MouseBtn MouseBtn;
