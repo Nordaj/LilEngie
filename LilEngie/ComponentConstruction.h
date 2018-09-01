@@ -3,6 +3,7 @@
 #include <string>
 #include <vector>
 #include <unordered_map>
+#include "CameraMove.h"
 #include "Core/LilEngie.h"
 
 namespace CompConstruct
@@ -215,6 +216,24 @@ namespace CompConstruct
 			t->renderer.scene = obj->GetMyScene();
 
 			return t;
+		}
+		else if (name == "CameraMove")
+		{
+			CameraMove *c = new CameraMove(obj);
+
+			if (params->find("LookSensitivity") != params->end())
+				c->lookSensitivity = std::stof((*params)["LookSensitivity"][0]);
+			if (params->find("MoveSpeed") != params->end())
+				c->moveSpeed = std::stof((*params)["MoveSpeed"][0]);
+			if (params->find("LockMouse") != params->end())
+			{
+				if ((*params)["LockMouse"][0] == "False")
+					c->lockMouse = false;
+				else
+					c->lockMouse = true;
+			}
+
+			return c;
 		}
 	}
 }

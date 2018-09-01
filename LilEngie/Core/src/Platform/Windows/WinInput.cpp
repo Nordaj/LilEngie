@@ -16,6 +16,15 @@ void WinInput::Init(KeyEventCallback keyEvCallback, MouseMoveCallback mouseMove)
 {
 	callback = keyEvCallback;
 	mouseCallback = mouseMove;
+
+	//Setup mouse input
+	RAWINPUTDEVICE rid[1];
+	rid[0].usUsagePage = 0x01;
+	rid[0].usUsage = 0x02;
+	rid[0].dwFlags = 0;
+	rid[0].hwndTarget = 0;
+	if (!RegisterRawInputDevices(rid, 1, sizeof(rid[0])))
+		Debug::Log("Could not register mouse device");
 }
 
 void WinInput::KeyCallback(unsigned int msg, LONG_PTR wParam, UINT_PTR lParam)
@@ -62,10 +71,38 @@ void WinInput::KeyCallback(unsigned int msg, LONG_PTR wParam, UINT_PTR lParam)
 			else
 				callback(Event::Release, Key::ThumbForward);
 			break;
+		case WM_INPUT:
+			UINT dwSize;
+			GetRawInputData((HRAWINPUT)lParam, RID_INPUT, NULL, &dwSize, sizeof(RAWINPUTHEADER));
+			LPBYTE lpb = new BYTE[dwSize];
+			GetRawInputData((HRAWINPUT)lParam, RID_INPUT, lpb, &dwSize, sizeof(RAWINPUTHEADER));
+			RAWINPUT *raw = (RAWINPUT*)lpb;
+			if (raw->header.dwType == RIM_TYPEMOUSE)
+				MouseMove(raw->data.mouse.lLastX, raw->data.mouse.lLastY);
+			delete[] lpb;
+			break;
 	}
 }
 
-void WinInput::MouseMove(int xPos, int yPos)
+void WinInput::MouseMove(float xDelta, float yDelta)
 {
-	mouseCallback(xPos, yPos);
+	mouseCallback(xDelta, yDelta);
+}
+
+void WinInput::SetCursor(int xPos, int yPos)
+{
+	SetCursorPos(xPos, yPos);
+}
+
+void WinInput::GetCursor(int *xPos, int *yPos)
+{
+	POINT p;
+	GetCursorPos(&p);
+	*xPos = p.x;
+	*yPos = p.y;
+}
+
+void WinInput::CursorVisibility(bool show)
+{
+	ShowCursor(show);
 }

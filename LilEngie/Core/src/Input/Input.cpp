@@ -11,24 +11,35 @@
 
 namespace Input
 {
+	//Public
+	bool lockCursorMode = false;
+	bool cursorVisibility = true;
+
 	//Private
 	bool currentKeys[KEY_COUNT];
 	bool pastKeys[KEY_COUNT];
-	int currentMousePosX, currentMousePosY;
-	int pastMousePosX, pastMousePosY;
+	float mouseDeltaX, mouseDeltaY;
 }
 
 void Input::Init()
 {
-	WinInput::Init(KeyEvent, Input::CursorEvent);
+	WinInput::Init(KeyEvent, Input::MouseEvent);
 }
 
 void Input::Update()
 {
 	memcpy(&pastKeys[0], &currentKeys[0], KEY_COUNT);
 
-	pastMousePosX = currentMousePosX;
-	pastMousePosY = currentMousePosY;
+	mouseDeltaX = 0;
+	mouseDeltaY = 0;
+
+	if (lockCursorMode)
+	{
+		int x, y;
+		Window::GetWinPos(&x, &y);
+
+		WinInput::SetCursor(x + (Window::width / 2), y + (Window::height / 2));
+	}
 }
 
 void Input::KeyEvent(Event event, Key key)
@@ -36,10 +47,10 @@ void Input::KeyEvent(Event event, Key key)
 	currentKeys[(int)key] = (bool)event;
 }
 
-void Input::CursorEvent(int xPos, int yPos)
+void Input::MouseEvent(float xDelta, float yDelta)
 {
-	currentMousePosX = xPos;
-	currentMousePosY = yPos;
+	mouseDeltaX = xDelta;
+	mouseDeltaY = yDelta;
 }
 
 bool Input::GetKey(Key key)
@@ -78,31 +89,26 @@ bool Input::GetMouseUp(MouseBtn btn)
 
 glm::vec2 Input::GetCursor(bool pixels)
 {
+	int x, y;
+	WinInput::GetCursor(&x, &y);
+	return glm::vec2(x, y);
+}
+
+glm::vec2 Input::MouseDelta(bool pixels)
+{
 	if (pixels)
-		return glm::vec2(currentMousePosX, currentMousePosY);
+		return glm::vec2(mouseDeltaX, mouseDeltaY);
 	else
 	{
 		return glm::vec2(
-			(float)currentMousePosX / Window::width,
-			(float)currentMousePosY / Window::height
+			mouseDeltaX / Window::width,
+			mouseDeltaY / Window::height
 		);
 	}
 }
 
-glm::vec2 Input::GetMouseAxis(bool pixels)
+void Input::ShowCursor(bool show)
 {
-	if (pixels)
-	{
-		return glm::vec2(
-			(float)(currentMousePosX - pastMousePosX),
-			(float)(currentMousePosY - pastMousePosY)
-		);
-	}
-	else
-	{
-		return glm::vec2(
-			(float)(currentMousePosX - pastMousePosX) / Window::width,
-			(float)(currentMousePosY - pastMousePosY) / Window::height
-		);
-	}
+	WinInput::CursorVisibility(show);
+	cursorVisibility = show;
 }

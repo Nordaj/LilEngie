@@ -57,6 +57,11 @@ void Window::Resize(int width, int height)
 	Window::height = height;
 }
 
+void Window::GetWinPos(int *posX, int *posY)
+{
+	WinWindow::GetWinPos(posX, posY);
+}
+
 void Window::Close()
 {
 	WinWindow::Close();

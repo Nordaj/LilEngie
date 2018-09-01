@@ -13,6 +13,7 @@ namespace Window
 	void SwapBuffer();
 	void SetFullScreen(bool mode);
 	void Resize(int width, int height);
+	void GetWinPos(int *posX, int *posY);
 	void Close();
 	void Clean();
 }

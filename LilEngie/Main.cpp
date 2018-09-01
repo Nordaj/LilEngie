@@ -3,7 +3,12 @@
 #include "Core/LilEngie.h"
 
 ///Changes:
-//Almost all of input works now
+//Mouse position is raw input
+//Mouse locking and hiding
+//GLFW is now removed from project
+//Get window position
+//Camera looking and moving
+//CameraMove component
 
 void Update();
 void Start();
@@ -54,14 +59,11 @@ void Update()
 	if (Input::GetKeyUp(Key::C))
 		Game::Close();
 
-	//Move camera if im in scene
-	if (Scenes::GetCurrent() == mainScene)
+	//Lock cursor with L
+	if (Input::GetKeyUp(Key::L))
 	{
-		mainScene->GetCam()->GetTransform()->position = glm::vec3(
-			mainScene->GetCam()->GetTransform()->position.x,
-			(glm::sin(Time::Get(Unit::Seconds) * 2) - 0.5f) * 0.5f,
-			mainScene->GetCam()->GetTransform()->position.z
-		);
+		Input::lockCursorMode = !Input::lockCursorMode;
+		Input::ShowCursor(!Input::cursorVisibility);
 	}
 
 	//Rotate shield if in second scene

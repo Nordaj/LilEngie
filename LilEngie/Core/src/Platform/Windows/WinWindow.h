@@ -9,6 +9,7 @@ namespace WinWindow
 	void PollEvents();
 	void SwapBuffer();
 	void SetFullScreen(bool mode, int widthBeforeFull, int heightBeforeFull);
+	void GetWinPos(int *posX, int *posY);
 	void Close();
 	void Clean();
 }

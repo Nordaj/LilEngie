@@ -113,6 +113,14 @@ void WinWindow::SetFullScreen(bool mode, int widthBeforeFull, int heightBeforeFu
 	Debug::Log("My master did not tell me how to set full screen yet.", DebugType::Warning);
 }
 
+void WinWindow::GetWinPos(int *posX, int *posY)
+{
+	RECT r;
+	GetWindowRect(hwnd, &r);
+	*posX = r.left;
+	*posY = r.top;
+}
+
 void WinWindow::Close()
 {
 	DestroyWindow(hwnd);
@@ -152,10 +160,8 @@ LRESULT CALLBACK WinWindow::WindowProc(HWND hwnd, UINT msg, WPARAM wParam, LPARA
 		case WM_MBUTTONUP:
 		case WM_RBUTTONUP:
 		case WM_XBUTTONUP:
+		case WM_INPUT:
 			WinInput::KeyCallback(msg, wParam, lParam);
-			break;
-		case WM_MOUSEMOVE:
-			WinInput::MouseMove(GET_X_LPARAM(lParam), GET_Y_LPARAM(lParam));
 			break;
 		default:
 			return DefWindowProc(hwnd, msg, wParam, lParam);

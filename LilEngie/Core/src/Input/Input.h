@@ -3,14 +3,17 @@
 #include <glm/common.hpp>
 #include "Keys.h"
 
-//TODO: want to be able to lock cursor and sense mouse axis like that
-
 namespace Input
 {
+	extern bool lockCursorMode;
+	extern bool cursorVisibility;
+
 	void Init();
 	void Update();
 	void KeyEvent(Event event, Key key);
-	void CursorEvent(int xPos, int yPos);
+	void MouseEvent(float xDelta, float yDelta);
+
+	void ShowCursor(bool show);
 
 	bool GetKey(Key key);
 	bool GetKeyDown(Key key);
@@ -18,6 +21,7 @@ namespace Input
 	bool GetMouse(MouseBtn btn);
 	bool GetMouseDown(MouseBtn btn);
 	bool GetMouseUp(MouseBtn btn);
+
 	glm::vec2 GetCursor(bool pixels = true);
-	glm::vec2 GetMouseAxis(bool pixels = false);
+	glm::vec2 MouseDelta(bool pixels = true);
 }

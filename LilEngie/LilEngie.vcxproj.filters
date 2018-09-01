@@ -135,6 +135,9 @@
     <ClCompile Include="Core\src\Platform\Windows\WinWindow.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="CameraMove.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\LilEngie.h">
@@ -264,6 +267,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Core\src\Platform\Windows\WinWindow.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CameraMove.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
