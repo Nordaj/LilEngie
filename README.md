@@ -15,9 +15,9 @@ https://steamcommunity.com/profiles/76561198254676201/images/
 
 <h2>Plans</h2>
 <ul>
-  <li>Drop GLEW</li>
-  <li>Backface culling</li>
-  <li>Component construction should just refer to component</li>
+  <li>Use .lilgam for game details</li>
+  <li>Organize graphics API things into Platform</li>
+  <li>Add direct3d support</li>
   <li>Experiment with better scene management methods</li>
   <li>Make sure I have no memory issues</li>
   <li>Focus on PBR shaders</li>

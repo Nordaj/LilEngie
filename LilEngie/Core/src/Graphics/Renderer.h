@@ -7,6 +7,8 @@
 
 namespace Renderer
 {
+	extern bool cullBackFaces;
+
 	Camera* GetCurrentCamera();
 	void SetScene(Scene *s);
 	void SetClearColor(float r, float g, float b, float a);

@@ -3,12 +3,7 @@
 #include "Core/LilEngie.h"
 
 ///Changes:
-//Mouse position is raw input
-//Mouse locking and hiding
-//GLFW is now removed from project
-//Get window position
-//Camera looking and moving
-//CameraMove component
+//
 
 void Update();
 void Start();

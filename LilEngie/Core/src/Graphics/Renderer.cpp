@@ -16,6 +16,9 @@
 //Properties
 namespace Renderer
 {
+	//Public
+	bool cullBackFaces = true;
+
 	//Private
 	Scene *scene;
 	unsigned int defaultTex;
@@ -60,11 +63,18 @@ void Renderer::Init()
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 
-	//glPolygonMode(GL_FRONT, GL_LINE);
+	//Depth testing
 	glEnable(GL_DEPTH_TEST);
 
 	//Blending mode
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+	//Backface culling
+	if (cullBackFaces)
+	{
+		glEnable(GL_CULL_FACE);
+		glCullFace(GL_BACK);
+	}
 }
 
 void Renderer::Render()
