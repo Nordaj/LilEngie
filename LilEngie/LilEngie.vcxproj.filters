@@ -156,6 +156,21 @@
     <ClCompile Include="Core\src\Platform\OpenGL\GLTexture.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Core\src\Platform\DirectX\DXMeshRenderer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\src\Platform\DirectX\DXRenderer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\src\Platform\DirectX\DXShaders.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\src\Platform\DirectX\DXTexture.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\src\Platform\DirectX\DXUniformHandler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\LilEngie.h">
@@ -306,6 +321,21 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Core\src\Platform\OpenGL\GLTexture.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\src\Platform\DirectX\DXMeshRenderer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\src\Platform\DirectX\DXRenderer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\src\Platform\DirectX\DXShaders.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\src\Platform\DirectX\DXTexture.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\src\Platform\DirectX\DXUniformHandler.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

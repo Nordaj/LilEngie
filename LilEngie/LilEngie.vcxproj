@@ -188,6 +188,11 @@
     <ClCompile Include="Core\src\Game\SceneLoader.cpp" />
     <ClCompile Include="Core\src\Graphics\Vertex.cpp" />
     <ClCompile Include="Core\src\Input\Input.cpp" />
+    <ClCompile Include="Core\src\Platform\DirectX\DXMeshRenderer.cpp" />
+    <ClCompile Include="Core\src\Platform\DirectX\DXRenderer.cpp" />
+    <ClCompile Include="Core\src\Platform\DirectX\DXShaders.cpp" />
+    <ClCompile Include="Core\src\Platform\DirectX\DXTexture.cpp" />
+    <ClCompile Include="Core\src\Platform\DirectX\DXUniformHandler.cpp" />
     <ClCompile Include="Core\src\Platform\Gfx.cpp" />
     <ClCompile Include="Core\src\Platform\OpenGL\GLMeshRenderer.cpp" />
     <ClCompile Include="Core\src\Platform\OpenGL\GLRenderer.cpp" />
@@ -241,6 +246,11 @@
     <ClInclude Include="Core\src\Graphics\Vertex.h" />
     <ClInclude Include="Core\src\Input\Input.h" />
     <ClInclude Include="Core\src\Input\Keys.h" />
+    <ClInclude Include="Core\src\Platform\DirectX\DXMeshRenderer.h" />
+    <ClInclude Include="Core\src\Platform\DirectX\DXRenderer.h" />
+    <ClInclude Include="Core\src\Platform\DirectX\DXShaders.h" />
+    <ClInclude Include="Core\src\Platform\DirectX\DXTexture.h" />
+    <ClInclude Include="Core\src\Platform\DirectX\DXUniformHandler.h" />
     <ClInclude Include="Core\src\Platform\Gfx.h" />
     <ClInclude Include="Core\src\Platform\OpenGL\GLMeshRenderer.h" />
     <ClInclude Include="Core\src\Platform\OpenGL\GLRenderer.h" />
