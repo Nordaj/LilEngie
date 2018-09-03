@@ -1,6 +1,4 @@
-#pragma once
-
-#include <GL/glew.h>
+#include <Platform/Gfx.h>
 #include "Shader.h"
 #include "ShaderHandler.h"
 
@@ -15,5 +13,5 @@ unsigned int Shader::GetID()
 
 void Shader::Use()
 {
-	glUseProgram(shaderID);
+	Gfx::UseShader(shaderID);
 }

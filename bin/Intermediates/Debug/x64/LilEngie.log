@@ -1,2 +1,5 @@
-﻿  Main.cpp
+﻿  TextHandler.cpp
+  GLRenderer.cpp
+  Generating Code...
+d:\documents\github\lilengie\lilengie\core\src\platform\opengl\glrenderer.cpp(79): warning C4715: 'GLRenderer::TranslateBlendingMode': not all control paths return a value
   LilEngie.vcxproj -> D:\Documents\GitHub\LilEngie\bin\Debug\x64\LilEngie.exe

@@ -1,7 +1,4 @@
 #include <iostream>
-
-//#include <GL/glew.h>
-
 #include <Application/Window.h>
 #include <Application/Time.h>
 #include <Graphics/Renderer.h>

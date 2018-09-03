@@ -1,6 +1,6 @@
 #include <string>
 #include <glm/glm.hpp>
-#include <GL/glew.h>
+#include <Platform/Gfx.h>
 #include <Graphics/BaseMeshes.h>
 #include <Graphics/MaterialHandler.h>
 #include <Graphics/UniformHandler.h>
@@ -58,17 +58,13 @@ void TextRenderer::Render(Font *font)
 		};
 
 		//Submit new data
-		glBindBuffer(GL_ARRAY_BUFFER, TextHandler::VBO);
-		glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(newVerts), &newVerts[0]);
+		Gfx::SubVertData(TextHandler::VBO, sizeof(newVerts), &newVerts[0]);
 
-		//Bind VAO
-		glBindVertexArray(TextHandler::VAO);
-
-		//Draw
-		glDrawElements(GL_TRIANGLES, BaseMeshes::charQuadInds.size(), GL_UNSIGNED_INT, nullptr);
+		//Draw the mesh
+		Gfx::DrawMesh(TextHandler::VAO, BaseMeshes::charQuadInds.size());
 	}
 
-	glEnable(GL_DEPTH_TEST);
+	Gfx::DepthTest(true);
 }
 
 void TextRenderer::PrepRender(Font *font)

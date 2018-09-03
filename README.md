@@ -15,7 +15,6 @@ https://steamcommunity.com/profiles/76561198254676201/images/
 
 <h2>Plans</h2>
 <ul>
-  <li>Drop GLEW</li>
   <li>Backface culling</li>
   <li>Component construction should just refer to component</li>
   <li>Experiment with better scene management methods</li>

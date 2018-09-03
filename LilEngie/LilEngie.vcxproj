@@ -188,6 +188,12 @@
     <ClCompile Include="Core\src\Game\SceneLoader.cpp" />
     <ClCompile Include="Core\src\Graphics\Vertex.cpp" />
     <ClCompile Include="Core\src\Input\Input.cpp" />
+    <ClCompile Include="Core\src\Platform\Gfx.cpp" />
+    <ClCompile Include="Core\src\Platform\OpenGL\GLMeshRenderer.cpp" />
+    <ClCompile Include="Core\src\Platform\OpenGL\GLRenderer.cpp" />
+    <ClCompile Include="Core\src\Platform\OpenGL\GLShaders.cpp" />
+    <ClCompile Include="Core\src\Platform\OpenGL\GLTexture.cpp" />
+    <ClCompile Include="Core\src\Platform\OpenGL\GLUniformHandler.cpp" />
     <ClCompile Include="Core\src\Platform\Windows\WinInput.cpp" />
     <ClCompile Include="Core\src\Platform\Windows\WinWindow.cpp" />
     <ClCompile Include="Core\src\Utilities\ModelLoader.cpp" />
@@ -235,6 +241,12 @@
     <ClInclude Include="Core\src\Graphics\Vertex.h" />
     <ClInclude Include="Core\src\Input\Input.h" />
     <ClInclude Include="Core\src\Input\Keys.h" />
+    <ClInclude Include="Core\src\Platform\Gfx.h" />
+    <ClInclude Include="Core\src\Platform\OpenGL\GLMeshRenderer.h" />
+    <ClInclude Include="Core\src\Platform\OpenGL\GLRenderer.h" />
+    <ClInclude Include="Core\src\Platform\OpenGL\GLShaders.h" />
+    <ClInclude Include="Core\src\Platform\OpenGL\GLTexture.h" />
+    <ClInclude Include="Core\src\Platform\OpenGL\GLUniformHandler.h" />
     <ClInclude Include="Core\src\Platform\Windows\WinInput.h" />
     <ClInclude Include="Core\src\Platform\Windows\WinWindow.h" />
     <ClInclude Include="Core\src\Utilities\ModelLoader.h" />

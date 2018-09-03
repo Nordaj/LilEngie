@@ -1,6 +1,6 @@
 #include <iostream>
 #include <stb_image.h>
-#include <GL/glew.h>
+#include <Platform/Gfx.h>
 #include <Application/Debug.h>
 #include "Texture.h"
 
@@ -25,42 +25,8 @@ Texture::Texture(const char *path, bool repeat, bool filter, int *width, int *he
 	if (data == nullptr)
 		LOG("Could not load texture");
 
-	//Get the format
-	GLenum format;
-	if (channels == 1)
-		format = GL_RED;
-	else if (channels == 3)
-		format = GL_RGB;
-	else if (channels == 4)
-		format = GL_RGBA;
-
-	//Setup with opengl
-	glGenTextures(1, &tex);
-	glBindTexture(GL_TEXTURE_2D, tex);
-	glTexImage2D(GL_TEXTURE_2D, 0, format, *widthPtr, *heightPtr, 0, format, GL_UNSIGNED_BYTE, data);
-	glGenerateMipmap(GL_TEXTURE_2D);
-
-	if (repeat)
-	{
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-	}
-	else
-	{
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);
-	}
-
-	if (filter)
-	{
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-	}
-	else
-	{
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-	}
+	//Submit stuff to gpu
+	tex = Gfx::CreateTexture(channels, *widthPtr, *heightPtr, data, repeat, filter);
 
 	//Free data
 	stbi_image_free(data);
@@ -68,42 +34,7 @@ Texture::Texture(const char *path, bool repeat, bool filter, int *width, int *he
 
 Texture::Texture(unsigned char *data, int width, int height, int channels, bool repeat, bool filter)
 {
-	//Get the format
-	GLenum format;
-	if (channels == 1)
-		format = GL_RED;
-	else if (channels == 3)
-		format = GL_RGB;
-	else if (channels == 4)
-		format = GL_RGBA;
-
-	//Setup with opengl
-	glGenTextures(1, &tex);
-	glBindTexture(GL_TEXTURE_2D, tex);
-	glTexImage2D(GL_TEXTURE_2D, 0, format, width, height, 0, format, GL_UNSIGNED_BYTE, data);
-	glGenerateMipmap(GL_TEXTURE_2D);
-
-	if (repeat)
-	{
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-	}
-	else
-	{
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);
-	}
-
-	if (filter)
-	{
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-	}
-	else
-	{
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-	}
+	tex = Gfx::CreateTexture(channels, width, height, data, repeat, filter);
 }
 
 unsigned int Texture::GetID()
