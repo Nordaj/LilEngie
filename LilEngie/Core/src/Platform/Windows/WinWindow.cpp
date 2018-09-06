@@ -1,6 +1,7 @@
 #include <Application/Window.h>
 #include <Application/Debug.h>
 #include <Graphics/Renderer.h>
+#include <Platform/Gfx.h>
 #include "WinInput.h"
 #include "WinWindow.h"
 
@@ -75,10 +76,12 @@ void WinWindow::Init(int width, int height, char *title)
 		Debug::Popup("Could not set pixel format.");
 	DescribePixelFormat(hdc, pf, sizeof(PIXELFORMATDESCRIPTOR), &pfd);
 
-	//This is opengl specific. It needs to be moved when using multiple API's. 
-	//should this -> renderer::CreateContext() -> OpenglPlatform stuff
-	HGLRC hglrc = wglCreateContext(hdc);
-	wglMakeCurrent(hdc, hglrc);
+	//This is opengl and windows specific
+	if (Gfx::api == Gfx::API::OpenGL)
+	{
+		HGLRC hglrc = wglCreateContext(hdc);
+		wglMakeCurrent(hdc, hglrc);
+	}
 
 	//Show the window
 	ShowWindow(hwnd, SW_SHOW);
@@ -129,6 +132,11 @@ void WinWindow::Close()
 void WinWindow::Clean()
 {
 	
+}
+
+void* WinWindow::GetHWND()
+{
+	return (void*)hwnd;
 }
 
 LRESULT CALLBACK WinWindow::WindowProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)

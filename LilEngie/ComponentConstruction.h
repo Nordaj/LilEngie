@@ -3,6 +3,7 @@
 #include <string>
 #include <vector>
 #include <unordered_map>
+#include <Application/Debug.h>
 #include "CameraMove.h"
 #include "Core/LilEngie.h"
 

@@ -1,4 +1,11 @@
-﻿  Gfx.cpp
-d:\documents\github\lilengie\lilengie\core\src\platform\gfx.cpp(181): warning C4715: 'Gfx::SetupShader': not all control paths return a value
-d:\documents\github\lilengie\lilengie\core\src\platform\gfx.cpp(191): warning C4715: 'Gfx::CreateTexture': not all control paths return a value
+﻿  DXRenderer.cpp
+d:\documents\github\lilengie\lilengie\core\src\application\debug.h(11): warning C4005: 'ERROR': macro redefinition
+  c:\program files (x86)\windows kits\10\include\10.0.17134.0\um\wingdi.h(118): note: see previous definition of 'ERROR'
+d:\documents\github\lilengie\lilengie\core\src\platform\directx\dxrenderer.cpp(37): warning C4101: 'result': unreferenced local variable
+d:\documents\github\lilengie\lilengie\core\src\platform\directx\dxrenderer.cpp(135): warning C4244: '=': conversion from 'float' to 'UINT', possible loss of data
+d:\documents\github\lilengie\lilengie\core\src\platform\directx\dxrenderer.cpp(136): warning C4244: '=': conversion from 'float' to 'UINT', possible loss of data
+  Gfx.cpp
+  Generating Code...
+d:\documents\github\lilengie\lilengie\core\src\platform\gfx.cpp(197): warning C4715: 'Gfx::SetupShader': not all control paths return a value
+d:\documents\github\lilengie\lilengie\core\src\platform\gfx.cpp(207): warning C4715: 'Gfx::CreateTexture': not all control paths return a value
   LilEngie.vcxproj -> D:\Documents\GitHub\LilEngie\bin\Debug\x64\LilEngie.exe

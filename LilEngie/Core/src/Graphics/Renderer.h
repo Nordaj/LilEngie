@@ -13,4 +13,5 @@ namespace Renderer
 	void Init();
 	void Render();
 	void Resize(int width, int height);
+	void Shutdown();
 }

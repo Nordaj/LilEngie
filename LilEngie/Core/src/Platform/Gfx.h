@@ -15,10 +15,12 @@ namespace Gfx
 	bool InitRenderer();
 	void SetBlendingMode(BlendFunction source, BlendFunction destination);
 	void DepthTest(bool mode);
-	void ClearFrame();
+	void Render();
+	void Clear();
 	void Blending(bool mode);
 	void Viewport(int x, int y, int width, int height);
 	void SubVertData(unsigned int vbo, int size, void *data);
+	void Shutdown();
 
 	//UniformHandler
 	void PassFloat(int shader, const char *name, float val);

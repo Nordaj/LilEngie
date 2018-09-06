@@ -55,8 +55,7 @@ void Renderer::Init()
 
 void Renderer::Render()
 {
-	//Clear
-	Gfx::ClearFrame();
+	Gfx::Clear();
 
 	//Render each mesh
 	for (int i = 0; i < scene->GetQueue()->size(); i++)
@@ -89,9 +88,16 @@ void Renderer::Render()
 	//Undo blending stuff
 	Gfx::Blending(false);
 	Gfx::DepthTest(true);
+
+	Gfx::Render();
 }
 
 void Renderer::Resize(int width, int height)
 {
 	Gfx::Viewport(0, 0, width, height);
+}
+
+void Renderer::Shutdown()
+{
+	Gfx::Shutdown();
 }

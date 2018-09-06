@@ -1,0 +1,42 @@
+//DX uses left handed (Z is out)
+
+//Set ambient lighting color
+amb 0.0f 0.3f 0.8f
+
+//Set clear color
+clr 0.3f 0.5f 1.0f
+
+//mdl command for model
+//(mdl, name, directory)
+mdl sphereModel "Resources/Models/Sphere.obj"
+
+//Textures
+tex rustTexture "Resources/Textures/Rusty.png"
+
+//Shaders
+shd testShader "Resources/Shaders/Standard/Unlit.hlsl"
+
+//Materials
+mat unlitMaterial testShader
+-col "uColor" 1 1 1 1
+
+//Objects
+obj testObject
+-Transform Scale(0.5, 0.5, 0.5)
+-Mesh Model(BaseCube) Material(unlitMaterial)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

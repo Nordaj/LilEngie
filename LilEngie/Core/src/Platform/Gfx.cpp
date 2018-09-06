@@ -55,7 +55,15 @@ void Gfx::DepthTest(bool mode)
 
 }
 
-void Gfx::ClearFrame()
+void Gfx::Render()
+{
+	if (api == API::OpenGL)
+		GLRenderer::Render();
+	else if (api == API::DirectX)
+		DXRenderer::Render();
+}
+
+void Gfx::Clear()
 {
 	if (api == API::OpenGL)
 		GLRenderer::Clear();
@@ -85,6 +93,14 @@ void Gfx::SubVertData(unsigned int vbo, int size, void *data)
 		GLRenderer::SubVertData(vbo, size, data);
 	else if (api == API::DirectX)
 		DXRenderer::SubVertData(vbo, size, data);
+}
+
+void Gfx::Shutdown()
+{
+	if (api == API::OpenGL)
+		GLRenderer::Shutdown();
+	else if (api == API::DirectX)
+		DXRenderer::Shutdown();
 }
 #pragma endregion Renderer
 

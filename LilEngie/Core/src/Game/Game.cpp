@@ -54,5 +54,6 @@ void Game::Run(vFunction callback)
 
 void Game::Close()
 {
+	Renderer::Shutdown();
 	closing = true;
 }

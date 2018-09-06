@@ -1,7 +1,5 @@
 #pragma once
 
-struct GLFWwindow;
-
 namespace WinWindow
 {
 	void Init(int width, int height, char *title);
@@ -12,4 +10,5 @@ namespace WinWindow
 	void GetWinPos(int *posX, int *posY);
 	void Close();
 	void Clean();
+	void* GetHWND();
 }

@@ -3,24 +3,20 @@
 #include "Core/LilEngie.h"
 
 ///Changes:
-//Mouse position is raw input
-//Mouse locking and hiding
-//GLFW is now removed from project
-//Get window position
-//Camera looking and moving
-//CameraMove component
 
 void Update();
 void Start();
 
 Scene *mainScene = nullptr;
 Scene *secondScene = nullptr;
+Scene *d3dScene = nullptr;
 bool fullScreen;
 
 int main()
 {
 	Game::Init(Start);
-	Scenes::LoadScene("Resources/Scenes/TestScene.lilscn", &mainScene);
+	//Scenes::LoadScene("Resources/Scenes/TestScene.lilscn", &mainScene);
+	Scenes::LoadScene("Resources/Scenes/DXScene.lilscn", &d3dScene);
 	Game::Run(Update);
 	Game::Close();
 

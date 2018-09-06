@@ -37,6 +37,11 @@ void GLRenderer::DepthTest(bool mode)
 		glDisable(GL_DEPTH_TEST);
 }
 
+void GLRenderer::Render()
+{
+
+}
+
 void GLRenderer::Clear()
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -59,6 +64,11 @@ void GLRenderer::SubVertData(unsigned int vbo, int size, void *data)
 {
 	glBindBuffer(GL_ARRAY_BUFFER, vbo);
 	glBufferSubData(GL_ARRAY_BUFFER, 0, size, data);
+}
+
+void GLRenderer::Shutdown()
+{
+
 }
 
 unsigned int GLRenderer::TranslateBlendingMode(Gfx::BlendFunction func)
